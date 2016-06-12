@@ -1,0 +1,12 @@
+/** Website template by freewebsitetemplates.com **/
+#background #page #footer .header ul.connect {
+	list-style-type:none;
+	margin:-35px 20px 0 0;
+	padding:0;
+	width:150px;
+	float:right;
+}
+#background #page #footer div .body ul.navigation li {
+    background: url("../images/bg-menu-border-footer.jpg") no-repeat scroll left 27px transparent;
+    display: inline;
+}
