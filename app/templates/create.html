@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+Вы можете отправить нам свою статью, нажав на кнопку "Отправить" - далее откройте статью на вашей компьютере - и отправляйте нам.
+<br>
+<br>
+p.s - отправить статью можно только в формате pdf
+<br>
+<br>
+Или вы можете создать статью онлайн прямо здесь. Для этого воспользуйтесь формой ниже
+<br>
+<br>
+<br>
+<br> 
+
+    <form action="/create" method="POST" enctype="multipart/form-data">
+    <p><input type="file" name="userfile"></p>
+    <p><input type="submit"></p>
+    </form>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--<iframe frameborder="0" src="http://mega-photoshop.ru/fotoshop_onlajn.html" height="950px" width="100%" ></iframe><br/> -->
+
+
+
+{% endblock %}
+
+

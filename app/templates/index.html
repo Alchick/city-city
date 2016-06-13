@@ -1,118 +1,48 @@
-<!DOCTYPE html>
-<!-- Website template by freewebsitetemplates.com -->
-<html>
-<head>
-	<title>Chronokeep Website Template</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-	<!--[if IE 7]>
-		<link href="css/ie7.css" rel="stylesheet" type="text/css">
-	<![endif]-->
-</head>
-<body>
-	<div id="background">
-		<div id="page">
-			<div id="header"> <a href="index.html" id="logo"><img src="static/images/logo-Culture_City.png" width="295" height="55" alt="Chronokeep Website Template"></a>
-				<ul class="navigation">
-					<li>
-						<a class="activeв" href="index.html">Главная</a>
-					</li>
-					<li>
-						<a href="about.html">О нас</a>
-					</li>
-					<li>
-						<a href="write.html">Написать</a>
-					</li>
-					<li>
-						<a href="read.html">Читать</a>
-					</li>
-					<li>
-						<a href="partners.html">Контакты</a>
-					</li>
-				</ul>
-			</div>
-			<!-- start of body-->
-			<div id="body">
-				<div class="featured">
-					<ul>
-						<li>
-							<h2><a href="index.html">Lorem Ipsum Dolor Sit</a></h2>
-							<p>
-								This website template has been designed by <a href="http://www.freewebsitetemplates.com">Free Website Templates</a> for you, for free. You can replace all this text with your own text. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option
-							</p>
-							<!--<a href="index.html" class="download">&nbsp;</a> <a href="index.html" class="buy">&nbsp;</a> -->
-						</li>
-					</ul>
-				</div>
-				<div id="section">
-					<div class="footer">
-						<div class="body">
-							<ul class="article">
-								<li class="first">
-									<a href="index.html"><img src="static/images/disk.jpg" width="256" height="166" alt="Chronokeep Website Template"></a>
-									<h2><a href="index.html">Создать статью</a></h2>
-									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim.
-									</p>
-									<a href="index.html" class="readmore">Read More</a>
-								</li>
-								<li>
-									<a href="index.html"><img src="static/images/disk.jpg" width="256" height="166" alt="Chronokeep Website Template"></a>
-									<h2><a href="index.html">Мы сотрудничаем</a></h2>
-									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim.
-									</p>
-									<a href="index.html" class="readmore">Read More</a>
-								</li>
-								<li class="last">
-									<a href="index.html"><img src="static/images/disk.jpg" width="256" height="166" alt="Chronokeep Website Template"></a>
-									<h2><a href="index.html">Читать статью</a></h2>
-									<p>
-										Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim.
-									</p>
-									<a href="index.html" class="readmore">Read More</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- end of body-->
-			<div id="footer">
-				<div>
-					<div class="header"> <a href="index.html"><img class="logo" src="images/logo-Culture_City.png" width="187" height="37" alt="Chronokeep Website Template"></a>
-						<ul class="connect">
-							<li>
-								<a href="http://www.freewebsitetemplates.com/go/facebook/" class="facebook">&nbsp;</a>
-							</li>
-							<li>
-								<a href="http://www.freewebsitetemplates.com/go/twitter/" class="twitter">&nbsp;</a>
-							</li>
-							<li>
-								<a href="http://www.freewebsitetemplates.com/go/googleplus/" class="googleplus">&nbsp;</a>
-							</li>
-						</ul>
-					</div>
-					<div class="body">
-						<ul class="navigation">
-							<li>
-								<a href="index.html">Home</a>
-							</li>
-							<li>
-								<a href="about.html">About</a>
-							</li>
-							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-							<li>
-								<a href="services.html">Services</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div id="footnote"> &copy; Copyright &copy; 2011 Company name all rights reserved </div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div id="body">
+                <div class="featured">
+                    <ul>
+                        <li>
+                            <h2><a href="index.html">Lorem Ipsum Dolor Sit</a></h2>
+                            <p>
+                                This website template has been designed by <a href="http://www.freewebsitetemplates.com">Free Website Templates</a> for you, for free. You can replace all this text with your own text. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option
+                            </p>
+                            <!--<a href="index.html" class="download">&nbsp;</a> <a href="index.html" class="buy">&nbsp;</a> -->
+                        </li>
+                    </ul>
+                </div>
+                <div id="section">
+                    <div class="footer">
+                        <div class="body">
+                            <ul class="article">
+                                <li class="first">
+                                    <a href="index.html"><img src="static/images/disk.jpg" width="256" height="166" alt="Chronokeep Website Template"></a>
+                                    <h2><a href="index.html">Создать статью</a></h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim.
+                                    </p>
+                                    <a href="index.html" class="readmore">Узнать больше</a>
+                                </li>
+                                <li>
+                                    <a href="index.html"><img src="static/images/disk.jpg" width="256" height="166" alt="Chronokeep Website Template"></a>
+                                    <h2><a href="index.html">Мы сотрудничаем</a></h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim.
+                                    </p>
+                                    <a href="index.html" class="readmore">Узнать больше</a>
+                                </li>
+                                <li class="last">
+                                    <a href="index.html"><img src="static/images/disk.jpg" width="256" height="166" alt="Chronokeep Website Template"></a>
+                                    <h2><a href="index.html">Читать статью</a></h2>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim.
+                                    </p>
+                                    <a href="index.html" class="readmore">Узнать больше</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
