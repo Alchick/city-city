@@ -38,7 +38,7 @@ body {
 	background: url("../images/bg-page.jpg");
 	background-position:top center;
 	background-repeat:no-repeat;
-	height:1000px;
+	height:100%;
 }	
 #background #page {
 	width:960px;
@@ -615,7 +615,7 @@ body {
 	width:950px;
 	padding:0 5px;
 	margin:0;
-	background:url("../images/bg-footer.png");
+	background:url("../images/bg-footer_1.png");
 	background-position:center;
 	background-repeat:no-repeat;
 }
