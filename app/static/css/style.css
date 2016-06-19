@@ -26,6 +26,13 @@ body {
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+    font-family: 'five';
+    src: url('../fonts/five-font.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
 #background {
 	background: url("../images/bg-page.jpg");
 	background-position:top center;
@@ -126,20 +133,19 @@ body {
 }
 #background #page #body .featured ul li h2 a {
 	color:#000000;
-	font-family: 'KreonBold';
+	font-family: 'five';
 	font-size:37px;
 	text-decoration:none;
 	font-weight:normal;
 }
 #background #page #body .featured ul li p {
 	color:#000000;
-	font-family: 'kreonlight';
-	font-size:30px;
+	font-size:27px;
 	line-height:40px;
 	text-align:justify;
-    margin:0;
-    margin-top:20px;
-    font-weight:bold;
+    margin:20px;
+    margin-top:10px;
+    margin-left:5px;
 }
 #background #page #body .featured ul li p a {
 	color:#fbfbfb;
@@ -604,7 +610,7 @@ body {
 	width:950px;
 	padding:0 5px;
 	margin:0;
-	background:url("../images/bg-footer_1.png");
+	background:url("../images/bg-footer.png");
 	background-position:center;
 	background-repeat:no-repeat;
 }
