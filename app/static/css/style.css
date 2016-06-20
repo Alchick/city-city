@@ -26,6 +26,13 @@ body {
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+    font-family: 'five';
+    src: url('../fonts/five-font.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
 #background {
 	background: url("../images/bg-page.jpg");
 	background-position:top center;
@@ -99,7 +106,7 @@ body {
 	margin:0 auto;
 }
 #background #page #body .featured {
-	background:url("../images/main-image.png");
+	background:url("../images/Culture-city_main-theme.jpg");
 	background-position:center;
 	background-repeat:no-repeat;
 	width:950px;
@@ -110,29 +117,35 @@ body {
 #background #page #body .featured ul {
 	list-style-type:none;
 	padding:0;
-	margin:60px 0 0 30px;
+	/*margin:60px 0 0 30px;*/
+	margin:50px;
 	width:420px;
 	height:370px;
+    margin-top:20px;
+    margin-left: 80px;
 }
 #background #page #body .featured ul li h2 {
 	color:#ffffff;
 	font-family: 'KreonBold';
 	font-weight:normal;
+    margin-left:50px;
+    margin:0;
 }
 #background #page #body .featured ul li h2 a {
 	color:#000000;
-	font-family: 'KreonBold';
-	font-size:43px;
+	font-family: 'five';
+	font-size:37px;
 	text-decoration:none;
 	font-weight:normal;
 }
 #background #page #body .featured ul li p {
 	color:#000000;
-	font-family: 'kreonlight';
-	font-size:14px;
-	line-height:22px;
+	font-size:27px;
+	line-height:40px;
 	text-align:justify;
-	margin-bottom:30px;
+    margin:20px;
+    margin-top:10px;
+    margin-left:5px;
 }
 #background #page #body .featured ul li p a {
 	color:#fbfbfb;
@@ -597,7 +610,7 @@ body {
 	width:950px;
 	padding:0 5px;
 	margin:0;
-	background:url("../images/bg-footer_1.png");
+	background:url("../images/bg-footer.png");
 	background-position:center;
 	background-repeat:no-repeat;
 }
