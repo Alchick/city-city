@@ -10,14 +10,27 @@ def allowed_file(filename):
 
 
 @app.route('/')
+@app.route('/index.html')
 def index():
     return render_template("index.html")
 
 
 
 
+@app.route('/about.html')
+def about():
+    return render_template("about.html")
 
-@app.route('/create', methods = ['GET', 'POST', 'PUT'])
+
+@app.route('/contacts.html')
+def contacts():
+    return render_template("contacts.html")
+
+@app.route('/read.html')
+def contacts():
+    return render_template("read.html")
+
+@app.route('/create.html', methods = ['GET', 'POST', 'PUT'])
 def create():
     if request.method=='POST':
         file = request.files['userfile']
