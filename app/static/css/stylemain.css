@@ -1,0 +1,366 @@
+/*=======reset style======*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;f
+}
+
+/*==========end reset==========*/
+
+
+/*==========basic styles==========*/
+body {
+    background:#FAF9F5 url('../images/bg12.png') repeat;
+    color: #222;
+}
+
+.container {
+    width: 960px;
+    margin: auto;
+    position: relative;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'OpenSansCondensedBold';
+}
+
+h1 {
+    font-size: 24px;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+h2 {
+    font-size: 22px;
+    padding: 10px 0px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+small {
+    font-size: 12px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Oswald';
+    color: #666;
+}
+
+blockquote {
+    font-family: 'Satisfy';  
+}
+
+p {
+    font-family: 'Anaheim';
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 14px;
+}  
+
+
+
+/*==========top(above logo)==========*/
+.top {
+    background: #B92800;
+    padding:10px;
+    text-transform:uppercase;
+}
+
+.top h2.btn .yellow {
+    padding: 12px;
+}
+
+.top h4 {
+    color: white;
+    float: left;
+    width: 720px;
+    padding: 10px;
+    font-family: 'Oswald';
+    font-size: 14px;
+    letter-spacing: 1px;
+    
+}
+
+/*==========end top==========*/
+
+
+ 
+
+
+/*==========Theme header==========*/
+.header {
+    margin-top: 40px;
+    height: 100px;
+}
+
+.logo {
+    float: left;
+    width: 300px;
+}
+
+.contact {
+    float: right;
+    width: 168px;;
+}
+
+.contact h5 {
+    float: left;
+    line-height: 24px;
+    width: 200px;
+    margin: 0;padding: 0;
+    font-family: 'anaheim';
+}
+
+.contact span.phone {
+    float: left;
+    margin-top: 1px;
+    background: url('../images/phone.png') no-repeat;
+    width: 24px;
+    height: 24px;
+    display: block;
+    padding: 2px;
+    opacity: 0.6;
+}
+
+.social {
+    clear: both;
+    float: right;
+    width: 160px;
+    font-size: 80%;
+        opacity: 0.6;
+}
+
+.social li{
+    float: left;
+}
+
+.social li:hover{
+    color: #000;
+    opacity: 1;
+}
+
+.social ul,li {
+    margin: 0;
+    padding: 0;
+}
+
+.social li a {
+    float: left;
+    width: 24px;
+    height: 24px;
+    display: block;
+    text-indent: -9999;
+    margin: 2px;
+}
+
+.facebook {
+    background:url('../images/iconpack/fb.png') no-repeat left top;
+}
+
+.twitter {
+    background:url('../images/iconpack/twitter.png') no-repeat left top;
+}
+
+.google {
+    background:url('../images/iconpack/google.png') no-repeat left top;
+}
+
+.rss {
+    background:url('../images/iconpack/rss.png') no-repeat left top;
+}
+
+.forrst {
+    background:url('../images/iconpack/forrst.png') no-repeat left top;
+}
+
+.dribble {
+    background:url('../images/iconpack/dribble.png') no-repeat left top;
+}
+
+.social li a:hover {
+    background-position:0 -24px;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition:all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;    
+    transition: all 0.4s ease-in-out;
+}
+
+/*==========end header==========*/
+
+/*==========Buttons==========*/
+
+.btn {
+    text-decoration: none;
+    position: relative;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+    font-family: 'oswald';
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 9px 32px 10px;
+}
+
+.mini{
+    font-size: 14px;
+    margin-left:40px;
+}
+.red {
+    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    border: 1px solid #B92800;
+    color: #FFFFFF;
+}
+
+.red:hover {
+    text-decoration: none;
+    background-color:#E23800; 
+    border-color: #cd2c00;
+    color: #ffffff;
+}
+
+.yellow {
+    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background-color: #FFC000;
+    border-color: #EBB100;
+    color: #000000;
+}
+
+.yellow:hover {
+    background-color:#FFcc00; 
+    border-color: #eabb00;
+    color: #000000;
+    text-decoration: none;
+}
+
+.green {
+    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background-color: #6a890e;
+    border-color: #536c0b;
+    color: #ffffff;
+    
+}
+
+.green:hover {
+    text-decoration: none;
+    background-color:#7a930a; 
+    border-color: #839f08;
+    color: #ffffff;
+}
+
+.blue {
+    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background-color: #0084c5;
+    border-color: #0572a8;
+    color: #ffffff;
+}
+
+.blue:hover {
+    text-decoration: none;
+    background-color:#258ec2; 
+    border-color: #2884b2;
+    color: #ffffff;
+}
+
+/*==========end buttons==========*/
+
+
+
+/*==========block==========*/
+.block {
+    clear: both;
+    float: left;
+    width: 100%;
+    background:#ffffff;
+}
+
+.block section {
+    float: left;
+}
+
+/*==========end block==========*/
+
+
+/*==========footer==========*/
+.footer {
+    background: none repeat scroll 0 0 #333;
+    color: #EEEEEE;
+    margin-top: 30px;
+    height: 20px;
+    padding: 20px;
+}
+
+
+.footer-text{
+    float: left;
+    width: 400px;
+}
+
+/*.footer p{
+    
+    width: 400px;
+}*/
+
+.footer .social{
+    float: right;
+    clear: none;
+}
+
+/*==========end footer==========*/
+
+
