@@ -22,9 +22,6 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/contacts.html')
-def contacts():
-    return render_template("contacts.html")
 
 @app.route('/read.html')
 def contacts():
@@ -41,3 +38,7 @@ def create():
     return render_template("create.html")
 
 
+
+#@app.route('/contacts.html')
+#def contacts():
+ #   return render_template("contacts.html")

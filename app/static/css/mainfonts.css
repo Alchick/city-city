@@ -1,9 +1,11 @@
 @font-face {
-  font-family: 'SlotSSI';
-  src: url('../fonts/slot_ssi.eot?v=3.0.1');
+/* font-family: 'SlotSSI';*/
+    font-family: 'Panton';
+    src: url('../fonts/Panton-SemiBold.otf');
+/*  src: url('../fonts/slot_ssi.eot?v=3.0.1');
   src: url('../fonts/slot_ssi?#iefix&v=3.0.1') format('embedded-opentype'),
     url('../fonts/slot_ssi.woff?v=3.0.1') format('woff'),
-    url('../fonts/slot_ssi.ttf?v=3.0.1') format('truetype'); 
+    url('../fonts/slot_ssi.ttf?v=3.0.1') format('truetype'); */
   font-weight: normal;
   font-style: normal;
 }

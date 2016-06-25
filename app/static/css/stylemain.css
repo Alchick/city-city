@@ -19,6 +19,9 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    /*dubiosly myne stuff
+    text-decoration:none;
+    color:black; */
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -59,9 +62,6 @@ body {
     position: relative;
 }
 
-.container .top h4{
-    font-family: 'SlotSSI';
-}
 
 h1,h2,h3,h4,h5 {
     font-family: 'OpenSansCondensedBold';
@@ -99,7 +99,8 @@ small {
 }
 
 h1,h2,h3,h4,h5 {
-    font-family: 'Oswald';
+/*    font-family: 'Oswald';*/
+    font-family: 'Panton';
     color: #666;
 }
 
@@ -107,13 +108,14 @@ blockquote {
     font-family: 'Satisfy';  
 }
 
-p {
-    font-family: 'Anaheim';
+/*p {
+/*    font-family: 'Anaheim';
+    font-family: 'Panton';
     margin-top: 10px;
     margin-bottom: 10px;
     color: #888;
     font-size: 14px;
-}  
+} */
 
 
 
@@ -121,7 +123,7 @@ p {
 .top {
     background: #B92800;
     padding:10px;
-    text-transform:uppercase;
+/*    text-transform:uppercase; */
 }
 
 .top h2.btn .yellow {
@@ -133,10 +135,9 @@ p {
     float: left;
     width: 720px;
     padding: 10px;
-    font-family: 'Oswald';
+    font-family: 'Panton';
     font-size: 14px;
     letter-spacing: 1px;
-    
 }
 
 /*==========end top==========*/
@@ -182,33 +183,47 @@ p {
 .social {
     clear: both;
     float: right;
-    width: 160px;
+    width: 400px;
     font-size: 80%;
-        opacity: 0.6;
+    opacity: 0.6;
+    color:black;
 }
 
-.social li{
+/*.social li{
     float: left;
-}
+}*/
 
-.social li:hover{
+/*.social li:hover{
     color: #000;
     opacity: 1;
+}*/
+.social ul {
+    margin: 10px;
+    padding: 4px;
 }
 
-.social ul,li {
-    margin: 0;
+.social ul, li {
+    margin: 15px;
+    margin-right:0px;
     padding: 0;
+    display:inline;
+    float:right;
+}
+.social ul,li a {
+    text-decoration:none;
+    font-family: 'Panton';
+    color:black;
 }
 
-.social li a {
+
+/*.social li a {
     float: left;
     width: 24px;
     height: 24px;
     display: block;
     text-indent: -9999;
     margin: 2px;
-}
+}*/
 
 .facebook {
     background:url('../images/iconpack/fb.png') no-repeat left top;
@@ -262,7 +277,10 @@ p {
 
 .mini{
     font-size: 14px;
-    margin-left:40px;
+    margin-left:0px;
+    color: #ffff00;
+    padding: 24px 32px 1px;
+    font-family:"Panton";
 }
 .red {
     background: url("../images/btn.png") repeat-x scroll center top #CC3300;
@@ -329,13 +347,12 @@ p {
     clear: both;
     float: left;
     width: 100%;
-    background:#ffffff;
+    background:#ffffff;*/
 }
 
-.block section {
+/*.block section {
     float: left;
-}
-
+} */
 /*==========end block==========*/
 
 
@@ -365,5 +382,154 @@ p {
 }
 
 /*==========end footer==========*/
+
+/*=========main================ */
+.main {
+    background:#ffffff;
+    position:relative; /*fuck how does it works?*/
+    text-align: left;
+    width: 960px;
+    overflow:hidden;
+}
+
+.featured {
+    clear: both; /*fuck how does it works?*/
+    height: 320px;
+    float:left;
+}
+
+.main-signup {
+    background: #333 url('/static/images/bg4.png') repeat;/*how does flask work with url?*/
+    color: #FFFFFF;
+    display:block; /*fuck how does it works?*/
+    float:right;
+    height: 280px;
+    padding:20px;
+    position:absolute; /*fuck how does it works?*/
+    right:0;
+    width: 342px;
+}
+
+.main-signup h2 {
+    color: #fff;
+}
+
+.main-signup h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fcc000; /*35acc8;*/
+}
+
+.main-signup p {
+    font-family: 'Panton';
+    line-height: 24px;
+    font-size: 15px;
+}
+.main-signup p.sidetext{
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.main-signup p.sidetext span{
+    color: #fcc000;
+}
+
+.main-signup .btn {
+    margin-left: 70px;
+    margin-top: 30px;
+    margin-bottom:30px;
+    padding: 12px 20px;
+}
+
+
+/*=============end main-signup===========*/
+
+/*============taglain==================*/
+.tagline {
+    background: none repeat scroll 0 0 #ffffff;
+    padding: 30px;
+    text-align: center;
+}
+
+.tagline h1 {
+    text-transform: uppercase;
+    font-family:"Panton"
+}
+.tagline p {
+    line-height: 20px;
+    font-family:"Panton";
+
+}
+
+
+.mainslider {
+    position:relative;
+    width: 580px;
+    height: 320px;
+}
+
+.featurebox {
+    background: #fff;
+    padding: 10px;
+    width: 940px;
+    float:left;
+}
+
+.feature {
+    float:left;
+    padding: 17px;
+    text-align: center;
+    width: 206px;
+    background: #FAF9F5;
+    font-family: 'Panton';
+}
+
+
+.feature li {
+    padding: 10px 0;
+    border-bottom: 1px solid #EFEFEF;
+    font-family: 'Panton';
+}
+
+.feature h3 {
+    background: #FAF9F5;
+    color: #666666;
+    padding 10px 0;
+    font-family: 'Panton';
+    margin-bottom: 20px;
+}
+
+.feature p {
+    line-height: 25px;
+}
+
+.feature img {
+    width: 20px;
+    height: 20px;
+    color: #666666;
+    opacity: 0.6;
+}
+
+.how {
+    background:#FFFFFF;
+    float:left;
+    text-align:center;
+    width: 100%;
+}
+
+.how p {
+    text-align:right;
+    line-height:30px;
+    font-family: 'Panton';
+}
+
+
+
+
+
+
+
+
+
 
 
