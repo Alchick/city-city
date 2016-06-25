@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'SlotSSI';
+  src: url('../fonts/slot_ssi.eot?v=3.0.1');
+  src: url('../fonts/slot_ssi?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/slot_ssi.woff?v=3.0.1') format('woff'),
+    url('../fonts/slot_ssi.ttf?v=3.0.1') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+/*  Font Awesome styles
+    ------------------------------------------------------- */
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: SlotSSI;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+
+  /* sprites.less reset */
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}

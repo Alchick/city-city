@@ -1,79 +1,71 @@
-<html>
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 <head>
-<title>Culture City</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-<!--    <[if IE 7]>
-        <link href="{{ url_for('static', filename='css/ie7.css') }}" rel="stylesheet" type="text/css">
-    <[endif]> -->
+<title>City</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/mainfonts.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stylemain.css') }}">
+<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/touchTouch.css') }}"> -->
+<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}"> -->
+<!--[if lt IE 9]>
+<script src="js/html5.js"></script>
+<![endif]-->
+<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='images/apple-touch-icon-72x72.png') }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='images/apple-touch-icon-114x114.png') }}">
 </head>
-
 <body>
-    <div id="background">
-        <div id="page">
-            <div id="header"> <a href="index.html" id="logo"><img src="static/images/logo-Culture_City.png" width="295" height="55" alt="Culture City"></a>
-                <ul class="navigation">
-                    <li>
-                        <a class="active" href="index.html">Главная</a>
-                    </li>
-                    <li>
-                        <a href="about.html">О проекте</a>
-                    </li>
-                    <li>
-                        <a href="create">Создать</a>
-                    </li>
-                    <li>
-                        <a href="read.html">Читать</a>
-                    </li>
-                    <li>
-                        <a href="partners.html">Контакты</a>
-                    </li>
-                </ul>
-            </div>
-            <!--end "id header" div block-->
-    {% block content %} {% endblock %}   
-
-        <div id="footer">
-                <div>
-                    <div class="header"> <a href="index.html"><img class="logo" src="static/images/logo-Culture_City.png" width="187" height="37" alt="Chronokeep Website Template"></a>
-                        <ul class="connect">
-                            <li>
-                                <a href="http://www.freewebsitetemplates.com/go/facebook/" class="facebook">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="http://www.freewebsitetemplates.com/go/twitter/" class="twitter">&nbsp;</a>
-                            </li>
-                            <li>
-                                <a href="http://www.freewebsitetemplates.com/go/googleplus/" class="googleplus">&nbsp;</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--end div "class header"-->
-                    <div class="body">
-                        <ul class="navigation">
-                            <li>
-                                <a href="index.html">Главная</a>
-                            </li>
-                            <li>
-                                <a href="about.html">О нас</a>
-                            </li>
-                            <li>
-                                <a href="blog.html">Создать</a>
-                            </li>
-                            <li>
-                                <a href="services.html">Контакты</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--end div "class body"-->
-                </div>
-                <!--end div block-->
-                <div id="footnote"> <!--&copy; Copyright &copy; 2011 Company name all rights reserved--> </div>
-            </div>
-            <!--end footer div block-->
-        </div>
+<div class="container">
+  <div class="top">
+    <h4>Great New Deals in Shopping Festival this year. Get Discount upto 70%</h4>
+    <!--<a href="#" class="btn mini yellow">Try It Now</a> --> </div>
+  <div class="header">
+    <div class="logo"> <img src="static/images/logo1.png" alt=""></div>
+    <div class="contact">
+      <h5><span class="phone"></span>Contact : 980.56.33.0</h5>
+      <div class="social">
+        <ul>
+          <li><i class="icon-facebook-sign icon-2x"></i></li>
+          <li><i class="icon-twitter-sign icon-2x"></i></li>
+          <li><i class="icon-linkedin-sign icon-2x"></i></li>
+          <li><i class="icon-pinterest-sign icon-2x"></i></li>
+          <li><i class="icon-google-plus-sign icon-2x"></i></li>
+        </ul>
+      </div>
     </div>
-</body>
+  </div>
 
+{% block content %} 
+
+{% endblock %}
+
+
+  <div class="block">
+    <div class="footer">
+      <p class="footer-text">Copyright &copy; 2045 // Design by: <a href="http://www.vibethemes.com/">VibeThemes.com</a></p>
+      <div class="social">
+        <ul>
+          <li> <i class="icon-facebook-sign icon-2x"></i></li>
+          <li> <i class="icon-twitter-sign icon-2x"></i></li>
+          <li> <i class="icon-linkedin-sign icon-2x"></i></li>
+          <li> <i class="icon-pinterest-sign icon-2x"></i></li>
+          <li> <i class="icon-google-plus-sign icon-2x"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <section>
+    <div class="space">
+      <p>space</p>
+    </div>
+  </section>
+</div>
+</body
 </html>
+
+
