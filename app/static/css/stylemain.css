@@ -59,6 +59,10 @@ body {
     position: relative;
 }
 
+.container .top h4{
+    font-family: 'SlotSSI';
+}
+
 h1,h2,h3,h4,h5 {
     font-family: 'OpenSansCondensedBold';
 }
@@ -159,10 +163,9 @@ p {
 
 .contact h5 {
     float: left;
-    line-height: 24px;
+    line-height: 32px;
     width: 200px;
     margin: 0;padding: 0;
-    font-family: 'anaheim';
 }
 
 .contact span.phone {
