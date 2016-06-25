@@ -1,33 +1,42 @@
-{% extends "base.html" %}
-{% block content %}
-Вы можете отправить нам свою статью, нажав на кнопку "Отправить" - далее откройте статью на вашей компьютере - и отправляйте нам.
-<br>
-<br>
-p.s - отправить статью можно только в формате pdf
-<br>
-<br>
-Или вы можете создать статью онлайн прямо здесь. Для этого воспользуйтесь формой ниже
-<br>
-<br>
+<html>
+<body>
+<h1> Add file </h1>
 <br>
 <br> 
 
-    <form action="/create" method="POST" enctype="multipart/form-data">
-    <p><input type="file" name="userfile"></p>
+    <form action="/create.html" method="POST" enctype="multipart/form-data">
+    <p>Set you name:<br><input type="text" name="Author_name"></p>
+    <p>Set article name:<br><input type="text" name="Article_Name"></p>
+    <p>Add file:<br><input type="file" name="file_name"></p><br>
+    <p><input type="submit" value="Add file"></p>
+    </form>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+    {% for message in messages %}
+        <li>{{message}}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+    <form action="create.html">
+    <p><input name="blyaha"> 
+      <input type="password" name="pass"></p>
     <p><input type="submit"></p>
     </form>
 
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!--<iframe frameborder="0" src="http://mega-photoshop.ru/fotoshop_onlajn.html" height="950px" width="100%" ></iframe><br/> -->
+</body>
+</html>
 
 
 
-{% endblock %}
 
 

@@ -1,0 +1,22 @@
+<html>
+<style>
+   ul.hr {
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+   }
+   ul.hr li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    border: 1px solid #000; /* Рамка вокруг текста */
+    padding: 3px; /* Поля вокруг текста */
+</style>
+<body>
+<ul class="hr">
+    <li>Autor-name: {{user.autor}}</li>
+    <li>Date_publication: {{user.data}}</li>
+    <li>Article_name: {{user.article_name}}</li>
+    <li>File_name: {{user.file_name}}</li>
+    <li>File is in: <a href="#">{{user.path_to_file}}</a></li>
+</ul>
+</body>
+</html>
