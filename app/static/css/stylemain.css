@@ -200,6 +200,7 @@ blockquote {
 .social ul {
     margin: 10px;
     padding: 4px;
+    float:right;
 }
 
 .social ul, li {
@@ -207,7 +208,6 @@ blockquote {
     margin-right:0px;
     padding: 0;
     display:inline;
-    float:right;
 }
 .social ul,li a {
     text-decoration:none;
@@ -468,12 +468,6 @@ blockquote {
     height: 320px;
 }
 
-.featurebox {
-    background: #fff;
-    padding: 10px;
-    width: 940px;
-    float:left;
-}
 
 .feature {
     float:left;
@@ -481,15 +475,9 @@ blockquote {
     text-align: center;
     width: 206px;
     background: #FAF9F5;
-    font-family: 'Panton';
+    font-family: "Panton";
 }
 
-
-.feature li {
-    padding: 10px 0;
-    border-bottom: 1px solid #EFEFEF;
-    font-family: 'Panton';
-}
 
 .feature h3 {
     background: #FAF9F5;
@@ -510,21 +498,24 @@ blockquote {
     opacity: 0.6;
 }
 
-.how {
+.partners {
     background:#FFFFFF;
     float:left;
     text-align:center;
     width: 100%;
 }
 
-.how p {
+.partners p {
     text-align:right;
     line-height:30px;
     font-family: 'Panton';
 }
 
-
-
+.partners-name {
+    text-align:center;
+    float:left;
+    width: 300px;
+}
 
 
 
