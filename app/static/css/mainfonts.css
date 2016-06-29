@@ -11,8 +11,8 @@
 }
 /*  Font Awesome styles
     ------------------------------------------------------- */
-[class^="icon-"],
-[class*=" icon-"] {
+[class^='icon-'],
+[class*=' icon-'] {
   font-family: SlotSSI;
   font-weight: normal;
   font-style: normal;

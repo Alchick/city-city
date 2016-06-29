@@ -19,9 +19,6 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
-    /*dubiosly myne stuff
-    text-decoration:none;
-    color:black; */
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -44,7 +41,7 @@ q:before, q:after {
 }
 table {
     border-collapse: collapse;
-    border-spacing: 0;f
+    border-spacing: 0;
 }
 
 /*==========end reset==========*/
@@ -64,14 +61,14 @@ body {
 
 
 h1,h2,h3,h4,h5 {
-    font-family: 'OpenSansCondensedBold';
+    font-family: 'Panton';
 }
 
 h1 {
     font-size: 24px;
     padding: 10px 0;
     margin: 10px 0;
-}
+} 
 
 h2 {
     font-size: 22px;
@@ -94,18 +91,17 @@ small {
     font-size: 12px;
 }
 
-.clearfix {
+/*.clearfix {
     clear: both;
-}
+}*/
 
-h1,h2,h3,h4,h5 {
-/*    font-family: 'Oswald';*/
+/*h1,h2,h3,h4,h5 {
     font-family: 'Panton';
     color: #666;
-}
+} */
 
 blockquote {
-    font-family: 'Satisfy';  
+    font-family: 'Panton';  
 }
 
 /*p {
@@ -140,6 +136,17 @@ blockquote {
     letter-spacing: 1px;
 }
 
+.top p {
+    position:relative;
+    font-family: 'Panton';
+    font-size: 14px;
+    line-height: 18px;
+    padding: 24px 32px 1px;
+    margin-left:0px;
+    color: #ffff00;
+    
+}
+
 /*==========end top==========*/
 
 
@@ -157,31 +164,7 @@ blockquote {
     width: 300px;
 }
 
-.contact {
-    float: right;
-    width: 168px;;
-}
-
-.contact h5 {
-    float: left;
-    line-height: 32px;
-    width: 200px;
-    margin: 0;padding: 0;
-}
-
-.contact span.phone {
-    float: left;
-    margin-top: 1px;
-    background: url('../images/phone.png') no-repeat;
-    width: 24px;
-    height: 24px;
-    display: block;
-    padding: 2px;
-    opacity: 0.6;
-}
-
-.social {
-    clear: both;
+.menu {
     float: right;
     width: 400px;
     font-size: 80%;
@@ -189,41 +172,24 @@ blockquote {
     color:black;
 }
 
-/*.social li{
-    float: left;
-}*/
-
-/*.social li:hover{
-    color: #000;
-    opacity: 1;
-}*/
-.social ul {
+.menu ul {
     margin: 10px;
     padding: 4px;
     float:right;
 }
 
-.social ul, li {
+.menu ul, li {
     margin: 15px;
     margin-right:0px;
     padding: 0;
     display:inline;
 }
-.social ul,li a {
+.menu ul,li a {
     text-decoration:none;
     font-family: 'Panton';
     color:black;
 }
 
-
-/*.social li a {
-    float: left;
-    width: 24px;
-    height: 24px;
-    display: block;
-    text-indent: -9999;
-    margin: 2px;
-}*/
 
 .facebook {
     background:url('../images/iconpack/fb.png') no-repeat left top;
@@ -275,15 +241,8 @@ blockquote {
     padding: 9px 32px 10px;
 }
 
-.mini{
-    font-size: 14px;
-    margin-left:0px;
-    color: #ffff00;
-    padding: 24px 32px 1px;
-    font-family:"Panton";
-}
 .red {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     border: 1px solid #B92800;
     color: #FFFFFF;
 }
@@ -296,7 +255,7 @@ blockquote {
 }
 
 .yellow {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     background-color: #FFC000;
     border-color: #EBB100;
     color: #000000;
@@ -310,7 +269,7 @@ blockquote {
 }
 
 .green {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     background-color: #6a890e;
     border-color: #536c0b;
     color: #ffffff;
@@ -325,7 +284,7 @@ blockquote {
 }
 
 .blue {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     background-color: #0084c5;
     border-color: #0572a8;
     color: #ffffff;
@@ -347,41 +306,11 @@ blockquote {
     clear: both;
     float: left;
     width: 100%;
-    background:#ffffff;*/
+    background:#ffffff;
 }
 
-/*.block section {
-    float: left;
-} */
 /*==========end block==========*/
 
-
-/*==========footer==========*/
-.footer {
-    background: none repeat scroll 0 0 #333;
-    color: #EEEEEE;
-    margin-top: 30px;
-    height: 20px;
-    padding: 20px;
-}
-
-
-.footer-text{
-    float: left;
-    width: 400px;
-}
-
-/*.footer p{
-    
-    width: 400px;
-}*/
-
-.footer .social{
-    float: right;
-    clear: none;
-}
-
-/*==========end footer==========*/
 
 /*=========main================ */
 .main {
@@ -392,13 +321,13 @@ blockquote {
     overflow:hidden;
 }
 
-.featured {
+.slide-show {
     clear: both; /*fuck how does it works?*/
     height: 320px;
     float:left;
 }
 
-.main-signup {
+.main-description {
     background: #333 url('/static/images/bg4.png') repeat;/*how does flask work with url?*/
     color: #FFFFFF;
     display:block; /*fuck how does it works?*/
@@ -410,31 +339,31 @@ blockquote {
     width: 342px;
 }
 
-.main-signup h2 {
+.main-description h2 {
     color: #fff;
 }
 
-.main-signup h4 {
+.main-description h4 {
     margin-top: 10px;
     margin-bottom: 10px;
     color: #fcc000; /*35acc8;*/
 }
 
-.main-signup p {
+.main-description p {
     font-family: 'Panton';
     line-height: 24px;
     font-size: 15px;
 }
-.main-signup p.sidetext{
+.main-description p.sidetext{
     font-size: 11px;
     line-height: 16px;
 }
 
-.main-signup p.sidetext span{
+.main-description p.sidetext span{
     color: #fcc000;
 }
 
-.main-signup .btn {
+.main-description .btn {
     margin-left: 70px;
     margin-top: 30px;
     margin-bottom:30px;
@@ -442,7 +371,7 @@ blockquote {
 }
 
 
-/*=============end main-signup===========*/
+/*=============end main-description===========*/
 
 /*============taglain==================*/
 .tagline {
@@ -453,36 +382,30 @@ blockquote {
 
 .tagline h1 {
     text-transform: uppercase;
-    font-family:"Panton"
+    font-family:'Panton'
 }
 .tagline p {
     line-height: 20px;
-    font-family:"Panton";
+    font-family:'Panton';
 
 }
+/*=============end tagline=============*/
 
 
-.mainslider {
-    position:relative;
-    width: 580px;
-    height: 320px;
-}
-
-
+/*=========features==============*/
 .feature {
     float:left;
     padding: 17px;
     text-align: center;
     width: 206px;
     background: #FAF9F5;
-    font-family: "Panton";
+    font-family: 'Panton';
 }
-
 
 .feature h3 {
     background: #FAF9F5;
     color: #666666;
-    padding 10px 0;
+    padding: 10px 0;
     font-family: 'Panton';
     margin-bottom: 20px;
 }
@@ -517,10 +440,77 @@ blockquote {
     width: 300px;
 }
 
+.about {
+    font-family:'Panton';
+    line-height: 30px;
+    
+}
+
+.rules {
+    width: 400px;
+    float:left;
+
+}
+
+.send-form {    
+    width: 400px;
+    float:left;
+}
+.send-form p {
+    width: 300px;
+}
+
+.bla-bla {
+    background:#ffffff;
+    position:relative; /*fuck how does it works?*/
+    width: 960px;
+    overflow:hidden; 
+}
+
+/*form {
+    display:block;
+    margin: 0 auto;
+    letter-spacing:2px;
+    width: 459px;
+}
+input, textarea {
+    width:439px;
+    height:27px;
+    background:#efefef;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#3a3a3a;
+}
+textarea {
+    height:213px;
+    background:url(images/textarea-bg.jpg) right no-repeat #efefef;
+} */
 
 
+/*==========footer==========*/
+.footer {
+    background: none repeat scroll 0 0 #333;
+    color: #EEEEEE;
+    margin-top: 30px;
+    height: 20px;
+    padding: 20px;
+}
 
 
+.footer-text{
+    float: left;
+    width: 400px;
+}
 
+/*.footer p{
+    width: 400px;
+}*/
 
+.footer .menu{
+    float: right;
+    clear: none;
+}
 
+/*==========end footer==========*/
