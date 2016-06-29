@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="block">
+  <div class="rules">
+    <h1>Это правил написания статьи</h1>
+    <p>Чтобы статью написать нада сделать вот так:</p>
+    <p>Раз два три - </p>
+    <p>Елочка - гориииииииииииииии</p>
+  </div>
+
+  <div class="send-form">
+    <h1>Вы можете отправить нам уже готовую статью</h1>
+     <form action="/create.html" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+       <p>Set you name:<br>{{form.author_name}}</p>
+       <p>Set article name:<br>{{form.article_name}}</p>
+       <p>Set your email:<br>{{form.email}}</p>
+      <!-- <p>Set you name:<br><input type="text" name="author_name"></p>
+       <p>Set article_name:<br><input type="text" name="article_name"></p>
+       <p>Set email:<br><input type="text" name="email"></p> -->
+      <p>Add file:<input type="file" name="userfile"></p>
+       <p><input type="submit" value="Add file"></p>
+       </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+             {% endif %}
+             {% endwith %}
+  </div>
+  </div>
+  <div class="create-form">
+ <!-- <iframe frameborder="0" src="http://mega-photoshop.ru/fotoshop_onlajn.html" height="950px" width="100%" ></iframe><br/> -->
+  </div>
+
+
+{% endblock %}
