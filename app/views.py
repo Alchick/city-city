@@ -1,11 +1,8 @@
-from werkzeug.utils import secure_filename
 import os
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, flash
 from app import app
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ['pdf', 'jpeg', 'png', 'py']
+from forms import ArticleForms
+from functions import save_request_data
 
 
 
@@ -27,18 +24,23 @@ def about():
 def contacts():
     return render_template("read.html")
 
-@app.route('/create.html', methods = ['GET', 'POST', 'PUT'])
+@app.route('/contacts.html')
+def contact():
+    return render_template("contacts.html")
+
+
+@app.route('/create.html', methods = ['GET', 'POST'])
 def create():
+    form = ArticleForms()
     if request.method=='POST':
-        file = request.files['userfile']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join('/tmp/', filename))
-        return render_template("create.html")
-    return render_template("create.html")
+        print request
+        if request.files['userfile']:
+            flash(save_request_data(request))
+            return render_template("create.html",
+                                   form = form)
+        else: flash("You send no file")
+    return render_template("create.html",
+                          form = form)
 
 
 
-#@app.route('/contacts.html')
-#def contacts():
- #   return render_template("contacts.html")
