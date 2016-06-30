@@ -1,3 +1,7 @@
 while change field name in models.py (database field-name), all data is dissimissed
 be careful Luke when you change some fields, you should have reserv databse, reserve valid data
 downgrade database version doesnt save you from this misunderstanding
+
+no URI for localhost:5000 - shoudl make!!!
+
+how display articles?

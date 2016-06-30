@@ -1,6 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<p>jopa-shmopa</p>
-
+  <div class="articles">
+    <h1>User Articles </h1>
+   <!-- <ul>
+   {% for record in records %}
+      <li>author - {{record.author_name}}</li>
+      <li>article - {{record.article_name}}</li>
+      <li>add date - {{record.date}}</li>
+      <li><a href="get_file.html?filename={{record.file_name}}">View article</a></li><br>
+    {% endfor %}
+    </ul> -->
+  <table>
+    <tr>
+      <th>Author name</th>
+      <th>Article name</th>
+      <th>Adding date</th>
+      <th>Link</th>
+    </tr>
+    {% for record in records %}
+    <tr>
+      <th>{{record.author_name}}</th>
+      <th>{{record.article_name}}</th>
+      <th>{{record.date}}</th>
+      <th><a href="get_file.html?filename={{record.file_name}}">View article</a></th>
+    </tr>
+    {% endfor %}
+  </table>
+  </div>
 {% endblock %}
 

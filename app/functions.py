@@ -10,8 +10,8 @@ from datetime import datetime
 from sqlalchemy.exc import DataError
 OK_STATUS = 0
 
-ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'doc', 'docx', 'tiff', 'png', 'txt'])
-UPLOAD_FOLDER = '/tmp/file-storage'
+ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'doc', 'docx', 'tiff', 'png', 'txt', 'jpg'])
+UPLOAD_FOLDER = '/home/e.sergeev/private_repos/city-city/app/static/filestorage/'
 
 def allowed_file(filename):
     if '.' in filename and \
@@ -75,5 +75,7 @@ def save_data_to_db(request):#field can be empty?
 
 
 
-
+def get_data_from_db():
+    return models.Articles.query.all()
+    
 

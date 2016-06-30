@@ -5,7 +5,8 @@ CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
 #configuration for saving data
 ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'doc', 'docx', 'tiff', 'png'])
-UPLOAD_FOLDER = '/tmp/file-storage'
+#change path to more universal
+UPLOAD_FOLDER = '/home/e.sergeev/private_repos/city-city/app/static/filestorage/'
 app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024
 
 '''
