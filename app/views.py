@@ -2,7 +2,7 @@ import os
 from flask import render_template, request, flash, url_for
 from app import app
 from forms import ArticleForms
-from functions import save_request_data, get_data_from_db
+from functions import save_request_data, get_data_from_db, check_file_size
 import pprint
 
 @app.route('/bla-bla-pizda/')
@@ -44,15 +44,19 @@ def contact():
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
     form = ArticleForms()
-    if request.method=='POST':
-        print request
-        if request.files['userfile']:
-            flash(save_request_data(request))
-            return render_template("create.html",
+    if request.method=='POST' and form.validate_on_submit():
+        file = request.files['userfile']
+        if file:
+            if check_file_size(file):
+                flash(save_request_data(request))
+                return render_template("create.html",
                                    form = form)
+            else: flash('Wrong file size')
         else: flash("You send no file")
     return render_template("create.html",
                           form = form)
 
 
-
+@app.errorhandler(413)
+def err_413(error):
+    return render_template("index.html")

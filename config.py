@@ -7,7 +7,7 @@ SECRET_KEY = 'you-will-never-guess'
 ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'doc', 'docx', 'tiff', 'png'])
 #change path to more universal
 UPLOAD_FOLDER = '/home/e.sergeev/private_repos/city-city/app/static/filestorage/'
-app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024
+#app.config['MAX_CONTENT_LENGTH'] = 200 * 1024
 
 '''
 database configuration

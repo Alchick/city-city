@@ -32,6 +32,9 @@
             </ul>
              {% endif %}
              {% endwith %}
+        {% for error in form.errors %}
+        <span style="color:red">{{error}}</span>
+        {% endfor %}
   </div>
   </div>
   <div class="create-form">
