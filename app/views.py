@@ -1,9 +1,8 @@
 import os
-from flask import render_template, request, flash, url_for
+from flask import render_template, request, flash, url_for, __version__
 from app import app
 from forms import ArticleForms
-from functions import save_request_data, get_data_from_db, check_file_size
-import pprint
+from check_functions import save_request_data, get_data_from_db
 
 @app.route('/bla-bla-pizda/')
 def pizda(): 
@@ -40,23 +39,28 @@ def get_file():
 def contact():
     return render_template("contacts.html")
 
-
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
     form = ArticleForms()
-    if request.method=='POST' and form.validate_on_submit():
-        file = request.files['userfile']
-        if file:
-            if check_file_size(file):
-                flash(save_request_data(request))
-                return render_template("create.html",
-                                   form = form)
-            else: flash('Wrong file size')
-        else: flash("You send no file")
-    return render_template("create.html",
-                          form = form)
+    if request.method == 'POST':
+        flash(save_request_data(request))
+        return render_template('create.html',\
+                                form=form)
+            
+    return render_template("create.html",\
+                           form=form)
 
 
-@app.errorhandler(413)
-def err_413(error):
-    return render_template("index.html")
+
+
+
+
+
+
+
+
+
+
+
+
+

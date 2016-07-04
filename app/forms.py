@@ -6,9 +6,7 @@ import re
 
 
 class ArticleForms(Form):
-    author_name = TextField('author_name', description = 'name', validators=[Required(),\
-                                                                            Length(max=5),\
-                                                                            Regexp(re.compile('\w'))]) #- used function re.match withc is baaad
+    author_name = TextField('author_name', description = 'name', validators=[Required()])
     article_name = TextField('article_name', validators=[Required()])
     email = TextField('email', validators = [Required()])
 

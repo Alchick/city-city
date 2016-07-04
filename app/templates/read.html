@@ -19,10 +19,10 @@
     </tr>
     {% for record in records %}
     <tr>
-      <th>{{record.author_name}}</th>
-      <th>{{record.article_name}}</th>
-      <th>{{record.date}}</th>
-      <th><a href="get_file.html?filename={{record.file_name}}">View article</a></th>
+      <td>{{record.author_name}}</td>
+      <td>{{record.article_name}}</td>
+      <td>{{record.date}}</td>
+      <td><a href="get_file.html?filename={{record.file_name}}">View article</a></td>
     </tr>
     {% endfor %}
   </table>
