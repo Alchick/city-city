@@ -479,28 +479,6 @@ blockquote {
     cursor: pointer;
 }
 
-.articles table {
-    text-align: left;
-    border-collapse: separate;
-    border: 1px solid #ddd;
-    border-spacing: 80px 10px;
-    border-radius: 3px;
-    background: #fdfdfd;
-    font-size: 14px;
-    width: 100%;
-}
-.articles td,th {
-    padding-left: 0px;
-    
-}
-
-.get-article {
-    overflow:hidden;
-}
-.get-article p {
-    text-align:center;
-}
-
 
 /*form {
     display:block;

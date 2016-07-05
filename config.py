@@ -8,7 +8,7 @@ ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'doc', 'docx', 'tiff', 'png'])
 #change path to more universal
 UPLOAD_FOLDER = '/home/e.sergeev/private_repos/city-city/app/static/filestorage/'
 #app.config['MAX_CONTENT_LENGTH'] = 200 * 1024
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 '''
 database configuration
 SQL-LITE database_URI
@@ -20,8 +20,9 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://'+ 'username:password@host:port/database
 MYSQL database_URI
 SQLALCHEMY_DATABASE_URI = 'mysql://username:password@host/database.name')
 '''
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/city_city'
 basedir = os.path.abspath(os.path.dirname(__file__))
+#SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/city_city'
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
 

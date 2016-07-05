@@ -1,13 +1,18 @@
 from app import db
 
 class Articles(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     article_name = db.Column(db.String, unique = True)
     author_name = db.Column(db.String)
     file_name = db.Column(db.String, unique = True)
     date = db.Column(db.DateTime)
     email = db.Column(db.String)
-
+    def __init__(self, article_name, author_name, file_name, date, email):
+        self.article_name = article_name
+        self.author_name = author_name
+        self.file_name = file_name
+        self.date = date
+        self.email = email
 
 
     def __repr__(self):
