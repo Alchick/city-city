@@ -2,6 +2,7 @@
 {% block content %}
   <div class="articles">
     <h1>User Articles </h1>
+    <h1 style="text-align:left;">Форма Поиска Статьи</h1>
     <div class="table" cellspacing='0'>
   <table>
     <tr>
@@ -15,7 +16,7 @@
       <td>{{record.author_name}}</td>
       <td>{{record.article_name}}</td>
       <td>{{record.date}}</td>
-      <td style="text-align:center;"><a href="get_file.html?filename={{record.file_name}}">View article</a></td>
+      <td style="text-align:center;"><a href="get_file.html?filename={{record.article_body_file}}">Читать статью</a></td>
     </tr>
     {% endfor %}
   </table>

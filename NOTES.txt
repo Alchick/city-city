@@ -46,3 +46,10 @@ installed latest version flask_sql_acllchemy
 db_create script working uncorrect - not apply tables metadata
 if import from config befor db.create_all() function
 db_migrate script - shit
+
+Think about server exception
+Exception 400: Bad Request <class 'werkzeug.exceptions.BadRequestKeyError'>
+
+
+codecs problem:
+Exception 'ascii' codec can't encode characters in position 0-3: ordinal not in range(128) <type 'exceptions.UnicodeEncodeError'>

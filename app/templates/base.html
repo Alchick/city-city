@@ -10,15 +10,18 @@
 <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/mainfonts.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stylemain.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tablestyle.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_file_button.css') }}">
+
 <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/touchTouch.css') }}"> -->
 <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}"> -->
 <!--[if lt IE 9]>
-<script src="js/html5.js"></script>
 <![endif]-->
 <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
 <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
 <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='images/apple-touch-icon-72x72.png') }}">
 <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='images/apple-touch-icon-114x114.png') }}">
+<script src="{{ url_for('static', filename='javascript/backlightLink.js') }}"></script>
+
 </head>
 <body>
 <div class="container">
@@ -27,10 +30,10 @@
     <h4>Культур мультур барабульдур кана мене ваза бла-бла. Такие дела.</h4>
     <p>Владимир Ленин</p></div>
   <div class="header">
-    <div class="logo"> <img src="static/images/color-logo-Culture_City.png" alt=""></div>
+    <div class="logo"> <img src="static/images/color-logo-Culture_City.png" alt="logo"></div>
      <!-- <h5><span class="phone"></span>Contact : 980.56.33.0</h5> -->
       <div class="menu">
-        <ul>
+        <ul id="navigation">
           <li><a href="index.html">Главная</a></li>
           <li><a href="about.html">О проекте</a></li>
           <li><a href="create.html">Создать</a></li>
@@ -60,6 +63,7 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">shineLinks('navigation');</script>
 </body
 </html>
 
