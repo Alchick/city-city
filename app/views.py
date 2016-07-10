@@ -1,21 +1,15 @@
+#coding: utf-8
 import os
 from flask import render_template, request, flash, url_for, __version__
 from app import app
 from forms import ArticleForms
 from check_functions import save_request_data, get_data_from_db
 
-@app.route('/bla-bla-pizda/')
-def pizda(): 
-    pass
 @app.route('/')
 @app.route('/index.html')
 def index():
-    print url_for('pizda')
     print url_for('static', filename='css/stylemain.css')
     return render_template("index.html")
-
-
-    
 
 @app.route('/about.html')
 def about():
@@ -23,7 +17,7 @@ def about():
 
 
 @app.route('/read.html')
-def contacts():
+def read():
     records = get_data_from_db()
     return render_template("read.html",
                            records = records)
@@ -34,33 +28,27 @@ def get_file():
     return render_template("get_file.html",
                           filename = filename)
 
-
 @app.route('/contacts.html')
 def contact():
     return render_template("contacts.html")
 
+
+
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
     form = ArticleForms()
-    if request.method == 'POST':
+    if request.method == 'POST' and form.validate_on_submit():
         flash(save_request_data(request))
         return render_template('create.html',\
                                 form=form)
-            
     return render_template("create.html",\
                            form=form)
+@app.errorhandler(413)
+def EntityTooLarge(error):
+    return render_template("error.html", error = 413), 413
 
-
-
-
-
-
-
-
-
-
-
-
-
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("error.html", error = 404), 404
 
 
