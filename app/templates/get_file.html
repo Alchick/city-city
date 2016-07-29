@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="get-article">
-  <p><img src="{{ url_for('static', filename='filestorage/tiger2.jpg') }}" alt="Письма мастера дзен"></p>
-  <p><img src="/home/e.sergeev/culture-city/app/static/filestorage/tiger1.pnrg" alt="bla"></p>
-    <p><img src="/static/filestorage/{{filename}}" alt="{{filename}}"></p> 
+    <p>Author Name - {{author_name}}</p>
+    <p>Article Name - {{article_name}}</p>
+    <p>Create date- {{date}}</p>
+    <div class="article-read">
+      <p><img src="/static/filestorage/{{filename}}" alt="{{filename}}"></p> 
+    </div>
+    {% if current_user.is_authenticated %}
+    {% for num, comment in enumerate(comments) %}
+    <div class="user_comments">
+      <p>User name - {{comments[num].user_name}}</p> 
+      <p>Add date - {{comments[num].date}}</p> 
+      <p>Comment body - {{comments[num].comment_body}}</p> 
+    </div>
+    {% endfor %}
+    <form action="admin.html" method="post">
+    <p>Set article range:</p>
+    <input type="text" name="range" size="1">
+    <p>Add comment:</p>
+    <textarea cols="30" rows="10" name="comment"></textarea>
+    <br>
+    <input type="submit" value="Send">
+    {% else %}
+    <form action="set_comment.html" method="POST" id="formx">
+    <p>Your comment:</p>
+      <textarea cols="30" rows="10" name="comment"></textarea>
+    <p>Your name:</p>
+      <input name="name" type="text">
+    <p>Your email:</p>
+      <input name="email" type="text">
+      <input type="hidden" name="bla" value="{{id}}">
+    <input type="button" onclick="sendPost(this.form)" value="Отправить">
+    </form>
+    {% endif %}
   </div>
-
-
-
 {% endblock %}

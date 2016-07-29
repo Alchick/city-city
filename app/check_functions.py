@@ -4,7 +4,7 @@ from datetime import datetime
 from sqlalchemy import exc
 import os
 from flask import request
-from models import articles
+from models import *
 from app import db
 from werkzeug.utils import secure_filename
 
@@ -26,13 +26,12 @@ def save_request_data(request):
             return 'Unsupported file extension'
         else:
             record = articles(article_name = request.form['article_name'],\
-                                     author_name = request.form['author_name'],\
-                                     article_body_file = filename,\
-                                     date = datetime.today(),\
-                                     email = request.form['email'])
+                              author_name = request.form['author_name'],\
+                              article_file = filename,\
+                              date = datetime.today().strftime("%d-%m-%Y %H:%M:%S"),\
+                              email = request.form['email'])
 #when table is lock, happened nothing. operations wait their turn. So when it is, operation make
 #Затрет текущий файл статьи, если такой файл уже есть. Т.е. статья по сути пропадет
-            print record
             file.save(os.path.join(UPLOAD_FOLDER, filename))#wery cunfused moment
             db.session.add(record)
             db.session.commit()
@@ -66,8 +65,26 @@ def regexp(text, pattern):
         return True
     else: return False
 
-def get_data_from_db():
+def get_data_from_db(): #something wrong with this select
     return db.session.query(articles).\
-    filter(articles.article_body_file.like('%jpg')).\
+    filter(articles.article_file.like('%')).\
     order_by('date desc').limit(10);
 
+
+
+def registered_user(login):
+    return db.session.query(culture_admins).filter(culture_admins.login == login).first()
+
+def insert_comment(article_id, user_name, email, comment_body, date):
+    comment = users_comments(article_id, user_name, email, comment_body, date)
+    db.session.add(comment)
+    db.session.commit()
+
+def add_admin(name, login, email, phone, password):
+    admin = culture_admins(name, login, email, phone, password)
+    db.session.add(admin)
+    db.session.commit()
+    return "success add"
+
+def get_comments():
+    return db.session.query(users_comment).all() 

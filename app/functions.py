@@ -66,7 +66,7 @@ def save_data_to_db(request):#field can be empty?
         if regexp(request.form['article_name']) and \
            regexp(request.form['author_name']):
                    
-            record = models.Articles(article_name = request.form['article_name'],\
+            record = models.articles(article_name = request.form['article_name'],\
                                 author_name = request.form['author_name'],\
                                 file_name = request.files['userfile'].filename,\
                                 date = datetime.today(),\
@@ -106,7 +106,7 @@ def check_file_size(file):
     else: return True
 
 def get_data_from_db():
-    return db.session.query(models.Articles).filter(models.Articles.file_name.like('%jpg')).order_by('date desc').limit(10);
+    return db.session.query(models.articles).filter(models.articles.file_name.like('%jpg')).order_by('date desc').limit(10);
     
 def regexp(text):
     pattern = re.compile('[^a-zA-Z\s]')

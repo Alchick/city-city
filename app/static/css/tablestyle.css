@@ -13,8 +13,6 @@
 
 }
 
-
-
 .table th {
     font-weight: bold;
     border-top: 1px solid #fafafa;
@@ -22,6 +20,7 @@
     padding: 21px 25px 22px 25px;
     background: #ededed;
     width: 200px;
+    text-align:center;
 }
 
 
@@ -37,6 +36,5 @@
 .table td {
     width: 200px;
 }
-
 
 
