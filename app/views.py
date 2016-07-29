@@ -124,8 +124,11 @@ def admin():
 
 @app.route('/set_comment.html', methods = ['POST'])
 def set_comment():
-    print request.form.get('comment')
-    return 'Normik'
+    flash(insert_comment(request.form.get('art_id'),\
+                         request.form.get('name'),\
+                         request.form.get('email'),\
+                         request.form.get('comment')))
+    return "Normik"
 
 
 

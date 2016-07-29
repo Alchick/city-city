@@ -105,7 +105,6 @@ class users_comment(db.Model):
     comment_body = db.Column('comment_body', db.VARCHAR)
     date = db.Column('date', db.DateTime) #is it needet type? is is true type?, maybe timezone or something
     def __init__(self,article_id, user_name, email, comment_body):
-        self.id = id
         self.article_id = article_id
         self.user_name = user_name
         self.email = email

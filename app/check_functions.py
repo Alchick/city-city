@@ -71,14 +71,14 @@ def get_data_from_db(): #something wrong with this select
     order_by('date desc').limit(10);
 
 
-
 def registered_user(login):
     return db.session.query(culture_admins).filter(culture_admins.login == login).first()
 
-def insert_comment(article_id, user_name, email, comment_body, date):
-    comment = users_comments(article_id, user_name, email, comment_body, date)
+def insert_comment(article_id, user_name, email, comment_body):
+    comment = users_comment(article_id, user_name, email, comment_body)
     db.session.add(comment)
     db.session.commit()
+    return "Success"
 
 def add_admin(name, login, email, phone, password):
     admin = culture_admins(name, login, email, phone, password)
@@ -88,3 +88,4 @@ def add_admin(name, login, email, phone, password):
 
 def get_comments():
     return db.session.query(users_comment).all() 
+
