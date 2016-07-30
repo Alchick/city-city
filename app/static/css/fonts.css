@@ -1,0 +1,57 @@
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+@font-face {
+    font-family: 'Panton-Regular';
+    src: url('../fonts/Panton-Regular.otf');
+  src: url('../fonts/Panton-Regular.eot?v=3.0.1');
+  src: url('../fonts/Panton-Regular.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/Panton-Regular.woff?v=3.0.1') format('woff'),
+    url('../fonts/Panton-Regular.ttf?v=3.0.1') format('truetype'); */
+}
+
+@font-face {
+    font-family: 'Panton-Bold';
+    src: url('../fonts/Panton-Bold.otf');
+  src: url('../fonts/Panton-Bold.eot?v=3.0.1');
+  src: url('../fonts/Panton-Bold.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/Panton-Bold.woff?v=3.0.1') format('woff'),
+    url('../fonts/Panton-Bold.ttf?v=3.0.1') format('truetype'); */
+}
+
+@font-face {
+    font-family: 'Panton-ExtraBold';
+    src: url('../fonts/Panton-ExtraBold.otf');
+  src: url('../fonts/Panton-ExtraBold.eot?v=3.0.1');
+  src: url('../fonts/Panton-ExtraBold.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/Panton-ExtraBold.woff?v=3.0.1') format('woff'),
+    url('../fonts/Panton-ExtraBold.ttf?v=3.0.1') format('truetype'); */
+}
+@font-face {
+    font-family: 'Panton-Italic';
+    src: url('../fonts/Panton-Italic.otf');
+  src: url('../fonts/Panton-Italic.eot?v=3.0.1');
+  src: url('../fonts/Panton-Italic.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/Panton-Italic.woff?v=3.0.1') format('woff'),
+    url('../fonts/Panton-Italic.ttf?v=3.0.1') format('truetype'); */
+}
+@font-face {
+    font-family: 'five-italic';
+    src: url('../fonts/five-italic.otf');
+  src: url('../fonts/five-italic.eot?v=3.0.1');
+  src: url('../fonts/five-italic.eot?#iefix&v=3.0.1') format('embedded-opentype'),
+    url('../fonts/five-italic.woff?v=3.0.1') format('woff'),
+    url('../fonts/five-italic.ttf?v=3.0.1') format('truetype'); */
+}

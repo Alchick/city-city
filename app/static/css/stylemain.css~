@@ -1,0 +1,752 @@
+/*=======reset style======*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*==========end reset==========*/
+
+
+/*==========basic styles==========*/
+body {
+    background:#FAF9F5 url('../images/bg12.png') repeat;
+    color: #222;
+}
+
+.container {
+    width: 960px;
+    margin: auto;
+    position: relative;
+}
+
+
+h1,h2,h3,h4,h5 {
+    font-family: 'Panton';
+}
+
+h1 {
+    font-size: 24px;
+    padding: 10px 0;
+    margin: 10px 0;
+} 
+
+h2 {
+    font-size: 22px;
+    padding: 10px 0px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+small {
+    font-size: 12px;
+}
+
+/*.clearfix {
+    clear: both;
+}*/
+
+/*h1,h2,h3,h4,h5 {
+    font-family: 'Panton';
+    color: #666;
+} */
+
+blockquote {
+    font-family: 'Panton';  
+}
+
+/*p {
+/*    font-family: 'Anaheim';
+    font-family: 'Panton';
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 14px;
+} */
+
+
+
+/*==========top(above logo)==========*/
+.top {
+    background: #B92800;
+    padding:8px;
+/*    text-transform:uppercase; */
+}
+
+.top h2.btn .yellow {
+    padding: 8px;
+}
+
+.top h4 {
+    color: white;
+    float: left;
+    width: 720px;
+    padding: 10px;
+    font-family: 'Panton';
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.top p {
+    position:relative;
+    font-family: 'Panton';
+    font-size: 14px;
+    line-height: 18px;
+    padding: 16px 20px 1px; /*change this padding */
+    margin-left:0px;
+    color: #ffff00;
+    
+}
+
+/*==========end top==========*/
+
+
+ 
+
+
+/*==========Theme header==========*/
+.header {
+    margin-top: 20px;
+    height: 80px;
+}
+
+.logo {
+    float: left;
+    width: 250px;
+}
+
+/*#navigation {
+    float: right;
+    width: 500px;
+    font-size: 18px;
+    color:black;
+    margin-top: 20px;
+} */
+
+.menu {
+    float:right;
+    width:500px;
+    font-size:18px;
+    color:black;
+    margin-top:20px;
+} 
+.menu #navigation {
+    float:right;
+
+}
+
+#navigation ul, li {
+    margin: 15px;
+    margin-right:0px;
+    padding: 0;
+    display:inline;
+}
+#navigation ul,li a {
+    text-decoration:none;
+    font-family: 'Panton';
+    color:black;
+}
+ 
+#navigation li a:hover, #navigation li .active_menu{
+    color: #f99600;
+
+}
+/*.menu li a.hover {
+    color: #000;
+}
+.menu li.active a {
+    color: #f99600;
+} */
+.active {
+    color:#f99600;
+}
+
+.facebook {
+    background:url('../images/iconpack/fb.png') no-repeat left top;
+}
+
+.twitter {
+    background:url('../images/iconpack/twitter.png') no-repeat left top;
+}
+
+.google {
+    background:url('../images/iconpack/google.png') no-repeat left top;
+}
+
+.rss {
+    background:url('../images/iconpack/rss.png') no-repeat left top;
+}
+
+.forrst {
+    background:url('../images/iconpack/forrst.png') no-repeat left top;
+}
+
+.dribble {
+    background:url('../images/iconpack/dribble.png') no-repeat left top;
+}
+
+.social li a:hover {
+    background-position:0 -24px;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition:all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;    
+    transition: all 0.4s ease-in-out;
+}
+
+/*==========end header==========*/
+
+/*==========Buttons==========*/
+
+.btn {
+    text-decoration: none;
+    position: relative;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
+    font-family: 'oswald';
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 9px 32px 10px;
+}
+
+.red {
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
+    border: 1px solid #B92800;
+    color: #FFFFFF;
+}
+
+.red:hover {
+    text-decoration: none;
+    background-color:#E23800; 
+    border-color: #cd2c00;
+    color: #ffffff;
+}
+
+.yellow {
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
+    background-color: #FFC000;
+    border-color: #EBB100;
+    color: #000000;
+}
+
+.yellow:hover {
+    background-color:#FFcc00; 
+    border-color: #eabb00;
+    color: #000000;
+    text-decoration: none;
+}
+
+.green {
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
+    background-color: #6a890e;
+    border-color: #536c0b;
+    color: #ffffff;
+    
+}
+
+.green:hover {
+    text-decoration: none;
+    background-color:#7a930a; 
+    border-color: #839f08;
+    color: #ffffff;
+}
+
+.blue {
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
+    background-color: #0084c5;
+    border-color: #0572a8;
+    color: #ffffff;
+}
+
+.blue:hover {
+    text-decoration: none;
+    background-color:#258ec2; 
+    border-color: #2884b2;
+    color: #ffffff;
+}
+
+/*==========end buttons==========*/
+
+
+/*========== forms =============*/
+
+/*========= end forms =========*/
+
+
+/*==========block==========*/
+.block {
+    clear: both;
+    float: left;
+    width: 100%;
+    background:#ffffff;
+}
+
+/*==========end block==========*/
+
+
+/*=========main================ */
+.main {
+    background:#ffffff;
+    position:relative; /*fuck how does it works?*/
+    text-align: left;
+    width: 960px;
+    overflow:hidden;
+}
+
+
+/*-----------slideshow------------*/
+
+#slideshow {
+    clear: both; /*fuck how does it works?*/
+    height: 280px;
+    float:left;
+ /*   width:580px; */
+    position:relative;
+    -moz-box-shadow: 0 0 22px #111;
+    -webkit-box-shadow: 0 0 22px #111;
+    box-shadow:0 0 22px #111;
+}
+#slideshow ul {
+    height:280px; /* is it need? */
+    list-style: none outside none;
+    overflow:hidden;
+    position:absolute;
+    width:620px;
+}
+
+#slideshow li {
+    position:absolute;
+    display:none;
+    margin:0px;
+}
+#slideshow li:first-child {
+    display:block;
+}
+
+#slideshow canvas {
+    display:none;
+    position:absolute;
+}
+
+#slideshow .arrow {
+    height:86px;
+    width:60px;
+    position:absolute;
+    background: url('/static/images/arrows_slider.png') no-repeat;
+    top:50%;
+    margin-top:-10px;
+    cursor:pointer;    
+}
+#slideshow .previous{
+    background-position: left top;
+    left:0;
+}
+#slideshow .next{
+    background-position: right top;
+    right:0;
+}
+
+/*--------end-slideshow----------*/
+
+
+
+
+
+
+
+.main-description {
+    background: #333 url('/static/images/bg4.png') repeat;/*how does flask work with url?*/
+    color: #FFFFFF;
+    display:block; /*fuck how does it works?*/
+    float:right;
+    height: 280px;
+    padding:10px;
+    position:absolute; /*fuck how does it works?*/
+    right:0;
+    width: 342px;
+}
+
+.main-description h2 {
+    color: #fff;
+}
+
+.main-description h4 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #fcc000; /*35acc8;*/
+}
+
+.main-description p {
+    font-family: 'Panton';
+    line-height: 24px;
+    font-size: 15px;
+}
+.main-description p.sidetext{
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.main-description p.sidetext span{
+    color: #fcc000;
+}
+
+.main-description .btn {
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom:20px;
+    padding: 8px 15px;
+}
+
+
+/*=============end main-description===========*/
+
+/*============taglain==================*/
+.tagline {
+    background: none repeat scroll 0 0 #ffffff;
+    padding: 30px;
+    text-align: center;
+}
+
+.tagline h1 {
+    text-transform: uppercase;
+    font-family:'Panton-Bold';
+}
+.tagline p {
+    line-height: 20px;
+    font-family:'Panton';
+    margin:10px
+
+}
+/*=============end tagline=============*/
+
+
+/*=========features==============*/
+.feature {
+    float:left;
+    padding: 17px;
+    text-align: center;
+    width: 206px;
+    background: #FAF9F5;
+    font-family: 'Panton';
+}
+
+.feature h3 {
+    background: #FAF9F5;
+    color: #666666;
+    padding: 10px 0;
+    font-family: 'Panton-Bold';
+    margin-bottom: 20px;
+}
+
+.feature p {
+    line-height: 25px;
+}
+
+.feature img {
+    width: 50px;
+    height: 50px;
+    color: #666666;
+    opacity: 0.6;
+
+}
+/*====== index blocks =======*/
+.partners {
+    background:#FFFFFF;
+    float:left;
+    text-align:center;
+    width: 100%;
+}
+
+.partners p {
+    text-align:right;
+    line-height:30px;
+    font-family: 'Panton';
+}
+
+.partners-name {
+    text-align:center;
+    width: 30.3%;
+    margin:10px;
+    display: inline-block;
+    margin-bottom:60px;
+}
+.partners-name img {
+    width:100px;
+    height:100px;
+    overflow:hidden;
+    opacity: 0.6;
+}
+.partners-name img:hover {
+    opacity: 1;
+}
+.partners-name h3 {
+    margin: 20px;
+
+}
+
+.about {
+    font-family:'Panton';
+    line-height: 30px;
+    
+}
+
+.rules {
+    width: 400px;
+    float:left;
+    margin:20px;
+}
+.rules p{
+    font-size: 20px;
+    line-height:30px;
+    text-align:justify;
+}
+
+.send-form {    
+    width: 350px;
+    float:right;
+    margin:20px;
+}
+
+.send-form h2 {
+    margin-bottom:10px;
+}
+.send-form p {
+    display: block;
+
+}
+.send-form input {
+    float:right;
+    clear:both;
+}
+
+.send-form form input[type="text"] {
+    font-size: 12px;
+    background: #fff;
+    color: #888;
+    padding: 10px 10px 10px 10px;
+    width: 300px; /*is it wrong way? yes it is!!! */
+    border: 1px solid #ebeae5;
+    font-family:'Panton';
+    margin-left: 0px;
+    float:left;
+}
+/*is it wrong way??? */
+.send-form label {
+    float:right;
+    margin-bottom:20px;
+}
+
+.articles {
+    width: 100%;
+    float:left;
+    background: #ffffff;
+}
+.articles h1 {
+    margin: 20px;
+}
+.articles a {
+    cursor: pointer;
+}
+
+
+/*form {
+    display:block;
+    margin: 0 auto;
+    letter-spacing:2px;
+    width: 459px;
+}
+input, textarea {
+    width:439px;
+    height:27px;
+    background:#efefef;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#3a3a3a;
+}
+textarea {
+    height:213px;
+    background:url(images/textarea-bg.jpg) right no-repeat #efefef;
+} */
+
+
+/*==========footer==========*/
+.footer {
+    background: none repeat scroll 0 0 #333;
+    color: #EEEEEE;
+    margin-top: 30px;
+    height: 20px;
+    padding: 20px;
+}
+
+
+.footer-text{
+    float: left;
+    width: 400px;
+}
+
+/*.footer p{
+    width: 400px;
+}*/
+
+.footer .menu{
+    float: right;
+    clear: none;
+}
+
+/*==========end footer==========*/
+
+
+
+/*============ ANIMATION ==========*/
+
+
+.make img {
+-webkit-animation-name: rotation;
+-webkit-animation-duration: 10s;
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-timing-function: linear;
+-moz-animation-name: rotation;
+-moz-animation-duration: 10s;
+-moz-animation-iteration-count: infinite;
+-moz-animation-timing-function: linear;
+-o-animation-name: rotation;
+-o-animation-duration: 10s;
+-o-animation-iteration-count: infinite;
+-o-animation-timing-function: linear;
+animation-name: rotation;
+animation-duration: 10s;
+animation-iteration-count: infinite;
+animation-timing-function: linear;
+}
+
+@-webkit-keyframes rotation {
+0% {-webkit-transform:rotate(0deg);
+-moz-transform:rotate(0deg);
+-o-transform:rotate(0deg);
+transform:rotate(0deg);}
+100% {-webkit-transform:rotate(360deg);
+-moz-transform:rotate(360deg);
+-o-transform:rotate(360deg);
+transform:rotate(360deg);}
+}
+@-moz-keyframes rotation {
+0% {-webkit-transform:rotate(0deg);
+-moz-transform:rotate(0deg);
+-o-transform:rotate(0deg);
+transform:rotate(0deg);}
+100% {-webkit-transform:rotate(360deg);
+-moz-transform:rotate(360deg);
+-o-transform:rotate(360deg);
+transform:rotate(360deg);}
+}
+@-o-keyframes rotation {
+0% {-webkit-transform:rotate(0deg);
+-moz-transform:rotate(0deg);
+-o-transform:rotate(0deg);
+transform:rotate(0deg);}
+100% {-webkit-transform:rotate(360deg);
+-moz-transform:rotate(360deg);
+-o-transform:rotate(360deg);
+transform:rotate(360deg);}
+}
+@keyframes rotation {
+0% {-webkit-transform:rotate(0deg);
+-moz-transform:rotate(0deg);
+-o-transform:rotate(0deg);
+transform:rotate(0deg);}
+100% {-webkit-transform:rotate(360deg);
+-moz-transform:rotate(720deg);
+-o-transform:rotate(360deg);
+transform:rotate(360deg);}
+}
+/*=======color play ==========*/
+/* * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+} */
+
+
+.pic {
+  float: left;
+  height: 50px;
+  width: 50px;
+  margin: 20px;
+  overflow: hidden;
+   
+/*  -webkit-box-shadow: 5px 5px 5px #111;
+          box-shadow: 5px 5px 5px #111;  */
+}
+
+.bw {
+  -webkit-filter:brightness(0%);
+  filter: brightness(0%);
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+ 
+.bw:hover {
+  -webkit-filter: brightness(100%);
+  filter: brightness(100%);
+}
+
+
+
+

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="articles">
+    <div class="find" style="float:right; margin:10px;">
+        <h3>Форма поиска статьи</h3>
+        <form action="#" method="POST" enctype="multipart\form-data">
+            <input type="text" name="find">
+    </div>
+    <h1>Статьи пользователей</h1>
+    <div class="table" cellspacing='0'>
+  <table>
+    <tr>
+      <th>Author name</th>
+      <th>Article name</th>
+      <th>Adding date</th>
+      <th>Link</th>
+      <th>Status</th>
+    </tr>
+    {% for record in records %}
+    <tr>
+      <td>{{record.author_name}}</td>
+      <td>{{record.article_name}}</td>
+      <td>{{record.date}}</td>
+      <td style="text-align:center;"><a name="bla" href="get_file.html?filename={{record.article_body_file}}&article_name={{record.article_name}}&author_name={{record.author_name}}&date={{record.date}}&passi=True">Читать статью</a></td>
+      {% if record.status == 2 %}
+      <td style="text-align:center; color:yellow">В рассмотрении</td>
+      {% elif record.status == 3%}
+      <td style="text-align:center; color:green">Одобрено</td>
+      {% elif record.status == 1 %}
+      <td style="text-align:center; color:red">В архив</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+    </div>
+    <br>
+    <br>
+  </div>
+{% endblock %}
+
