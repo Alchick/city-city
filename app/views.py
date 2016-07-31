@@ -1,12 +1,18 @@
 #coding: utf-8
 import os
-from flask import render_template, request, flash, url_for, redirect
+from flask import render_template, request, flash, url_for, redirect, g
 from app import app
 from forms import *
 from check_functions import *
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from datetime import datetime
 from models import culture_admins
+
+STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении', ' #FF8C00'], 3:[u'В архив', '#FF0000']}
+
+@app.route('/test.html')
+def test():
+    return render_template('test.html')
 
 #LOGIN VIEWS
 @app.route('/login', methods = ['GET', 'POST'])
@@ -68,34 +74,36 @@ def about():
 
 @app.route('/read.html', methods = ['GET', 'POST'])
 def read():
+    findForm = ArticleForms()
     if request.method == 'POST':
         a = request.form.get('article_find')
         print a
         records = get_data_from_db()
-        return render_template("read.html",
-                           records = records)
+#        return render_template("read.html",
+#                           records = records,\
+#                           findForm = findForm)
+        return redirect(url_for('read'))
     records = get_data_from_db()
     return render_template("read.html",
-                           records = records)
+                           records = records,\
+                           findForm = findForm)
 
 @app.route('/get_file.html', methods = ['GET', 'POST'])
 def get_file():
-    comments = None
     if request.args:
         filename = request.args.get('filename') #could it be empty?
         article_name = request.args.get('article_name') #could it be empty?
         author_name = request.args.get('author_name') #could it be empty?
         date = request.args.get('date') #could it be empty?
         id = request.args.get('id')
-        passi = request.args.get('passi') #could it be empty?
-        if current_user.is_authenticated:
-            comments = get_comments() 
+        status = request.args.get('status') #could it be empty?
+        comments = get_comments() 
         return render_template("get_file.html",\
                                filename = filename,\
                                article_name = article_name,\
                                author_name = author_name,\
                                date = date,\
-                               passi = passi,\
+                               status = int(status),\
                                comments = comments,\
                                id = id,
                                enumerate = enumerate)
@@ -108,7 +116,7 @@ def contact():
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
     form = ArticleForms()
-    if request.method == 'POST' and form.validate_on_submit():
+    if request.method == 'POST': #and form.validate_on_submit():
         flash(save_request_data(request))
         return render_template('create.html',\
                                 form=form)
@@ -141,4 +149,6 @@ def EntityTooLarge(error):
 def page_not_found(error):
     return render_template("error.html", error = 404), 404
 
-
+@app.before_request
+def before_request():
+    g.status = STATUS

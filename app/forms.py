@@ -34,3 +34,9 @@ class RegistrationForm(Form):
     name = TextField('name', validators=[Required(message=u'Пустое поле')])
     phone = TextField('phone', validators=[Required(message=u'Пустое поле')])
 
+class findForm(Form):
+    article_find = TextField('article_find', description = 'name', validators=[Required(message = u'Введите Ваше имя'),\
+                                                                             Regexp(r'^[a-zA-Z]+$', message = u'Неверный символ'),\
+                                                                             Length(max=40)])
+    author_find = TextField('author_find', validators=[Required(message = u'Введите имя статьи')])
+

@@ -15,12 +15,12 @@
     </ul>
   </div>
 
-  <div class="send-form">
+  <div class="form">
     <h2>Вы можете отправить нам уже готовую статью</h2>
      <form action="/create.html" method="POST" enctype="multipart/form-data">
         {{form.hidden_tag()}}
        <p>Введите ваше Имя:</p>
-       {{ form.author_name(class="send-form") }}
+       {{form.author_name(class="send-form")}}
         {% for error in form.errors.author_name %}
         <span style="color:red;" class="flash-error">{{error}}</span>
         {% endfor %}
@@ -55,7 +55,7 @@
              {% endwith %}
   </div>
   </div>
-<div class="create-form">
+<div class="create-block">
     <h3 style="text-align:center">Или вы можете воспользоваться формой ниже, чтобы создать свою статью</h3>
 <!--  <iframe frameborder="0" src="http://mega-photoshop.ru/fotoshop_onlajn.html" height="950px" width="100%" ></iframe><br/> -->
   </div>

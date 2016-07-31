@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="articles">
-    <div class="find" style="float:right; margin:10px;">
+    <div id="find" class="form">
         <h3>Форма поиска статьи</h3>
         <form action="find" method="POST" enctype="multipart\form-data">
-            <input type="text" name="article_find" value="Find with article name"><br>
-            <input type="text" name="author_find" value="Find with author name">
-            <input type="submit" value="Find">
+            {{findForm.hidden_tag()}}
+            {{findForm.article_name(value="Поиск по названию статьи", onFocus="doClear(this)", onBlur="doDefault(this)")}}
+            {{findForm.author_name(value="Поиск по названию статьи", onFocus="doClear(this)", onBlur="doDefault(this)")}}
+            <input type="submit" value="Найти" class="btn red">
     </div>
     <h1>Статьи пользователей</h1>
     <div class="table" cellspacing='0'>
@@ -16,19 +17,15 @@
       <th>Article name</th>
       <th>Adding date</th>
       <th>Link</th>
-      {% if current_user.is_authenticated %}
       <th>Status</td>
-      {% endif %}
     </tr>
     {% for record in records %}
     <tr>
       <td>{{record.author_name}}</td>
       <td>{{record.article_name}}</td>
       <td>{{record.date}}</td>
-      <td style="text-align:center;"><a name="bla" href="get_file.html?filename={{record.article_file}}&article_name={{record.article_name}}&id={{record.id}}&author_name={{record.author_name}}&date={{record.date}}">Читать статью</a></td>
-      {% if current_user.is_authenticated %}
-      <td style="text-align:center;">{{record.status}}</td>
-      {% endif %}
+      <td style="text-align:center;"><a name="bla" href="get_file.html?filename={{record.article_file}}&article_name={{record.article_name}}&id={{record.id}}&author_name={{record.author_name}}&date={{record.date}}&status={{record.status}}">Читать статью</a></td>
+      <td style="text-align:center; color:{{g.status[record.status][1]}};">{{g.status[record.status][0]}}</td>
     </tr>
     {% endfor %}
   </table>

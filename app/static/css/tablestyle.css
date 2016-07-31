@@ -1,6 +1,6 @@
 .table {
     text-align:left;
-    font-family:'Panton';
+    font-family:'Panton-Regular';
     color: #666;
     font-size:12px;
     text-shadow: 1px 1px 0px #fff;
@@ -10,6 +10,7 @@
     width:90%;
     margin:auto;
     border-radius:3px;
+    clear:both;
 
 }
 

@@ -9,7 +9,7 @@ from app import db
 from werkzeug.utils import secure_filename
 
 #UPLOAD_FOLDER = '/home/e.sergeev/private_repos/city-city/app/static/filestorage/'
-UPLOAD_FOLDER = '/home/e.sergeev/culture-city/app/static/filestorage/'
+UPLOAD_FOLDER = os.getcwd()+'/app/static/filestorage/' #find more comfortable way!!!!
 ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'doc', 'docx', 'txt', 'jpg', 'png'])
 MAX_FILE_SIZE = 200 * 1024 * 1024
 

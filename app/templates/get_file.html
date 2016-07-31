@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="block">  
   <div class="get-article">
-    <p>Author Name - {{author_name}}</p>
-    <p>Article Name - {{article_name}}</p>
-    <p>Create date- {{date}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Автор</span> - <p>{{author_name}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Статья</span> - {{article_name}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - {{date}}</p>
+    <p style="color:{{g.status[status][1]}}"><span style="font-family:'Panton-Bold'; font-size:15px; color:#000000">Статус</span> - {{g.status[status][0]}}</p>
+  </div>
+  <div class="article-range" style="float:right;">
+    <p>Рейтинг - <span style="font-size:30px; font-family:'Panton-Bold;'">10<span></p>
+  </div>
     <div class="article-read">
       <p><img src="/static/filestorage/{{filename}}" alt="{{filename}}"></p> 
     </div>
-    {% if current_user.is_authenticated %}
     {% for num, comment in enumerate(comments) %}
     <div class="user_comments">
       <p>User name - {{comments[num].user_name}}</p> 
@@ -15,24 +20,30 @@
       <p>Comment body - {{comments[num].comment_body}}</p> 
     </div>
     {% endfor %}
-    <form action="admin.html" method="post">
-    <p>Set article range:</p>
-    <input type="text" name="range" size="1">
-    <p>Add comment:</p>
-    <textarea cols="30" rows="10" name="comment"></textarea>
-    <br>
-    <input type="submit" value="Send">
+    {% if current_user.is_authenticated %}
+    <div class="form">
+      <form action="admin.html" method="post">
+        <p>Add comment:</p>
+          <textarea cols="30" rows="10" name="comment"></textarea>
+        <br>
+          <input type="button" onclick="sendPost(this.form)" value="Отправить">
+      </form>
+    </div>
     {% else %}
-    <form action="set_comment.html" method="POST" id="formx">
-    <p>Your comment:</p>
-      <textarea cols="30" rows="10" name="comment"></textarea>
-    <p>Your name:</p>
-      <input name="name" type="text">
-    <p>Your email:</p>
-      <input name="email" type="text">
-      <input type="hidden" name="art_id" value="{{id}}">
-    <input type="button" onclick="sendPost(this.form)" value="Отправить">
-    </form>
+    <div class="form">
+      <form action="set_comment.html" method="POST" id="formx">
+        <p>Ваше Имя</p>
+          <input name="name" type="text">
+        <p>Электронная почта:</p>
+          <input name="email" type="text">
+          <input type="hidden" name="art_id" value="{{id}}">
+        <p>Комментарий:</p>
+          <textarea cols="10" rows="10" name="comment"></textarea>
+        <p>Оцените статью по 10-бальной шкале:</p>
+          <input type="button" value="0" name="counter" id="counter" onclick="counterr(this.id)" style="margin-bottom:10px; float:left;">
+          <input type="button" class="btn red" onclick="sendPost(this.form)" value="Отправить">
+      </form>
+    </div>
     {% endif %}
-  </div>
+</div>
 {% endblock %}
