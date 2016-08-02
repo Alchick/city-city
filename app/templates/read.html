@@ -5,11 +5,12 @@
         <h3>Форма поиска статьи</h3>
         <form action="find" method="POST" enctype="multipart\form-data">
             {{findForm.hidden_tag()}}
-            {{findForm.article_name(value="Поиск по названию статьи", onFocus="doClear(this)", onBlur="doDefault(this)")}}
-            {{findForm.author_name(value="Поиск по названию статьи", onFocus="doClear(this)", onBlur="doDefault(this)")}}
+            {{findForm.article_name(placeholder="Поиск по названию статьи")}}
+            {{findForm.author_name(placeholder="Поиск по имени автора")}}
             <input type="submit" value="Найти" class="btn red">
     </div>
     <h1>Статьи пользователей</h1>
+      <img src="/static/images/fenka.jpg" alt="fenka" width="450" height="100" style="margin-left:50px;"></img>
     <div class="table" cellspacing='0'>
   <table>
     <tr>

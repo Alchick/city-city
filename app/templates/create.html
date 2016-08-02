@@ -25,7 +25,7 @@
         <span style="color:red;" class="flash-error">{{error}}</span>
         {% endfor %}
        <p>Введите название статьи:</p>
-       {{ form.article_name(class="send-form") }}
+       {{ form.article_name(class="send-form")}}
         {% for error in form.errors.article_name %}
         <span style="color:red" class="flash-error">{{error}}</span>
         {% endfor %}

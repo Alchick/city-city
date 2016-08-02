@@ -24,18 +24,6 @@
   <script src="{{ url_for('static', filename='javascript/tiny_scripts.js') }}"></script>
 </head>
 <body>
-  {% if current_user.is_authenticated %}
-  <div class="enter"> 
-      <p>Привет {{current_user.login}}</p>
-      <a href='logout'>Выйти</a>
-  </div>
-  {% endif %}
-  
-  {% if not current_user.is_authenticated %}
-  <div class="enter">
-    <a href="login">Войти</a>
-  </div>
-  {% endif %}
 
   <div class="top">
     <h4>Культура объединяет все стороны человеческой личности</h4>

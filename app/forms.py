@@ -11,11 +11,19 @@ class ArticleForms(Form):
     author_name = TextField('author_name', description = 'name', validators=[Required(message = u'Введите Ваше имя'),\
                                                                              Regexp(r'^[a-zA-Z]+$', message = u'Неверный символ'),\
                                                                              Length(max=40)])
-    article_name = TextField('article_name', validators=[Required(message = u'Введите имя статьи'),\
+    article_name = TextField(validators=[Required(message = u'Введите имя статьи'),\
                                                          Regexp(r'^[a-zA-Z0-9]+$', message = u'Неверный символ'),\
                                                          Length(max=40)])
     email = TextField('email', validators = [Required(message = u'Введит Ваш электронный адрес')])
                                              #Email(message = u'Неверный почта')])
+
+class Text_Forms(Form):
+    text_field = TextField(validators=[Required(message = u'Пустое поле'),\
+                                                Regexp(r'^[a-zA-Z]+$', message = u'Неверный символ'),\
+                                                Length(max=40)])
+    email = TextField('email', validators = [Required(message = u'Введит Ваш электронный адрес')])
+                                             #Email(message = u'Неверный почта')])
+
 
 
 class LoginForm(Form):
