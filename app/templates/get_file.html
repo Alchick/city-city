@@ -2,7 +2,7 @@
 {% block content %}
 <div class="block">  
   <div class="get-article">
-    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Автор</span> - <p>{{author_name}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Автор</span> - {{author_name}}</p>
     <p><span style="font-family:'Panton-Bold'; font-size:15px;">Статья</span> - {{article_name}}</p>
     <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - {{date}}</p>
     <p style="color:{{g.status[status][1]}}"><span style="font-family:'Panton-Bold'; font-size:15px; color:#000000">Статус</span> - {{g.status[status][0]}}</p>
@@ -30,6 +30,9 @@
       </form>
     </div>
     {% else %}
+    <div class="additional_img">
+      <img src="/static/images/pen_and_ink.jpg" width="400px" height="300px" alt="pen_and_ink">
+    </div>
     <div class="form">
       <form action="set_comment.html" method="POST" id="formx">
         <p>Ваше Имя</p>

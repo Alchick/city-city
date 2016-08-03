@@ -111,7 +111,19 @@ p {
 /*ENTER*/
 .enter {
     font-family: 'Panton-Regular';
+    float:right;
+    margin-right:-70px;
+    margin-top:10px;
 }
+.enter a {
+    text-decoration:none;
+}
+
+
+
+
+
+
 
 /*==========top(above logo)==========*/
 .top {
@@ -551,7 +563,12 @@ p {
 }
 .article-range {
     margin-right:70px;
-    margin-top:20px;
+    margin-top:30px;
+}
+.additional_img {
+   display:inline-block;
+   margin-top:50px;
+   margin-left:80px; 
 }
 
 /*==========footer==========*/

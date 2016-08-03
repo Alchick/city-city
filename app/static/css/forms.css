@@ -1,7 +1,3 @@
-:default input[type='text']{
-    color:red;
-}
-
 .form {
     width: 350px;
     float:right;
@@ -59,10 +55,6 @@
 #find.form form input {
     margin:10px;
 }
-
-
-
-
 
 /*form {
     display:block;
