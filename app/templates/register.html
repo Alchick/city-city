@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="register">
+    <form action="register" method="post">
+    {{form.hidden_tag()}}
+    <p>Введите имя</p>
+    {{form.name}}
+    {% for error in form.errors.name %}
+    <span style="color:red;">{{error}}</span>
+    {% endfor %}
+    <p>Введите логин</p>
+    {{form.login}}
+    {% for error in form.errors.login %}
+    <span style="color:red;">{{error}}</span>
+    {% endfor %}
+    <p>Введите электронный адрес</p>
+    {{form.email}}
+    {% for error in form.errors.email %}
+    <span style="color:red;">{{error}}</span>
+    {% endfor %}
+    <p>Введите телефонный номер</p>
+    {{form.phone}}
+    {% for error in form.errors.phone %}
+    <span style="color:red;">{{error}}</span>
+    {% endfor %}
+    <p>Введите пароль</p>
+    {{form.password}}
+    {% for error in form.errors.password %}
+    <span style="color:red;">{{error}}</span>
+    {% endfor %}
+    <input type="submit" value="Добавить администратора">
+</div>
+
+{% endblock  %}

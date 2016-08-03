@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="main">
+    <div class="featured">
+      <div class="vendor">
+        <div class="flexslider mainslider">
+          <ul class="slides">
+            <li class="image"><img src="/static/images/1.jpg" alt=""></li>
+            <li class="image"><img src="/static/images/2.jpg" alt=""></li>
+            <li class="image"><img src="/static/images/3.jpg" alt=""></li>
+            <li class="image"><a href="#"><img src="/static/images/2.jpg" alt=""></a></li>
+          </ul>
+        </div>
+      </div>
+
+
+   <div class="main-description">
+     <h2>Культурный город - </h2>
+     <h4>&emsp; - город, который делают люди</h4>
+     <p>Напишите свою стать, отправьте ее в "Культурный город" и ее прочитает Санкт-Петербург</p>
+     <a href="#" class="btn red">Написать</a>
+     <p class="sidetext">Ознакомится с правилами написания статей можно в разделе <span>"Написать"</span></p>
+   </div>
+  </div>
+  <div class="tagline">
+    <h1>Давайте делать город лучше</h1>
+    <p>Напишите интересную статью для другого!</p>
+    <p>Другой напишет интересную статью для вас!</p>
+   <!-- <p>Давайте делать для других, и другие начнут делать для вас</p> -->
+   <p>Интересная стаья будет размещена у наших рекламных партнеров</p>
+  </div>
+    <div class="block">
+      <div class="feature">
+        <img src="/static/images/write.png" alt="write"></img>
+        <h3>Написать статью</h3>
+        <p>Напишите статью, отправьте ее в "Культурный город" и ее увидит Санкт-Петербург</p>
+      </div>
+      <div class="feature">
+        <img src="/static/images/about.png" alt="about"></img>
+        <h3>О проекте</h3>
+        <p>Как функционирует проект, основые его состоявляющей деятельности</p>
+      </div>
+      <div class="feature">
+        <img src="/static/images/read.png" alt="read"></img>
+        <h3>Читать</h3>
+        <p>Прочитайте статьи, которые написали соотечественники. Это интересно</p>
+      </div>
+      <div class="feature">
+        <img src="/static/images/contacts.png" alt="contacts"></img>
+        <h3>Наши контакты</h3>
+        <p>Вы посмотрели сайт и у вас остались вопросы? Пишите нам и мы с радостью вам ответим</p>
+      </div>
+    </div>
+  <div class="partners">
+    <h1>Наши партнеры</h1>
+      <div class="partners-name">
+        <img src="/static/images/ghost_hunter.jpg" alt=""></img>
+        <h3>Охотники за приведениями</h3>
+      </div>
+  
+      <div class="partners-name">
+        <img src="/static/images/mortal-kombat.png" alt=""></img>
+        <h3>Мертвый комбат</h3>
+      </div>
+  
+      <div class="partners-name">
+        <img src="/static/images/south_park.png" alt=""></img>
+        <h3>Южный парк</h3>
+      </div>
+  
+      <div class="partners-name">
+        <img src="/static/images/google.jpg" alt=""></img>
+        <h3>Google</h3>
+      </div>
+      <div class="partners-name">
+        <img src="/static/images/NASA_logo.svg.png" alt=""></img>
+        <h3>NASA</h3>
+      </div>
+      <div class="partners-name">
+        <img src="/static/images/playboy-symbol.jpg" alt=""></img>
+        <h3>PlayBoy</h3>
+      </div>
+  </div>
+  
+
+
+
+
+
+
+
+{% endblock %}

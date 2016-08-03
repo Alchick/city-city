@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="block">
+  <div class="rules">
+    <h1>Правила написания статьи</h1>
+    <ul>
+        <li>Содержание стать не должно оскорблять чувства и достоинство другого человека</li>
+        <li>В статье не должно быть орфографических ошибок</li>
+        <li>Графически оформленная статья является более приоритетной к размещению нежелии сстатья в текстовом формате</li>
+        <li>Форматы принимаемых файлов - psd, txt, doc, docs, jpeg</li>
+        <li>Решение об отправлении статьи в печать выносится Комиссией на основании оценки пользователей и собственного анализа</li>
+        <li>Здесь будет еще одно правило. Дополнительное</li>
+        <li>Здесь будет правило номер три. Каким оно будет - пока непонятно</li>
+    </ul>
+  </div>
+
+  <div class="form">
+    <h2>Вы можете отправить нам уже готовую статью</h2>
+     <form action="/create.html" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+       <p>Введите ваше Имя:</p>
+       {{form.author_name(class="send-form")}}
+        {% for error in form.errors.author_name %}
+        <span style="color:red;" class="flash-error">{{error}}</span>
+        {% endfor %}
+       <p>Введите название статьи:</p>
+       {{ form.article_name(class="send-form")}}
+        {% for error in form.errors.article_name %}
+        <span style="color:red" class="flash-error">{{error}}</span>
+        {% endfor %}
+       <p>Введите ваш электронный адрес:</p>
+       {{ form.email(class="send-form") }}
+        {% for error in form.errors.email %}
+        <span style="color:red" class="flash-error">{{error}}</span>
+        {% endfor %}
+       <!--Add cleaning form after send article to database -->
+      <!--<p>Set you name:<br><input type="text" name="author_name"></p>
+       <p>Set article_name:<br><input type="text" name="article_name"></p>
+       <p>Set email:<br><input type="text" name="email"></p> -->
+      <!--<div class="file_upload"><p>Выбрать файл<input type="file" name="userfile"></p> </div>
+       <p><input type="submit" value="Add file" class="btn red"></p> -->
+       <input type="file" id="upload" name="userfile"/>
+       <label for='upload' class="btn yellow">Открыть статью</label>
+      <input type="submit" value="Отправить статью" class="btn red">
+       </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+             {% endif %}
+             {% endwith %}
+  </div>
+  </div>
+<div class="create-block">
+    <h3 style="text-align:center">Или вы можете воспользоваться формой ниже, чтобы создать свою статью</h3>
+<!--  <iframe frameborder="0" src="http://mega-photoshop.ru/fotoshop_onlajn.html" height="950px" width="100%" ></iframe><br/> -->
+  </div>
+
+{% endblock %}

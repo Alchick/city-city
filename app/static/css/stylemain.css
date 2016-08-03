@@ -41,7 +41,7 @@ q:before, q:after {
 }
 table {
     border-collapse: collapse;
-    border-spacing: 0;f
+    border-spacing: 0;
 }
 
 /*==========end reset==========*/
@@ -59,19 +59,16 @@ body {
     position: relative;
 }
 
-.container .top h4{
-    font-family: 'SlotSSI';
-}
 
 h1,h2,h3,h4,h5 {
-    font-family: 'OpenSansCondensedBold';
+    font-family: 'Panton';
 }
 
 h1 {
     font-size: 24px;
     padding: 10px 0;
     margin: 10px 0;
-}
+} 
 
 h2 {
     font-size: 22px;
@@ -94,26 +91,27 @@ small {
     font-size: 12px;
 }
 
-.clearfix {
+/*.clearfix {
     clear: both;
-}
+}*/
 
-h1,h2,h3,h4,h5 {
-    font-family: 'Oswald';
+/*h1,h2,h3,h4,h5 {
+    font-family: 'Panton';
     color: #666;
-}
+} */
 
 blockquote {
-    font-family: 'Satisfy';  
+    font-family: 'Panton';  
 }
 
-p {
-    font-family: 'Anaheim';
+/*p {
+/*    font-family: 'Anaheim';
+    font-family: 'Panton';
     margin-top: 10px;
     margin-bottom: 10px;
     color: #888;
     font-size: 14px;
-}  
+} */
 
 
 
@@ -121,7 +119,7 @@ p {
 .top {
     background: #B92800;
     padding:10px;
-    text-transform:uppercase;
+/*    text-transform:uppercase; */
 }
 
 .top h2.btn .yellow {
@@ -133,9 +131,19 @@ p {
     float: left;
     width: 720px;
     padding: 10px;
-    font-family: 'Oswald';
+    font-family: 'Panton';
     font-size: 14px;
     letter-spacing: 1px;
+}
+
+.top p {
+    position:relative;
+    font-family: 'Panton';
+    font-size: 14px;
+    line-height: 18px;
+    padding: 24px 32px 1px;
+    margin-left:0px;
+    color: #ffff00;
     
 }
 
@@ -147,67 +155,59 @@ p {
 
 /*==========Theme header==========*/
 .header {
-    margin-top: 40px;
+    margin-top: 50px;
     height: 100px;
 }
 
 .logo {
     float: left;
-    width: 300px;
+    width: 250px;
 }
 
-.contact {
+/*#navigation {
     float: right;
-    width: 168px;;
+    width: 500px;
+    font-size: 18px;
+    color:black;
+    margin-top: 20px;
+} */
+
+.menu {
+    float:right;
+    width:500px;
+    font-size:18px;
+    color:black;
+    margin-top:20px;
+} 
+.menu #navigation {
+    float:right;
+
 }
 
-.contact h5 {
-    float: left;
-    line-height: 32px;
-    width: 200px;
-    margin: 0;padding: 0;
-}
-
-.contact span.phone {
-    float: left;
-    margin-top: 1px;
-    background: url('../images/phone.png') no-repeat;
-    width: 24px;
-    height: 24px;
-    display: block;
-    padding: 2px;
-    opacity: 0.6;
-}
-
-.social {
-    clear: both;
-    float: right;
-    width: 160px;
-    font-size: 80%;
-        opacity: 0.6;
-}
-
-.social li{
-    float: left;
-}
-
-.social li:hover{
-    color: #000;
-    opacity: 1;
-}
-
-.social ul,li {
-    margin: 0;
+#navigation ul, li {
+    margin: 15px;
+    margin-right:0px;
     padding: 0;
+    display:inline;
 }
+#navigation ul,li a {
+    text-decoration:none;
+    font-family: 'Panton';
+    color:black;
+}
+ 
+#navigation li a:hover, #navigation li .active_menu{
+    color: #f99600;
 
-.social li a {
-    float: left;
-    width: 24px;
-    height: 24px;
-    display: block;
-    text-indent: -9999;
-    margin: 2px;
+}
+/*.menu li a.hover {
+    color: #000;
+}
+.menu li.active a {
+    color: #f99600;
+} */
+.active {
+    color:#f99600;
 }
 
 .facebook {
@@ -260,12 +260,8 @@ p {
     padding: 9px 32px 10px;
 }
 
-.mini{
-    font-size: 14px;
-    margin-left:40px;
-}
 .red {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     border: 1px solid #B92800;
     color: #FFFFFF;
 }
@@ -278,7 +274,7 @@ p {
 }
 
 .yellow {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     background-color: #FFC000;
     border-color: #EBB100;
     color: #000000;
@@ -292,7 +288,7 @@ p {
 }
 
 .green {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     background-color: #6a890e;
     border-color: #536c0b;
     color: #ffffff;
@@ -307,7 +303,7 @@ p {
 }
 
 .blue {
-    background: url("../images/btn.png") repeat-x scroll center top #CC3300;
+    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
     background-color: #0084c5;
     border-color: #0572a8;
     color: #ffffff;
@@ -323,6 +319,10 @@ p {
 /*==========end buttons==========*/
 
 
+/*========== forms =============*/
+
+/*========= end forms =========*/
+
 
 /*==========block==========*/
 .block {
@@ -332,11 +332,238 @@ p {
     background:#ffffff;
 }
 
-.block section {
-    float: left;
+/*==========end block==========*/
+
+
+/*=========main================ */
+.main {
+    background:#ffffff;
+    position:relative; /*fuck how does it works?*/
+    text-align: left;
+    width: 960px;
+    overflow:hidden;
 }
 
-/*==========end block==========*/
+.slide-show {
+    clear: both; /*fuck how does it works?*/
+    height: 320px;
+    float:left;
+}
+
+.main-description {
+    background: #333 url('/static/images/bg4.png') repeat;/*how does flask work with url?*/
+    color: #FFFFFF;
+    display:block; /*fuck how does it works?*/
+    float:right;
+    height: 280px;
+    padding:20px;
+    position:absolute; /*fuck how does it works?*/
+    right:0;
+    width: 342px;
+}
+
+.main-description h2 {
+    color: #fff;
+}
+
+.main-description h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fcc000; /*35acc8;*/
+}
+
+.main-description p {
+    font-family: 'Panton';
+    line-height: 24px;
+    font-size: 15px;
+}
+.main-description p.sidetext{
+    font-size: 11px;
+    line-height: 16px;
+}
+
+.main-description p.sidetext span{
+    color: #fcc000;
+}
+
+.main-description .btn {
+    margin-left: 70px;
+    margin-top: 30px;
+    margin-bottom:30px;
+    padding: 12px 20px;
+}
+
+
+/*=============end main-description===========*/
+
+/*============taglain==================*/
+.tagline {
+    background: none repeat scroll 0 0 #ffffff;
+    padding: 30px;
+    text-align: center;
+}
+
+.tagline h1 {
+    text-transform: uppercase;
+    font-family:'Panton-Bold';
+}
+.tagline p {
+    line-height: 20px;
+    font-family:'Panton';
+    margin:10px
+
+}
+/*=============end tagline=============*/
+
+
+/*=========features==============*/
+.feature {
+    float:left;
+    padding: 17px;
+    text-align: center;
+    width: 206px;
+    background: #FAF9F5;
+    font-family: 'Panton';
+}
+
+.feature h3 {
+    background: #FAF9F5;
+    color: #666666;
+    padding: 10px 0;
+    font-family: 'Panton-Bold';
+    margin-bottom: 20px;
+}
+
+.feature p {
+    line-height: 25px;
+}
+
+.feature img {
+    width: 50px;
+    height: 50px;
+    color: #666666;
+    opacity: 0.6;
+
+}
+/*====== index blocks =======*/
+.partners {
+    background:#FFFFFF;
+    float:left;
+    text-align:center;
+    width: 100%;
+}
+
+.partners p {
+    text-align:right;
+    line-height:30px;
+    font-family: 'Panton';
+}
+
+.partners-name {
+    text-align:center;
+    width: 30.3%;
+    margin:10px;
+    display: inline-block;
+}
+.partners-name img {
+    width:100px;
+    height:100px;
+    overflow:hidden;
+    opacity: 0.6;
+}
+.partners-name img:hover {
+    opacity: 1;
+}
+.partners-name h3 {
+    margin: 20px;
+
+}
+
+.about {
+    font-family:'Panton';
+    line-height: 30px;
+    
+}
+
+.rules {
+    width: 400px;
+    float:left;
+    margin:20px;
+}
+.rules p{
+    font-size: 20px;
+    line-height:30px;
+    text-align:justify;
+}
+
+.send-form {    
+    width: 350px;
+    float:right;
+    margin:20px;
+}
+
+.send-form h2 {
+    margin-bottom:10px;
+}
+.send-form p {
+    display: block;
+
+}
+.send-form input {
+    float:right;
+    clear:both;
+}
+
+.send-form form input[type="text"] {
+    font-size: 12px;
+    background: #fff;
+    color: #888;
+    padding: 10px 10px 10px 10px;
+    width: 300px; /*is it wrong way? yes it is!!! */
+    border: 1px solid #ebeae5;
+    font-family:'Panton';
+    margin-left: 0px;
+    float:left;
+}
+/*is it wrong way??? */
+.send-form label {
+    float:right;
+    margin-bottom:20px;
+}
+
+.articles {
+    width: 100%;
+    float:left;
+    background: #ffffff;
+}
+.articles h1 {
+    margin: 20px;
+}
+.articles a {
+    cursor: pointer;
+}
+
+
+/*form {
+    display:block;
+    margin: 0 auto;
+    letter-spacing:2px;
+    width: 459px;
+}
+input, textarea {
+    width:439px;
+    height:27px;
+    background:#efefef;
+    border:1px solid #dedede;
+    padding:10px;
+    margin-top:3px;
+    font-size:0.9em;
+    color:#3a3a3a;
+}
+textarea {
+    height:213px;
+    background:url(images/textarea-bg.jpg) right no-repeat #efefef;
+} */
 
 
 /*==========footer==========*/
@@ -355,11 +582,10 @@ p {
 }
 
 /*.footer p{
-    
     width: 400px;
 }*/
 
-.footer .social{
+.footer .menu{
     float: right;
     clear: none;
 }

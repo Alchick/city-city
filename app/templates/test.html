@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>jopa-popa</h1>
+<a href="test1.html">тетс</a>
+<p>{{records}}</p>
+<a id="myLink" title="Click to do something"
+ href="test1.html" onclick="showMessage({{records}});">link text</a>
+
+<div class="field">
+   <label for="n">Имя</label><br>
+   <input type="text" class="n" value="Name"/>
+</div>
+<div class="field">
+   <label for="ln">Фамилия</label><br>
+   <input type="text" class="ln" value="Sername"/>
+</div>
+<div class="field">
+   <label for="a">Место жительства</label><br>
+   <input type="text" class="a" value="valu" id="bla" onclick="cleanForm(this, 'value')"/>
+</div>
+<div>
+    <input type="button" value="0" id="button1" onclick="counter(this.id)">
+</div>
+
+
+<input type="input" value="Ваш email" onfocus="if (this.value) {this.value=''}" onBlur="if (this.value == '') {this.value='Ваш email'}">
+
+
+
+
+
+{% endblock %}
+

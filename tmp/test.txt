@@ -1,0 +1,14 @@
+from datetime import datetime
+from sqlalchemy import exc
+def add():
+    try:
+        record = Articles(article_name = 'article1',\
+                                     author_name = 'author1',\
+                                     file_name = 'file1',\
+                                     date = datetime.today(),\
+                                     email = 'email1')
+        db.session.add(record)
+        db.session.commit()
+    except exc.SQLAlchemyError as ex:
+        db.session.rollback()
+        return ex      
