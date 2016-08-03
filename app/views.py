@@ -117,9 +117,14 @@ def contact():
 def create():
     form = ArticleForms()
     if request.method == 'POST': #and form.validate_on_submit():
-        flash(save_request_data(request))
-        return render_template('create.html',\
-                                form=form)
+        if file in request.files:
+            flash(save_request_data(request))
+            return render_template('create.html',\
+                                    form=form)
+        else: 
+            flash('You send no file')
+            return redirect(url_for('create'))
+
     return render_template("create.html",\
                            form=form)
 

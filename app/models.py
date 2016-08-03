@@ -1,3 +1,4 @@
+#coding: utf-8
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -83,19 +84,18 @@ class article_rating(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id')) #foreign key
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
-    rating = db.Column('rating', db.Integer, default=0)
+    rating = db.Column('rating', db.Integer)
     comment = db.Column('comment', db.VARCHAR)
-    def __init__(self, article_id, admin_id, rating, comment, date):
+    def __init__(self, article_id, admin_id, comment, date):
         self.article_id = article_id
         self.admin_id = admin_id
-        self.rating = 0
         self.comment = comment
+        self.date = datetime.utcnow()
 
     def __repr__(self):
-        return 'id-{0}\nARTICLE_ID-{1}\nADMIN_ID-{2}\nRATING-{3}\nCOMMENT-{4}\n'.format(self.article_id,\
-                                                                          self.admin_id,\
-                                                                          self.rating,\
-                                                                          self.comment)
+        return 'ARTICLE_ID-{0}\nADMIN_ID-{1}\nCOMMENT-{2}\n'.format(self.article_id,\
+                                                                    self.admin_id,\
+                                                                    self.comment)
 class users_comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'))
