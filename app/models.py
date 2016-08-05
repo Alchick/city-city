@@ -2,6 +2,7 @@
 from app import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import UniqueConstraint
 
 
 
@@ -86,6 +87,7 @@ class article_rating(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
     rating = db.Column('rating', db.Integer)
     comment = db.Column('comment', db.VARCHAR)
+    __table_args__ = (db.UniqueConstraint('article_id', 'admin_id', name='unique_rating'),)
     def __init__(self, article_id, admin_id, comment, date):
         self.article_id = article_id
         self.admin_id = admin_id
