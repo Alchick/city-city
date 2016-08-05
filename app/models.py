@@ -8,11 +8,11 @@ from sqlalchemy import UniqueConstraint
 
 class articles(db.Model):
     id = db.Column('id', db.Integer, primary_key=True)
-    article_name = db.Column('article_name', db.VARCHAR, unique = True, nullable=False)
-    author_name = db.Column('author_name', db.VARCHAR, nullable=False)
-    article_file = db.Column('article_file', db.VARCHAR, unique = True, nullable=False)
+    article_name = db.Column('article_name', db.VARCHAR(50), unique = True, nullable=False)
+    author_name = db.Column('author_name', db.VARCHAR(50), nullable=False)
+    article_file = db.Column('article_file', db.VARCHAR(50), unique = True, nullable=False)
     date = db.Column('date', db.DateTime) #is it trur type?
-    email = db.Column('email', db.VARCHAR, unique = True, nullable=False)
+    email = db.Column('email', db.VARCHAR(50), unique = True, nullable=False)
     status = db.Column('status', db.SmallInteger)
     article_rating = db.relationship('article_rating', backref='articles', lazy='dynamic')
     users_comment = db.relationship('users_comment', backref='articles', lazy='dynamic')    #how does fucking lazy works?
@@ -39,11 +39,11 @@ class articles(db.Model):
 
 class culture_admins(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column('name', db.VARCHAR)
-    login = db.Column('login', db.VARCHAR, unique = True, nullable=False)
-    password = db.Column('password', db.VARCHAR, nullable=False)
-    email = db.Column('email', db.VARCHAR, unique=True, nullable=False)
-    phone = db.Column('phone', db.VARCHAR, unique=True)
+    name = db.Column('name', db.VARCHAR(50))
+    login = db.Column('login', db.VARCHAR(50), unique = True, nullable=False)
+    password = db.Column('password', db.VARCHAR(50), nullable=False)
+    email = db.Column('email', db.VARCHAR(50), unique=True, nullable=False)
+    phone = db.Column('phone', db.VARCHAR(50), unique=True)
     admin_status = db.Column('admin_status', db.SmallInteger, default = 0) #depends on desc\asc in query
     article_rating = db.relationship('article_rating', backref='culture_admins', lazy='dynamic')
     registered_on = db.Column('registered_on' , db.DateTime)
@@ -86,7 +86,7 @@ class article_rating(db.Model):
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id')) #foreign key
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
     rating = db.Column('rating', db.Integer)
-    comment = db.Column('comment', db.VARCHAR)
+    comment = db.Column('comment', db.VARCHAR(50))
     __table_args__ = (db.UniqueConstraint('article_id', 'admin_id', name='unique_rating'),)
     def __init__(self, article_id, admin_id, comment, date):
         self.article_id = article_id
@@ -101,9 +101,9 @@ class article_rating(db.Model):
 class users_comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'))
-    user_name = db.Column(db.VARCHAR)
-    email = db.Column(db.VARCHAR)
-    comment_body = db.Column(db.VARCHAR)
+    user_name = db.Column(db.VARCHAR(50))
+    email = db.Column(db.VARCHAR(50))
+    comment_body = db.Column(db.VARCHAR(50))
     date = db.Column(db.DateTime) #is it needet type? is is true type?, maybe timezone or something
     def __init__(self, article_id, user_name, email, comment_body):
         self.article_id = article_id
