@@ -12,7 +12,7 @@ class articles(db.Model):
     article_file = db.Column('article_file', db.VARCHAR, unique = True, nullable=False)
     date = db.Column('date', db.DateTime) #is it trur type?
     email = db.Column('email', db.VARCHAR, unique = True, nullable=False)
-    status = db.Column('status', db.SmallInteger)
+    status = db.Column('status', db.SmallInteger, default = 2)
     article_rating = db.relationship('article_rating', backref='articles', lazy='dynamic')
     users_comment = db.relationship('users_comment', backref='articles', lazy='dynamic')    #how does fucking lazy works?
     
@@ -22,7 +22,6 @@ class articles(db.Model):
         self.article_file = article_file
         self.date = datetime.utcnow()
         self.email = email
-        self.status = 2
 
 
     def __repr__(self):
@@ -84,7 +83,7 @@ class article_rating(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id')) #foreign key
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
-    rating = db.Column('rating', db.Integer)
+    rating = db.Column('rating', db.Integer, default = 0)
     comment = db.Column('comment', db.VARCHAR)
     def __init__(self, article_id, admin_id, comment, date):
         self.article_id = article_id
@@ -93,9 +92,10 @@ class article_rating(db.Model):
         self.date = datetime.utcnow()
 
     def __repr__(self):
-        return 'ARTICLE_ID-{0}\nADMIN_ID-{1}\nCOMMENT-{2}\n'.format(self.article_id,\
+        return 'ARTICLE_ID-{0}\nADMIN_ID-{1}\nCOMMENT-{2}\nRATING-{3}'.format(self.article_id,\
                                                                     self.admin_id,\
-                                                                    self.comment)
+                                                                    self.comment,\
+                                                                    self.rating)
 class users_comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'))
@@ -108,7 +108,7 @@ class users_comment(db.Model):
         self.user_name = user_name
         self.email = email
         self.comment_body = comment_body
-        self.date = date
+        self.date = datetime.utcnow()
 
     def __repr__(self):
         return 'ARTICLE_ID-{0}\nUSER_NAME-{1}\nEMAIL-{2}\nCOMMENT_BODY-{3}\nDATE-{4}\n'.format(self.article_id,\

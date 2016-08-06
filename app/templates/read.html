@@ -4,9 +4,9 @@
     <div id="find" class="form">
         <h3>Форма поиска статьи</h3>
         <form action="find" method="POST" enctype="multipart\form-data">
-            {{findForm.hidden_tag()}}
-            {{findForm.article_name(placeholder="Поиск по названию статьи")}}
-            {{findForm.author_name(placeholder="Поиск по имени автора")}}
+            {{findform.hidden_tag()}}
+            {{findform.article_find(placeholder="Поиск по названию статьи")}}
+            {{findform.author_find(placeholder="Поиск по имени автора")}}
             <input type="submit" value="Найти" class="btn red">
     </div>
     <h1>Статьи пользователей</h1>
@@ -20,13 +20,13 @@
       <th>Link</th>
       <th>Status</td>
     </tr>
-    {% for record in records %}
+    {% for article in articles %}
     <tr>
-      <td>{{record.author_name}}</td>
-      <td>{{record.article_name}}</td>
-      <td>{{record.date}}</td>
-      <td style="text-align:center;"><a name="bla" href="get_file.html?filename={{record.article_file}}&article_name={{record.article_name}}&id={{record.id}}&author_name={{record.author_name}}&date={{record.date}}&status={{record.status}}">Читать статью</a></td>
-      <td style="text-align:center; color:{{g.status[record.status][1]}};">{{g.status[record.status][0]}}</td>
+      <td>{{article.author_name}}</td>
+      <td>{{article.article_name}}</td>
+      <td>{{article.date}}</td>
+      <td style="text-align:center;"><a name="bla" href="get_file.html?filename={{article.article_file}}&article_name={{article.article_name}}&id={{article.id}}&author_name={{article.author_name}}&date={{article.date}}&status={{article.status}}">Читать статью</a></td>
+      <td style="text-align:center; color:{{g.status[article.status][1]}};">{{g.status[article.status][0]}}</td>
     </tr>
     {% endfor %}
   </table>
