@@ -25,6 +25,7 @@ class articles(db.Model):
         self.article_file = article_file
         self.date = datetime.utcnow()
         self.email = email
+        self.status = 2
 
 
     def __repr__(self):
@@ -40,11 +41,11 @@ class articles(db.Model):
 
 class culture_admins(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column('name', db.VARCHAR(50)(50))
-    login = db.Column('login', db.VARCHAR(50)(50), unique = True, nullable=False)
-    password = db.Column('password', db.VARCHAR(50)(50), nullable=False)
-    email = db.Column('email', db.VARCHAR(50)(50), unique=True, nullable=False)
-    phone = db.Column('phone', db.VARCHAR(50)(50), unique=True)
+    name = db.Column('name', db.VARCHAR(50))
+    login = db.Column('login', db.VARCHAR(50), unique = True, nullable=False)
+    password = db.Column('password', db.VARCHAR(50), nullable=False)
+    email = db.Column('email', db.VARCHAR(50), unique=True, nullable=False)
+    phone = db.Column('phone', db.VARCHAR(50), unique=True)
     admin_status = db.Column('admin_status', db.SmallInteger, default = 0) #depends on desc\asc in query
     article_rating = db.relationship('article_rating', backref='culture_admins', lazy='dynamic')
     registered_on = db.Column('registered_on' , db.DateTime)
@@ -88,6 +89,7 @@ class article_rating(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
     rating = db.Column('rating', db.Integer, default=0)
     comment = db.Column('comment', db.VARCHAR(500))
+    date = db.Column(db.DateTime) #is it needet type? is is true type?, maybe timezone or something
     __table_args__ = (db.UniqueConstraint('article_id', 'admin_id', name='unique_rating'),)
     def __init__(self, article_id, admin_id, comment, date):
         self.article_id = article_id

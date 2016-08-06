@@ -1,7 +1,8 @@
 .form {
     width: 350px;
     float:right;
-    margin:20px;
+    margin-right:50px;
+    margin-top:20px;
 }
 
 .form h2 {
@@ -22,7 +23,7 @@
     font-family:'Panton-Regular';
     /*padding: 10px 10px 10px 10px; */
     padding: 10px;
-    width: 300px; /*is it wrong way? yes it is!!! */
+    width: 330px; /*is it wrong way? yes it is!!! */
     border: 1px solid #ebeae5;
     margin-left: 0px;
     float:left;
@@ -35,7 +36,7 @@
     font-family:'Panton-Regular';
     /*padding: 10px 10px 10px 10px; */
     padding: 10px;
-    width: 300px; /*is it wrong way? yes it is!!! */
+    width: 330px; /*is it wrong way? yes it is!!! */
     border: 1px solid #ebeae5;
     margin-left: 0px;
     float:left;
@@ -49,12 +50,12 @@
 }
 
 #find.form form input {
-    margin:10px;
+    margin-bottom:10px;
+}
+#find h3 {
+    margin-bottom:20px;
 }
 
-#find.form form input {
-    margin:10px;
-}
 
 /*form {
     display:block;

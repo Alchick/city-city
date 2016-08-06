@@ -18,45 +18,26 @@ def save_data_to_db(data):
     try:
         db.session.add(data)
         db.session.commit()
-        return 'Данные успешно добавлены'
+        return ('green',u'Данные успешно добавлены')
     except exc.SQLAlchemyError as ex:
         #check duplicate value error for postgres(pgcode) or for mysql (ex.orig)
         if ex.orig.pgcode == '23505' or ex.orig[0] == 1062:
             print 'Duplicate values', ex
+            return ('red', u'Такие данные уже есть')
         print ex
-        return "Database error"
+        return ('red','Ошибка обработки')
 
-def save_request_data(request):
-    file = request.files['userfile']
-    filename = secure_filename(file.filename)
-    if not(check_file_extension(file.filename)):
-        return 'Неверный формат файла'
-#when table is lock, happened nothing. operations wait their turn. So when it is, operation make
-#Затрет текущий файл статьи, если такой файл уже есть. Т.е. статья по сути пропадет
-    record = articles(article_name = request.form['article_name'],\
-                      author_name = request.form['author_name'],\
-                      article_file = filename,\
-                      email = request.form['email'])
-    save_file_to_db(record)
-    try:
-        file.save(os.path.join(UPLOAD_FOLDER, filename))#wery cunfused moment
-        return 'Success'
-    except Exception as ex:
-        print ex
-        db.session.rollback()
-        return 'wrong file save'
-
-def save_article(article, filename):
+def save_article(article, file, filename):
     message = save_data_to_db(article)
-    if 'Данные успешно добавлены' in message:
+    if u'Данные успешно добавлены' in message:
         try:
             file.save(os.path.join(UPLOAD_FOLDER, filename))#wery cunfused moment
-            return 'Ваша статья успешно добавлена'
+            return ('green',u'Ваша статья успешно добавлена')
         except Exception as ex:
             db.session.delete(article)
             db.session.commit()
             print 'File-save exception', ex
-            return 'Внутренняя ошибка сервера, напишите нам'
+            return ('red',u'Ошибка обработки')
     else: return message
 
 def check_file_extension(filename):
@@ -82,8 +63,10 @@ def add_admin(name, login, email, phone, password):
 
 #database selects
 #what exceptions could be when select make
-def get_comments():
-    return db.session.query(users_comment).all() 
+def get_user_comments():
+    return db.session.query(users_comment).all()
+def get_admin_comments(id): 
+    return db.session.query(article_rating).filter_by(article_id = id).all()
 
 def find_article_by_name(article_name):
     return db.session.query(articles).filter_by(article_name=article_name).all()
@@ -115,8 +98,8 @@ def set_rating(rating, article_id, admin_id):
              filter(article_rating.article_id == article_id,\
                     article_rating.admin_id == admin_id).update({'rating':rating})
         db.session.commit()
-        return 'Рейтинг успешно обновлен'
+        return ('green','Рейтинг успешно обновлен')
     except exc.SQLAlchemyError as ex:
         db.session.rollback()
         print ex
-        return 'Произошла ошибка при обновлении рейтинга, попробуйте еще раз'
+        return ('red',u'Произошла ошибка при обновлении рейтинга, попробуйте еще раз')

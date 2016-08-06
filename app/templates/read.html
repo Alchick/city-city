@@ -2,23 +2,23 @@
 {% block content %}
   <div class="articles">
     <div id="find" class="form"> <!-- why id=find here? -->
-        <h3>Форма поиска статьи</h3>
+        <h3>Форма поиска</h3>
         <form action="find" method="POST" enctype="multipart\form-data">
-            {{findform.hidden_tag()}}
-            {{findform.article_find(placeholder="Поиск по названию статьи")}}
-            {{findform.author_find(placeholder="Поиск по имени автора")}}
+            {{form.hidden_tag()}}
+            {{form.article_name(placeholder="Поиск по названию статьи")}}
+            {{form.author_name(placeholder="Поиск по имени автора")}}
             <input type="submit" value="Найти" class="btn red">
     </div>
     <h1>Статьи пользователей</h1>
-      <img src="/static/images/fenka.jpg" alt="fenka" width="450" height="100" style="margin-left:50px;"></img>
+      <img src="/static/images/fenka.jpg" alt="fenka" width="450" height="70" style="margin-left:50px;"></img>
     <div class="table" cellspacing='0'>
   <table>
     <tr>
-      <th>Author name</th>
-      <th>Article name</th>
-      <th>Adding date</th>
-      <th>Link</th>
-      <th>Status</td>
+      <th>Имя автора</th>
+      <th>Название Статьи</th>
+      <th>Дата добавления</th>
+      <th>Перейти</th>
+      <th>Статус</td>
     </tr>
     {% for article in articles %}
     <tr>

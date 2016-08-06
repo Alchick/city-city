@@ -6,19 +6,39 @@
 <a id="myLink" title="Click to do something"
  href="test1.html" onclick="showMessage({{records}});">link text</a>
 
+<div class='form'>
+  <form action="/test.html" method="POST" enctype="multipart/form-data">
+        {{form.hidden_tag()}}
+       <p>Введите ваше Имя:</p>
+       <!--no need class "send form here" -->
+       {{form.author_name(class="send-form")}}
+        {% for error in form.errors.author_name %}
+        <span style="color:red;" class="flash-error">{{error}}</span>
+        {% endfor %}
+       <!--Add cleaning form after send article to database -->
+      <!--<p>Set you name:<br><input type="text" name="author_name"></p>
+       <p>Set article_name:<br><input type="text" name="article_name"></p>
+       <p>Set email:<br><input type="text" name="email"></p> -->
+      <!--<div class="file_upload"><p>Выбрать файл<input type="file" name="userfile"></p> </div>
+       <p><input type="submit" value="Add file" class="btn red"></p> -->
+       <input type="file" id="upload" name="userfile" class="uploadk"/>
+       <label for='upload' class="btn yellow"><span>Открыть статью</span></label>
+       {{form.submit(value="Отправить статью", class="btn red")}}
+        {% for error in form.errors.submit %}
+        <span style="color:red;" class="flash-error">{{error}}</span>
+        {% endfor %}
+       </form>
 
-      <form action="test.html" method="POST" id="formx">
-        <p>Ваше Имя</p>
-          <input name="name" type="text">
-        <p>Электронная почта:</p>
-          <input name="email" type="text">
-          <input type="hidden" name="art_id" value="{{id}}">
-        <p>Комментарий:</p>
-          <textarea cols="10" rows="10" name="comment"></textarea>
-        <p>Оцените статью по 10-бальной шкале:</p>
-          <input type="button" value="0" name="counter" id="counter" onclick="counterr(this.id)" style="margin-bottom:10px; float:left;">
-          <input type="button" class="btn red" onclick="sendPost(this.form)" value="Отправить">
-      </form>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li><span style="color:red;" class="flash-error">{{ message }}</li>
+                {% endfor %}
+            </ul>
+             {% endif %}
+             {% endwith %}
+  </div>
 
 
 

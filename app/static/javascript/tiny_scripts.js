@@ -16,7 +16,7 @@ function sendPost(form) {
 }
 
 
-setTimeout(function(){$('.flash-error').fadeOut('fast')}, 5000);
+setTimeout(function(){$('.flash-message').fadeOut('fast')}, 5000);
 
 
 function doClear(element) {
@@ -35,3 +35,9 @@ function counterr(id) {
     }
 };
 
+function submitForm(obj) {
+    obj.form.submit()
+    obj.form.reset();
+    
+    return false;
+}

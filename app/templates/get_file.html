@@ -7,29 +7,29 @@
     <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - {{date}}</p>
     <p style="color:{{g.status[status][1]}}"><span style="font-family:'Panton-Bold'; font-size:15px; color:#000000">Статус</span> - {{g.status[status][0]}}</p>
   </div>
-  <div class="article-range" style="float:right;">
+  <div class="article-range">
     <p>Рейтинг - <span style="font-size:30px; font-family:'Panton-Bold;'">{{rating_average}}<span></p>
   </div>
     <div class="article-read">
       <p><img src="/static/filestorage/{{filename}}" alt="{{filename}}"></p> 
     </div>
-    {% for num, comment in enumerate(comments) %}
-    <div class="user_comments">
-      <p>User name - {{comments[num].user_name}}</p> 
-      <p>Add date - {{comments[num].date}}</p> 
-      <p>Comment body - {{comments[num].comment_body}}</p> 
+    {% for num, comment in enumerate(user_comments) %}
+    <div class="user_user_comments">
+      <p>Имя пользователя - {{user_comments[num].user_name}}</p> 
+      <p>Комментарий - {{user_comments[num].comment_body}}</p> 
+      <p>Дата добавления - {{user_comments[num].date}}</p> 
     </div>
     {% endfor %}
-    {% if current_user.is_authenticated %}
-    <div class="form">
-      <form action="admin.html" method="post">
-        <p>Add comment:</p>
-          <textarea cols="30" rows="10" name="comment"></textarea>
-        <br>
-          <input type="button" onclick="sendPost(this.form)" value="Отправить">
-      </form>
-    </div>
-    {% else %}
+      {% if current_user.is_authenticated %}
+        {% for num, comment in enumerate(admin_user_comments) %}
+          <div class="admin_user_comments">
+            <p>Имя администратора - {{user_comments[num].admin_id}}</p> 
+            <p>Комментарий - {{user_comments[num].comment}}</p> 
+            <p>Рейтинг - {{user_comments[num].rating}}</p> 
+            <p>Дата добавления- {{user_comments[num].date}}</p> 
+          </div>
+        {% endfor %}
+      {% endif %}
     <div class="additional_img">
       <img src="/static/images/pen_and_ink.jpg" width="400px" height="300px" alt="pen_and_ink">
     </div>
@@ -42,11 +42,12 @@
           <input type="hidden" name="art_id" value="{{id}}">
         <p>Комментарий:</p>
           <textarea cols="10" rows="10" name="comment"></textarea>
+      {% if current_user.is_authenticated %}
         <p>Оцените статью по 10-бальной шкале:</p>
-          <input type="button" value="0" name="counter" id="counter" onclick="counterr(this.id)" style="margin-bottom:10px; float:left;">
-          <input type="button" class="btn red" onclick="sendPost(this.form)" value="Отправить">
+          <input type="button" value="0" name="counter" id="counter" onclick="counterr(this.id)">
+      {% endif %}
+          <input type="button" class="btn red" id="counter" onclick="sendPost(this.form)" value="Отправить">
       </form>
     </div>
-    {% endif %}
 </div>
 {% endblock %}

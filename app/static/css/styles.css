@@ -205,81 +205,6 @@ p {
 
 /*==========end header==========*/
 
-/*==========Buttons==========*/
-
-.btn {
-    text-decoration: none;
-    position: relative;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-    font-family: 'Panton-Regular';
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14px;
-    line-height: 18px;
-    padding: 9px 18px 6px;
-    text-align:center;
-}
-
-.red {
-    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
-    border: 1px solid #B92800;
-    color: #FFFFFF;
-}
-
-.red:hover {
-    text-decoration: none;
-    background-color:#E23800; 
-    border-color: #cd2c00;
-    color: #ffffff;
-}
-
-.yellow {
-    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
-    background-color: #FFC000;
-    border-color: #EBB100;
-    color: #000000;
-}
-
-.yellow:hover {
-    background-color:#FFcc00; 
-    border-color: #eabb00;
-    color: #000000;
-    text-decoration: none;
-}
-
-.green {
-    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
-    background-color: #6a890e;
-    border-color: #536c0b;
-    color: #ffffff;
-    
-}
-
-.green:hover {
-    text-decoration: none;
-    background-color:#7a930a; 
-    border-color: #839f08;
-    color: #ffffff;
-}
-
-.blue {
-    background: url('../images/btn.png') repeat-x scroll center top #CC3300;
-    background-color: #0084c5;
-    border-color: #0572a8;
-    color: #ffffff;
-}
-
-.blue:hover {
-    text-decoration: none;
-    background-color:#258ec2; 
-    border-color: #2884b2;
-    color: #ffffff;
-}
-
-/*==========end buttons==========*/
-
-
 /*==========block==========*/
 .block {
     clear: both;
@@ -494,7 +419,7 @@ p {
     text-decoration: none;
     width: 500px;
     float:left;
-    margin:20px;
+    margin:10px;
 }
 
 .rules h1 {
@@ -516,7 +441,7 @@ p {
     background: #ffffff;
 }
 .articles h1 {
-    margin: 20px;
+    margin-left: 50px;
 }
 .articles a {
     cursor: pointer;
@@ -562,13 +487,18 @@ p {
     margin-top:20px;
 }
 .article-range {
-    margin-right:70px;
+    margin-right:50px;
     margin-top:30px;
+    float:right;
 }
 .additional_img {
    display:inline-block;
    margin-top:50px;
    margin-left:80px; 
+}
+
+.flash-message li {
+    margin:0px;
 }
 
 /*==========footer==========*/

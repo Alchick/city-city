@@ -2,7 +2,7 @@
 import os
 from flask import render_template, request, flash, url_for, redirect, g
 from app import app
-from forms import MainForm, LoginForm
+from forms import CreateForm, FindForm, CommentForm
 from help_functions import *
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from datetime import datetime
@@ -12,10 +12,12 @@ STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении'
 
 @app.route('/test.html', methods = ['GET', 'POST'])
 def test():
-    if request.method == 'POST':
-        print request.form.get('rating')
-        return 'norm'
-    return render_template('test.html')
+    testform = CreateForm()
+    if request.method == 'POST' and testform.validate_on_submit():
+        print 'bla'
+        print request.form.get('author_name')
+        return redirect(url_for('test'))
+    return render_template('test.html', form=testform)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -27,13 +29,13 @@ def login():
     if request.form.get('remember_me'):
         remember_me = True
     if registered_user(login) is None:
-        flash('Username is invalid')
+        flash(('red',u'Пользователь с таким именем не найден'))
         return redirect(url_for('login'))
     if not registered_user(login).check_password(password):
-        flash('Invalid password')
+        flash(('red', u'Неверный пароль'))
         return redirect(url_for('login'))
     login_user(registered_user(login), remember = remember_me)
-    flash('Logged is successfully')
+    #flash('Logged is successfully')
     return redirect(request.args.get('next') or url_for('index'))
 
 @app.route('/logout')
@@ -49,7 +51,7 @@ def register():
         if current_user.login == 'root':
             return render_template('register.html', form=form)
         else:
-            flash('permission denied')
+            flash(('red','Доступ закрыт'))
             return redirect(url_for('login'))
     if request.method == 'POST' and form.validate_on_submit:
         name = request.form.get('name')
@@ -62,7 +64,7 @@ def register():
 #PAGES VIEWS
 @app.route('/')
 def main():
-    return redirect(url_for('index'))
+    return redirect(url_for('test'))
 
 @app.route('/index.html')
 def index():
@@ -76,7 +78,7 @@ def about():
 
 @app.route('/read.html', methods = ['GET', 'POST'])
 def read():
-    findForm = MainForm()
+    form = FindForm()
     if request.method == 'POST':
         if request.form.get('article_name'):
             articles =  find_article_by_name(request.form.get('article_name'))
@@ -87,11 +89,12 @@ def read():
     articles = get_articles()
     return render_template("read.html",
                            articles = articles,\
-                           findform = findform)
+                           form = form)
 
 @app.route('/get_file.html', methods = ['GET', 'POST'])
 def get_file():
-    commentForm = MainForm()
+    form = CommentForm()
+    admin_comments = None
     if request.args:
         filename = request.args.get('filename') #could it be empty?
         article_name = request.args.get('article_name') #could it be empty?
@@ -99,7 +102,9 @@ def get_file():
         date = request.args.get('date') #could it be empty?
         id = request.args.get('id')
         status = request.args.get('status') #could it be empty?
-        comments = get_comments() 
+        user_comments = get_user_comments()
+        if current_user.is_authenticated:
+            admin_comments = get_admin_comments(id) #understand how to get admin_name
         rating_average = get_rating_average(id)
         return render_template("get_file.html",\
                                filename = filename,\
@@ -107,12 +112,12 @@ def get_file():
                                author_name = author_name,\
                                date = date,\
                                status = int(status),\
-                               comments = comments,\
-                               id = id,
+                               user_comments = user_comments,\
+                               id = id,\
                                enumerate = enumerate,\
-                               commentForm = commentForm)
-                               enumerate = enumerate,
-                               rating_average = rating_average)
+                               form = form,\
+                               rating_average = rating_average,\
+                               admin_comments = admin_comments)
     else: return redirect('read.html')
 
 @app.route('/contacts.html')
@@ -121,26 +126,29 @@ def contact():
 
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
-    Sendform = MainForm()
+    form = CreateForm()
     if request.method == 'POST': #and form.validate_on_submit():
-        if file in request.files:
-            file = request.files['userfile']
+        file = request.files['userfile']
+        print file
+        if file:
             filename = secure_filename(file.filename)
             if not(check_file_extension(file.filename)):
-                return 'Неподдерживаемый формат файла'
+                #flash("u'Неподдерживаемый формат файла'")
+                flash(('red','Неподдерживаемый формат файла'))
+                return redirect(url_for('create'))
             article = articles(article_name = request.form['article_name'],\
                                author_name = request.form['author_name'],\
                                article_file = filename,\
                                email = request.form['email']) 
-            flash(save_article(article, filename))
+            flash(save_article(article, file, filename))
             return render_template('create.html',\
-                                    Sendform=Sendform)
+                                    form=form)
         else: 
-            flash('You send no file')
+            flash(('red','Прикрепите файл'))
             return redirect(url_for('create'))
 
     return render_template("create.html",\
-                           Sendform=Sendform)
+                           form=form)
 
 @app.route('/admin.html', methods = ['GET', 'POST'])
 @login_required
