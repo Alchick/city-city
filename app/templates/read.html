@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="articles">
-    <div id="find" class="form">
+    <div id="find" class="form"> <!-- why id=find here? -->
         <h3>Форма поиска статьи</h3>
         <form action="find" method="POST" enctype="multipart\form-data">
             {{findForm.hidden_tag()}}

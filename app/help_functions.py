@@ -20,8 +20,8 @@ def save_data_to_db(data):
         db.session.commit
         return 'Данные успешно добавлены'
     except exc.SQLAlchemyError as ex:
-        if ex.orig.pgcode == '23505':
-            print 'nu vot tak vot', ex
+        if ex.orig.pgcode == '23505' or ex.orig[0] == 1062:
+            print 'Duplicate values', ex
         print ex
         return "Database error"
 
@@ -37,9 +37,9 @@ def save_request_data(request):
                           email = request.form['email'])
 #when table is lock, happened nothing. operations wait their turn. So when it is, operation make
 #Затрет текущий файл статьи, если такой файл уже есть. Т.е. статья по сути пропадет
-            save_file_to_db(record)
-            file.save(os.path.join(UPLOAD_FOLDER, filename))#wery cunfused moment
-            return 'Succes'
+        save_file_to_db(record)
+        file.save(os.path.join(UPLOAD_FOLDER, filename))#wery cunfused moment
+        return 'Succes'
     except exc.SQLAlchemyError as ex:
 #        if ex.orig.pgcode == '23505':
         print 'database exception', ex
@@ -69,14 +69,6 @@ def regexp(text, pattern):
         return True
     else: return False
 
-def get_data_from_db(): #something wrong with this select
-    return db.session.query(articles).\
-    filter(articles.article_file.like('%')).\
-    order_by('date desc').limit(10);
-
-
-def registered_user(login):
-    return db.session.query(culture_admins).filter(culture_admins.login == login).first()
 
 def insert_comment(article_id, user_name, email, comment_body):
     comment = users_comment(article_id, user_name, email, comment_body)
@@ -90,6 +82,28 @@ def add_admin(name, login, email, phone, password):
     db.session.commit()
     return "success add"
 
+#database selects
+#what exceptions could be when select make
 def get_comments():
     return db.session.query(users_comment).all() 
 
+def find_article_by_name(article_name):
+    article = db.session.query(articles).filter(articles.article_name == article_name).first()
+    if article:
+        return article
+    else: return 'Нет статьи с таким названием'
+
+
+def find_article_by_name(article_name):
+    return db.session.query(articles).filter_by(article_name=article_name).all()
+    
+def find_article_by_author(author_name):
+    return db.session.query(articles).filter_by(author_name=author_name).all()
+    
+def get_data_from_db(): #something wrong with this select
+    return db.session.query(articles).\
+    filter(articles.article_file.like('%')).\
+    order_by('date desc').limit(10);
+
+def registered_user(login):
+    return db.session.query(culture_admins).filter(culture_admins.login == login).all()

@@ -77,3 +77,11 @@ how to work on post 400 error?
 Exception in thread Thread-1:
 
 
+for work with mysql need python module named 'MySQLdb' - installing with 'apt-get install python-mysqldb'
+for work with postgres need python module named 'psycopg2'
+
+whileexporting models to python with mysql driver, get this message:
+/usr/local/lib/python2.7/dist-packages/flask_sqlalchemy/__init__.py:800: UserWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.
+warnings.warn('SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.')
+
+

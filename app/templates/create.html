@@ -6,9 +6,11 @@
     <h1>Правила написания статьи</h1>
     <ul>
         <li>Содержание стать не должно оскорблять чувства и достоинство другого человека</li>
+        <li>Содержание статьи должно представлять интелектуальную ценность</li>
+        <li>Решаемая проблема с авторским правом</li>
         <li>В статье не должно быть орфографических ошибок</li>
         <li>Графически оформленная статья является более приоритетной к размещению нежелии сстатья в текстовом формате</li>
-        <li>Форматы принимаемых файлов - psd, txt, doc, docs, jpeg</li>
+        <li>Форматы принимаемых файлов - psd, txt, doc, docs, jpeg, jpg</li>
         <li>Решение об отправлении статьи в печать выносится Комиссией на основании оценки пользователей и собственного анализа</li>
         <li>Здесь будет еще одно правило. Дополнительное</li>
         <li>Здесь будет правило номер три. Каким оно будет - пока непонятно</li>
@@ -18,20 +20,21 @@
   <div class="form">
     <h2>Вы можете отправить нам уже готовую статью</h2>
      <form action="/create.html" method="POST" enctype="multipart/form-data">
-        {{form.hidden_tag()}}
+        {{Sendform.hidden_tag()}}
        <p>Введите ваше Имя:</p>
-       {{form.author_name(class="send-form")}}
-        {% for error in form.errors.author_name %}
+       <!--no need class "send form here" -->
+       {{Sendform.author_name(class="send-form")}}
+        {% for error in Sendform.errors.author_name %}
         <span style="color:red;" class="flash-error">{{error}}</span>
         {% endfor %}
        <p>Введите название статьи:</p>
-       {{ form.article_name(class="send-form")}}
-        {% for error in form.errors.article_name %}
+       {{ Sendform.article_name(class="send-form")}}
+        {% for error in Sendform.errors.article_name %}
         <span style="color:red" class="flash-error">{{error}}</span>
         {% endfor %}
        <p>Введите ваш электронный адрес:</p>
-       {{ form.email(class="send-form") }}
-        {% for error in form.errors.email %}
+       {{ Sendform.email(class="send-form") }}
+        {% for error in Sendform.errors.email %}
         <span style="color:red" class="flash-error">{{error}}</span>
         {% endfor %}
        <!--Add cleaning form after send article to database -->

@@ -3,7 +3,7 @@ import os
 from flask import render_template, request, flash, url_for, redirect, g
 from app import app
 from forms import *
-from check_functions import *
+from help_functions import *
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from datetime import datetime
 from models import culture_admins
@@ -74,15 +74,17 @@ def about():
 
 @app.route('/read.html', methods = ['GET', 'POST'])
 def read():
-    findForm = ArticleForms()
+    findForm = MainForm()
     if request.method == 'POST':
-        a = request.form.get('article_find')
-        print a
-        records = get_data_from_db()
+        if request.form.get('article_name'):
+            records =  find_article_by_name(request.form.get('article_name'))
+        if request.form.get('author_name'):
+            records = find_article_by_author(request.form.get('author_name'))
+        return redirect(url_for('read.html', records = records)) #it seems that this is not true way
+                                                                 #true way - make render_template with parameters
 #        return render_template("read.html",
 #                           records = records,\
 #                           findForm = findForm)
-        return redirect(url_for('read'))
     records = get_data_from_db()
     return render_template("read.html",
                            records = records,\
@@ -90,6 +92,7 @@ def read():
 
 @app.route('/get_file.html', methods = ['GET', 'POST'])
 def get_file():
+    commentForm = MainForm(Form)
     if request.args:
         filename = request.args.get('filename') #could it be empty?
         article_name = request.args.get('article_name') #could it be empty?
@@ -106,7 +109,8 @@ def get_file():
                                status = int(status),\
                                comments = comments,\
                                id = id,
-                               enumerate = enumerate)
+                               enumerate = enumerate,\
+                               commentForm = commentForm)
     else: return redirect('read.html')
 
 @app.route('/contacts.html')
@@ -115,18 +119,18 @@ def contact():
 
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
-    form = ArticleForms()
+    Sendform = MainForm()
     if request.method == 'POST': #and form.validate_on_submit():
         if file in request.files:
             flash(save_request_data(request))
             return render_template('create.html',\
-                                    form=form)
+                                    Sendform=Sendform)
         else: 
             flash('You send no file')
             return redirect(url_for('create'))
 
     return render_template("create.html",\
-                           form=form)
+                           Sendform=Sendform)
 
 @app.route('/admin.html', methods = ['GET', 'POST'])
 @login_required
@@ -153,6 +157,11 @@ def EntityTooLarge(error):
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("error.html", error = 404), 404
+
+@app.errorhandler(500)
+def page_not_found(error):
+    db.session.rollback()
+    return render_template("error.html", error = 500), 500
 
 @app.before_request
 def before_request():

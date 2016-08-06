@@ -86,13 +86,14 @@ class article_rating(db.Model):
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id')) #foreign key
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
     rating = db.Column('rating', db.Integer)
-    comment = db.Column('comment', db.VARCHAR(50))
+    comment = db.Column('comment', db.VARCHAR(500))
     __table_args__ = (db.UniqueConstraint('article_id', 'admin_id', name='unique_rating'),)
-    def __init__(self, article_id, admin_id, comment, date):
+    def __init__(self, article_id, admin_id, comment, date, rating):
         self.article_id = article_id
         self.admin_id = admin_id
         self.comment = comment
         self.date = datetime.utcnow()
+        self.rating = rating
 
     def __repr__(self):
         return 'ARTICLE_ID-{0}\nADMIN_ID-{1}\nCOMMENT-{2}\n'.format(self.article_id,\
@@ -103,7 +104,7 @@ class users_comment(db.Model):
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'))
     user_name = db.Column(db.VARCHAR(50))
     email = db.Column(db.VARCHAR(50))
-    comment_body = db.Column(db.VARCHAR(50))
+    comment_body = db.Column(db.VARCHAR(500))
     date = db.Column(db.DateTime) #is it needet type? is is true type?, maybe timezone or something
     def __init__(self, article_id, user_name, email, comment_body):
         self.article_id = article_id
