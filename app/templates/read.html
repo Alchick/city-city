@@ -3,14 +3,14 @@
   <div class="articles">
     <div id="find" class="form"> <!-- why id=find here? -->
         <h3>Форма поиска</h3>
-        <form action="find" method="POST" enctype="multipart\form-data">
+        <form action="read.html" method="POST" enctype="multipart\form-data">
             {{form.hidden_tag()}}
             {{form.article_name(placeholder="Поиск по названию статьи")}}
             {{form.author_name(placeholder="Поиск по имени автора")}}
             <input type="submit" value="Найти" class="btn red">
     </div>
     <h1>Статьи пользователей</h1>
-      <img src="/static/images/fenka.jpg" alt="fenka" width="450" height="70" style="margin-left:50px;"></img>
+      <img src="/static/images/fenka.jpg" alt="fenka" width="450" height="80" style="margin-left:50px;"></img>
     <div class="table" cellspacing='0'>
   <table>
     <tr>
@@ -22,11 +22,11 @@
     </tr>
     {% for article in articles %}
     <tr>
-      <td>{{article.author_name}}</td>
-      <td>{{article.article_name}}</td>
-      <td>{{article.date}}</td>
-      <td style="text-align:center;"><a name="bla" href="get_file.html?filename={{article.article_file}}&article_name={{article.article_name}}&id={{article.id}}&author_name={{article.author_name}}&date={{article.date}}&status={{article.status}}">Читать статью</a></td>
-      <td style="text-align:center; color:{{g.status[article.status][1]}};">{{g.status[article.status][0]}}</td>
+      <td>{{article[1]}}</td>
+      <td>{{article[2]}}</td>
+      <td>{{article[3]}}</td>
+      <td style="text-align:center;"><a name="bla" href="get_file.html?id={{article[0]}}">Читать статью</a></td>
+      <td style="text-align:center; color:{{g.status[article[4]][1]}};">{{g.status[article[4]][0]}}</td>
     </tr>
     {% endfor %}
   </table>

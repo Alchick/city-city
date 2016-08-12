@@ -1,0 +1,19 @@
+from setuptools import setup
+setup(
+    name='culture_city',
+    version='0.0.1',
+    packages=['promo'],
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=[
+        'requests==2.7.0',
+        'Flask==0.11',
+        'Flask-SQLAlchemy==2.1',
+        'Flask-Assets==0.11',
+        'blinker==1.4',
+        'python-dateutil==2.4.2',
+        'Flask-Login==0.2.11',
+        'Flask-Security==1.7.4',
+        'Flask-Mail=0.9.1',
+    ]
+)

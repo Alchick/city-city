@@ -12,10 +12,8 @@ class articles(db.Model):
     author_name = db.Column('author_name', db.VARCHAR(50), nullable=False)
     article_file = db.Column('article_file', db.VARCHAR(50), unique = True, nullable=False)
     date = db.Column('date', db.DateTime) #is it trur type?
-    email = db.Column('email', db.VARCHAR(50), unique = True, nullable=False)
+    author_email = db.Column('email', db.VARCHAR(50), unique = True, nullable=False)
     status = db.Column('status', db.SmallInteger, default = 2)
-    email = db.Column('email', db.VARCHAR(50), unique = True, nullable=False)
-    status = db.Column('status', db.SmallInteger)
     article_rating = db.relationship('article_rating', backref='articles', lazy='dynamic')
     users_comment = db.relationship('users_comment', backref='articles', lazy='dynamic')    #how does fucking lazy works?
     
@@ -24,7 +22,7 @@ class articles(db.Model):
         self.author_name = author_name
         self.article_file = article_file
         self.date = datetime.utcnow()
-        self.email = email
+        self.author_email = email
         self.status = 2
 
 
@@ -43,19 +41,17 @@ class culture_admins(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column('name', db.VARCHAR(50))
     login = db.Column('login', db.VARCHAR(50), unique = True, nullable=False)
-    password = db.Column('password', db.VARCHAR(50), nullable=False)
+    password = db.Column('password', db.VARCHAR(100), nullable=False)
     email = db.Column('email', db.VARCHAR(50), unique=True, nullable=False)
     phone = db.Column('phone', db.VARCHAR(50), unique=True)
-    admin_status = db.Column('admin_status', db.SmallInteger, default = 0) #depends on desc\asc in query
     article_rating = db.relationship('article_rating', backref='culture_admins', lazy='dynamic')
     registered_on = db.Column('registered_on' , db.DateTime)
-    def __init__(self, name, login, password, email, phone, admin_status, registered_on):
+    def __init__(self, name, login, password, email, phone):
         self.name = name
         self.login = login
-        self.password = password
+        self.password = generate_password_hash(password)
         self.email = email
         self.phone = phone
-        self.admin_status = admin_status
         self.registered_on = datetime.utcnow()
 
     def __repr__(self):
@@ -69,6 +65,9 @@ class culture_admins(db.Model):
                                                                                    self.registered_on)
     def is_authenticated(self):
         return True
+    
+    def is_active(self):
+        return True
 
     def get_id(self):
         return self.id
@@ -76,8 +75,8 @@ class culture_admins(db.Model):
     def __unicode__(self):
         return self.username
 
-    def registered_user(self, login, password):
-        return self.query.get.all()
+    def check_password(self,password):
+        return check_password_hash(self.password, password)
 
 
 
@@ -87,15 +86,16 @@ class article_rating(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id')) #foreign key
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
-    rating = db.Column('rating', db.Integer, default=0)
+    rating = db.Column('rating', db.Integer)
     comment = db.Column('comment', db.VARCHAR(500))
     date = db.Column(db.DateTime) #is it needet type? is is true type?, maybe timezone or something
     __table_args__ = (db.UniqueConstraint('article_id', 'admin_id', name='unique_rating'),)
-    def __init__(self, article_id, admin_id, comment, date):
+    def __init__(self, article_id, admin_id, comment, rating):
         self.article_id = article_id
         self.admin_id = admin_id
         self.comment = comment
         self.date = datetime.utcnow()
+        self.rating = rating
 
     def __repr__(self):
         return 'ARTICLE_ID-{0}\nADMIN_ID-{1}\nCOMMENT-{2}\nRATING-{3}'.format(self.article_id,\

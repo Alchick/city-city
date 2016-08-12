@@ -46,3 +46,4 @@ class CommentForm(Form):
     comment = TextField('comment', validators=[Required(message = u'Введите комментарий'),\
                                                Regexp(reg, message = u'Неверный символ'),\
                                                Length(max=400)])
+

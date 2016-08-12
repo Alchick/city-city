@@ -17,7 +17,7 @@
     clear:both;
 }
 
-.form form input[type='text'] {
+.form form input[type=text] {
     font-size: 12px;
     background: #fff;
     font-family:'Panton-Regular';
@@ -29,6 +29,20 @@
     float:left;
     margin-bottom:10px;
 }
+
+.form form input[type=password] {
+    font-size: 12px;
+    background: #fff;
+    font-family:'Panton-Regular';
+    /*padding: 10px 10px 10px 10px; */
+    padding: 10px;
+    width: 330px; /*is it wrong way? yes it is!!! */
+    border: 1px solid #ebeae5;
+    margin-left: 0px;
+    float:left;
+    margin-bottom:10px;
+}
+
 
 .form textarea {
     font-size: 12px;

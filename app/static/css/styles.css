@@ -112,11 +112,16 @@ p {
 .enter {
     font-family: 'Panton-Regular';
     float:right;
-    margin-right:-70px;
-    margin-top:10px;
+    margin-right:30px;
 }
 .enter a {
     text-decoration:none;
+    color:black;
+    margin-left:25px;
+}
+
+.enter p {
+    margin:0px !important;
 }
 
 
@@ -147,9 +152,9 @@ p {
     font-size: 14px;
     line-height: 18px;
     color: #ffff00;
-    text-align:right;
-    margin:initial;
-    padding-top:20px; 
+    display:inline-block;
+    margin-top:20px;
+    margin-bottom:0px;
 }
 
 /*==========end top==========*/
@@ -314,7 +319,6 @@ p {
 
 .main-description .btn {
     margin-left: 150px;
-    margin-bottom:20px;
 }
 
 
@@ -500,6 +504,27 @@ p {
 .flash-message li {
     margin:0px;
 }
+
+.user_comments {
+    margin-left:50px;
+    display:inline-block;
+}
+.user_comment {
+    margin-bottom:20px;
+}
+.user_comment p {
+    width:150%;
+}
+.admin_comments {
+    float:right;
+    display:inline-block;
+    margin-right:50px;
+}
+
+#admin_result {
+    
+}
+
 
 /*==========footer==========*/
 .footer {

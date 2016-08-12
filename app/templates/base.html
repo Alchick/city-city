@@ -20,27 +20,28 @@
   <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='images/apple-touch-icon-72x72.png') }}">
   <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='images/apple-touch-icon-114x114.png') }}">
 <!-- ?????????????????????? -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script src="{{ url_for('static', filename='javascript/backlightLink.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/tiny_scripts.js') }}"></script>
 </head>
 <body>
-   {% if current_user.is_authenticated %}
-   <div class="enter"> 
-       <p>Привет {{current_user.login}}</p>
-       <a href='logout'>Выйти</a>
-   </div>
-   {% endif %}
    
+  
+  <div class="top">
+    <h4>Культура объединяет все стороны человеческой личности</h4>
+    <p>Дмитрий Cергеевич Лихачев</p>
+     {% if current_user.is_authenticated %}
+     <div class="enter"> 
+         <p>Привет {{current_user.login}}</p><br>
+         <a href='logout'>Выйти</a>
+     </div>
+     {% endif %}
    {% if not current_user.is_authenticated %}
    <div class="enter">
      <a href="login">Войти</a>
    </div>
    {% endif %} 
-  
-  <div class="top">
-    <h4>Культура объединяет все стороны человеческой личности</h4>
-    <p>Дмитрий Cергеевич Лихачев</p>
   </div>
   <div class="header">
     <div class="logo"> 

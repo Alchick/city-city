@@ -9,8 +9,22 @@ function sendPost(form) {
         url:'set_comment.html',//url адрес файла обработчика
         data:date,//параметры запроса
         response:'success',//тип возвращаемого ответа text либо xml
-        success:function (data) {//возвращаемый результат от сервера
-            alert(data);
+        success:function(data,val){//возвращаемый результат от сервера
+            if (val){
+                var message = JSON.parse(JSON.stringify(data));
+                $('#result').html(message['message_words']);
+              }
+            else {
+              Data = new Date();
+              var new_comment = "<p>Имя пользователя - " + $("input[name=name]").val()+ "</p>"+
+                                "<p>Дата добавления - " + Data + "</p>" +
+                                "<p>Комментарий -  " + $("textarea[name=comment]").val()+"</p>";
+              $('#new_comment').html(new_comment);
+            }
+        },
+        error:function(){
+            message = "<p style=\"color:red\">Произошла ошибка при отправке данных. Попробуйте снова или напишите нам</p>";
+            $('#result').html(message);
         }
     });
 }

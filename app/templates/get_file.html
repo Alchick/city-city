@@ -1,53 +1,77 @@
+<!-- here article is in format:
+article.id - [0]
+article.author_name - [1]
+article.article_name - [2]
+article.date - [3]
+article.status - [4]
+-->
+
 {% extends "base.html" %}
 {% block content %}
 <div class="block">  
   <div class="get-article">
-    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Автор</span> - {{author_name}}</p>
-    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Статья</span> - {{article_name}}</p>
-    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - {{date}}</p>
-    <p style="color:{{g.status[status][1]}}"><span style="font-family:'Panton-Bold'; font-size:15px; color:#000000">Статус</span> - {{g.status[status][0]}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Автор</span> - {{article[1]}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Статья</span> - {{article[2]}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - {{article[3]}}</p>
+    <p style="color:{{g.status[article[4]][1]}}"><span style="font-family:'Panton-Bold'; font-size:15px; color:#000000">Статус</span> - {{g.status[article[4]][0]}}</p>
   </div>
   <div class="article-range">
     <p>Рейтинг - <span style="font-size:30px; font-family:'Panton-Bold;'">{{rating_average}}<span></p>
   </div>
     <div class="article-read">
-      <p><img src="/static/filestorage/{{filename}}" alt="{{filename}}"></p> 
+      <p><img src="/static/filestorage/{{article[5]}}" alt="{{article[5]}}"></p> 
     </div>
-    {% for num, comment in enumerate(user_comments) %}
-    <div class="user_user_comments">
-      <p>Имя пользователя - {{user_comments[num].user_name}}</p> 
-      <p>Комментарий - {{user_comments[num].comment_body}}</p> 
-      <p>Дата добавления - {{user_comments[num].date}}</p> 
-    </div>
-    {% endfor %}
+    <div class="comment">
+      <div class="user_comments">
+      {% for comment in user_comments %}
+        <div class="user_comment">
+          <p>Имя пользователя - {{comment[0]}}</p> 
+          <p>Дата добавления - {{comment[1]}}</p> 
+          <p>Комментарий - {{comment[2]}}</p> 
+        </div>
+      {% endfor %}
+       <div class="user_comment" id="new_comment">
+       </div>
+      </div>
       {% if current_user.is_authenticated %}
-        {% for num, comment in enumerate(admin_user_comments) %}
-          <div class="admin_user_comments">
-            <p>Имя администратора - {{user_comments[num].admin_id}}</p> 
-            <p>Комментарий - {{user_comments[num].comment}}</p> 
-            <p>Рейтинг - {{user_comments[num].rating}}</p> 
-            <p>Дата добавления- {{user_comments[num].date}}</p> 
+        {% for comment in admin_comments %}
+          <div class="admin_comments">
+            <h4>Комментарий Администратора</h4>
+            <p>Имя администратора - {{comment[3]}}</p> 
+            <p>Рейтинг - {{comment[0]}}</p> 
+            <p>Дата добавления- {{comment[1]}}</p> 
+            <p>Комментарий - {{comment[2]}}</p> 
           </div>
         {% endfor %}
+          <div class="admin_comments" id="new_comment">
+          </div>
       {% endif %}
+    </div>
     <div class="additional_img">
       <img src="/static/images/pen_and_ink.jpg" width="400px" height="300px" alt="pen_and_ink">
     </div>
     <div class="form">
       <form action="set_comment.html" method="POST" id="formx">
+      {% if current_user.is_authenticated %}
+        <p>Комментарий:</p>
+          <textarea cols="10" rows="10" name="comment"></textarea>
+          <input type="hidden" name="art_id" value="{{article[0]}}">
+        <p>Оцените статью по 10-бальной шкале:</p>
+          <input type="button" value="0" name="counter" id="counter" onclick="counterr(this.id)">
+        {% else %}
         <p>Ваше Имя</p>
           <input name="name" type="text">
         <p>Электронная почта:</p>
           <input name="email" type="text">
-          <input type="hidden" name="art_id" value="{{id}}">
         <p>Комментарий:</p>
           <textarea cols="10" rows="10" name="comment"></textarea>
-      {% if current_user.is_authenticated %}
-        <p>Оцените статью по 10-бальной шкале:</p>
-          <input type="button" value="0" name="counter" id="counter" onclick="counterr(this.id)">
+          <input type="hidden" name="art_id" value="{{article.id}}">
       {% endif %}
-          <input type="button" class="btn red" id="counter" onclick="sendPost(this.form)" value="Отправить">
+          <input type="button" class="btn red" onclick="sendPost(this.form)" value="Отправить">
       </form>
+        <div id="result"></div>
     </div>
 </div>
+
+
 {% endblock %}

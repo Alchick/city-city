@@ -10,7 +10,7 @@ UPLOAD_FOLDER = BASEDIR + '/static/filestorage/'
 ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'jpg','doc', 'docx', 'txt'])
 CSRF_ENABLED = True
 SECRET_KEY = 'Ooshaev6ie8eeRok'
-SQLALCHEMY_TRACK_MODIFICATIONS = True
+
 #database configuration
 DATABASE_USER = 'postgres'
 DATABASE_NAME = 'culture_city'
@@ -28,21 +28,6 @@ SQLALCHEMY_BINDS = {
                                                         DATABASE_HOST,\
                                                         DATABASE_PASSWORD)
     }   
-#EMAIL CONFIGURATION
-MAIL_SERVER = 'smtp.googlemail.com'
-MAIL_PORT = 25
-MAIL_USE_TLS = True
-MAIL_USE_SSL = True
-MAIL_USERNAME = 'nano.e.t.4'
-MAIL_PASSWORD = 'dont remember'
-
-
-
-
-
-
-
-
 '''
 database configuration
 SQL-LITE database_URI

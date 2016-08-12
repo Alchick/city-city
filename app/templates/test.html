@@ -15,12 +15,6 @@
         {% for error in form.errors.author_name %}
         <span style="color:red;" class="flash-error">{{error}}</span>
         {% endfor %}
-       <!--Add cleaning form after send article to database -->
-      <!--<p>Set you name:<br><input type="text" name="author_name"></p>
-       <p>Set article_name:<br><input type="text" name="article_name"></p>
-       <p>Set email:<br><input type="text" name="email"></p> -->
-      <!--<div class="file_upload"><p>Выбрать файл<input type="file" name="userfile"></p> </div>
-       <p><input type="submit" value="Add file" class="btn red"></p> -->
        <input type="file" id="upload" name="userfile" class="uploadk"/>
        <label for='upload' class="btn yellow"><span>Открыть статью</span></label>
        {{form.submit(value="Отправить статью", class="btn red")}}
@@ -40,6 +34,8 @@
              {% endwith %}
   </div>
 
+
+<div style="width:150px">{{text}}</div>
 
 
 {% endblock %}
