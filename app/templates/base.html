@@ -22,8 +22,13 @@
 <!-- ?????????????????????? -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="{{ url_for('static', filename='javascript/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='javascript/moment/locale/ru.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/backlightLink.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/tiny_scripts.js') }}"></script>
+  <script>
+    moment.locale('ru');
+  </script>
 </head>
 <body>
    
