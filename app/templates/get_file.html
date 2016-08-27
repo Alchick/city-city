@@ -21,13 +21,14 @@ article.status - [4]
     <div class="article-read">
       <p><img src="/static/filestorage/{{article[5]}}" alt="{{article[5]}}"></p> 
     </div>
-    <div class="comment">
+    <div class="comments">
       <div class="user_comments">
+      
       {% for comment in user_comments %}
         <div class="user_comment">
-          <p>Имя пользователя - {{comment[0]}}</p> 
-          <p>Дата добавления - {{comment[1]}}</p> 
-          <p>Комментарий - {{comment[2]}}</p> 
+          <p><span class="comment_field">Имя пользователя</span> - {{comment[0]}}</p> 
+          <p><span class="comment_field">Комментарий</span> - {{comment[2]}}</p> 
+          <p><span class="comment_field">Добавлен </span> <span class="time-handle">{{comment[1]}}</span></p>
         </div>
       {% endfor %}
        <div class="user_comment" id="new_comment">
@@ -37,10 +38,10 @@ article.status - [4]
         {% for comment in admin_comments %}
           <div class="admin_comments">
             <h4>Комментарий Администратора</h4>
-            <p>Имя администратора - {{comment[3]}}</p> 
-            <p>Рейтинг - {{comment[0]}}</p> 
-            <p>Дата добавления- {{comment[1]}}</p> 
-            <p>Комментарий - {{comment[2]}}</p> 
+            <p><span class="comment_field">Имя администратора</span> - {{comment[3]}}</p> 
+            <p><span class="comment_field">Выставленный рейтинг</span> - {{comment[0]}}</p> 
+            <p><span class="comment_field">Комментарий</span> - {{comment[2]}}</p> 
+            <p><span class="comment_field">Добавлен </span><span class="time-handle">{{comment[1]}}</span></p> 
           </div>
         {% endfor %}
           <div class="admin_comments" id="new_comment">
@@ -72,6 +73,16 @@ article.status - [4]
         <div id="result"></div>
     </div>
 </div>
+
+
+
+
+
+
+<script>
+    time_format_fromNow();
+</script>
+
 
 
 {% endblock %}

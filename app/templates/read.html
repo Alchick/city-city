@@ -5,8 +5,8 @@
         <h3>Форма поиска</h3>
         <form action="read.html" method="POST" enctype="multipart\form-data">
             {{form.hidden_tag()}}
-            {{form.article_name(placeholder="Поиск по названию статьи")}}
             {{form.author_name(placeholder="Поиск по имени автора")}}
+            {{form.article_name(placeholder="Поиск по названию статьи")}}
             <input type="submit" value="Найти" class="btn red">
     </div>
     <h1>Статьи пользователей</h1>
@@ -24,7 +24,7 @@
     <tr>
       <td>{{article[1]}}</td>
       <td>{{article[2]}}</td>
-      <td>{{article[3]}}</td>
+      <td class="time-handle">{{article[3]}}</td>
       <td style="text-align:center;"><a name="bla" href="get_file.html?id={{article[0]}}">Читать статью</a></td>
       <td style="text-align:center; color:{{g.status[article[4]][1]}};">{{g.status[article[4]][0]}}</td>
     </tr>
@@ -34,5 +34,12 @@
     <br>
     <br>
   </div>
+
+  <script>
+    time_format();
+    //  data = $('.time-handle').html();
+    //  $('.time-handle').html(moment(data).format('YYYY-MM-DD HH:MM:SS'));
+  </script>
+
 {% endblock %}
 

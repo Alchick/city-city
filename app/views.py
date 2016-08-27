@@ -1,13 +1,15 @@
 #coding: utf-8
 import os
 from flask import render_template, request, flash, url_for, redirect, g
-from app import app
+from app import app, mail
+from flask.ext.mail import Message
 from forms import CreateForm, FindForm, CommentForm, LoginForm
 from help_functions import *
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from datetime import datetime
 from models import culture_admins
 from flask import jsonify
+from datetime import datetime
+import json
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -20,21 +22,16 @@ def test():
     text = '''
         This is wartime, this is our time
         We won't be denied
-        Feed the fire that is raging inside
-        This is go time, this is showtime
-        We will fight ‘til their wills are broken
-        This is game time, an insane time
-        Let the madness fly
-        Show them strength that just can’t be defied
-        Find the power to devour
-        Let the beast inside now be woken
     '''
     testform = CreateForm()
+    data = datetime.utcnow()
+    comment = [(u'adfhdfhsfd', 2016, 8, 14, 22, 6, 38, 278148, u'sadgdfsdfsfdsf'), (u'asdgdfghfd', (2016, 8, 15, 21, 42, 27, 115821), u'fsgdgfdgdfg'), (u'asdgdfghfd', (2016, 8, 15, 21, 49, 39, 984069), u'fsgdgfdgdfg'), (u'dafgdf', (2016, 8, 15, 21, 49, 45, 983570), u'hfgghadfgsdgfdf'), (u'qqqqqqqqqqqqqqqq', (2016, 8, 15, 21, 49, 57, 487451), u'rrrrrrrrrrrrrrrrrrrrrrrrrr'), (u'ffffffffffffffffff', (2016, 8, 15, 21, 50, 7, 716448), u'uuuuuuuuuuuuuuuuuuuu'), (u'adsgdfg', (2016, 8, 15, 21, 55, 58, 623109), u'gdfgdfg')]
+
+
+    comment1 = [('first','pervyi', 'one'),('second','vtoroi','two'),('third','tretiy','three'), ('fourth','chetvertya','four'),('five','pyatiy','fifth')]
     if request.method == 'POST' and testform.validate_on_submit():
-        print 'bla'
-        print request.form.get('author_name')
         return redirect(url_for('test'))
-    return render_template('test.html', form=testform, text=text)
+    return render_template('test.html', form=testform, text=text, data = data, comment = json.dumps(comment1))
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -48,12 +45,14 @@ def login():
     if request.form.get('remember_me'):
         remember_me = True
     if not(registered_user(login)):
-        flash(('red',u'Wrong user'))
+        flash(('red','Неверный пользователь')) #ne korrektnoe otobrajenie
         print 'regist user'
-        return redirect(url_for('login'))
+        return render_template('login.html',\
+                                form=form)
     if not registered_user(login).check_password(password):
-        flash(('red', u'Неверный пароль'))
-        return redirect(url_for('login'))
+        flash(('red', 'Неверный пароль'))
+        return render_template('login.html',\
+                                form=form)
     login_user(registered_user(login), remember = remember_me)
     #flash('Logged is successfully')
     return redirect(request.args.get('next') or url_for('index'))
@@ -101,7 +100,7 @@ functions:
     get_articles()
     find_article_by_name()
     find_article_by_author()
-return article in format:
+    return article in list with elements:
 article.id - [0]
 article.author_name - [1]
 article.article_name - [2]
@@ -117,6 +116,8 @@ def read():
             articles =  find_article_by_name(request.form.get('article_name'))
         if request.form.get('author_name'):
             articles = find_article_by_author(request.form.get('author_name'))
+        if not(request.form.get('article_name')) and not(request.form.get('author_name')):
+            articles = get_articles()
         return render_template('read.html',\
                                  articles = articles,\
                                  form=form) 
@@ -146,12 +147,17 @@ def get_file():
         if current_user.is_authenticated:
             admin_comments = get_admin_comments(id)
         rating_average = get_rating_average(id)
+        if request.args.get('get_comment') == 'get_comment':
+            print 'jopa-jopa'
+            a = [(11,'adin','uno'),(12,'dua','dwa'),(13,'tri','kira'),(14,'chetir','pipa')]
+            return jsonify(a = a)
         return render_template("get_file.html",\
                                article = article,
                                user_comments = user_comments,\
                                form = form,\
                                rating_average = rating_average,\
-                               admin_comments = admin_comments)
+                               admin_comments = admin_comments,\
+                               len = len)
     else: return redirect('read.html')
 
 @app.route('/contacts.html')
@@ -167,7 +173,6 @@ def create():
         if file:
             filename = secure_filename(file.filename)
             if not(check_file_extension(file.filename)):
-                #flash("u'Неподдерживаемый формат файла'")
                 flash(('red','Неподдерживаемый формат файла'))
                 return redirect(url_for('create'))
             article = articles(article_name = request.form['article_name'],\
@@ -197,6 +202,7 @@ def set_comment():
     name = request.form.get('name')
     email = request.form.get('email')
     comment = request.form.get('comment')
+    print comment
     if current_user.is_authenticated:
         rating = request.form.get('rating')
         message = set_rating(rating, art_id, current_user.id, comment)
