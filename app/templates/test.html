@@ -1,42 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>jopa-popa</h1>
-<a href="test1.html">тетс</a>
-<p>{{records}}</p>
-<a id="myLink" title="Click to do something"
- href="test1.html" onclick="showMessage({{records}});">link text</a>
+        <div id="user_comment">
+        </div>
+            <p onclick="get_comment()">Далее</p>
 
-<div class='form'>
-  <form action="/test.html" method="POST" enctype="multipart/form-data">
-        {{form.hidden_tag()}}
-       <p>Введите ваше Имя:</p>
-       <!--no need class "send form here" -->
-       {{form.author_name(class="send-form")}}
-        {% for error in form.errors.author_name %}
-        <span style="color:red;" class="flash-error">{{error}}</span>
-        {% endfor %}
-       <input type="file" id="upload" name="userfile" class="uploadk"/>
-       <label for='upload' class="btn yellow"><span>Открыть статью</span></label>
-       {{form.submit(value="Отправить статью", class="btn red")}}
-        {% for error in form.errors.submit %}
-        <span style="color:red;" class="flash-error">{{error}}</span>
-        {% endfor %}
-       </form>
+<script>
+    var data = {{ comment|safe }};
+    var mydiv = document.getElementById('user_comment');
+    for (var i = 0; i <=3; i++){
+        var div = document.createElement('div');
+        div.innerHTML = "<p><span class='comment_fieldi'>Имя пользователя</span> - " + data[i][0] + "</p>" +
+        "<p><span class='comment_fieldi'>Комментарий</span> - " + data[i][1] + "</p>"+
+        "<p><span class='comment_fieldi'>Дата</span> - " + data[i][2] + "</p>" + "<br>";
+        mydiv.appendChild(div);
+        }
+</script>
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li><span style="color:red;" class="flash-error">{{ message }}</li>
-                {% endfor %}
-            </ul>
-             {% endif %}
-             {% endwith %}
-  </div>
+<script>
+$('.comment').html("{{comment}}");
 
-
-<div style="width:150px">{{text}}</div>
-
-
+</script>
 {% endblock %}
-

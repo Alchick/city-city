@@ -17,20 +17,16 @@
        <p><input type="checkbox" name="remember_me" value="a1" checked>Запомнить меня</p>
       <input type="submit" value="Отправить" class="btn red" style="float:left;">
         </form>
-   </div>
-    
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-      <div class="alert">
-            <ul class="flashes">
+            <ul class="flash-message" style="float:right">
             {% for message in messages %}
-              <li>{{ message }}</li>
+              <li><span style="color:{{message[0]}}">{{message[1]}}</span></li>
             {% endfor %}
             </ul>
-        </div>
     {% endif %}
     {% endwith %}
-
+    </div>
 
 
 
