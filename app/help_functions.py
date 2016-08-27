@@ -1,6 +1,5 @@
 #coding: utf-8
 import re
-from datetime import datetime
 from sqlalchemy import exc
 import os
 from flask import request
@@ -8,6 +7,25 @@ from models import *
 from app import db
 from werkzeug.utils import secure_filename
 from config import UPLOAD_FOLDER, ALLOWED_EXTENSIONS
+from app import mail
+from flask.ext.mail import Message
+from threading import Thread
+
+OK_STATUS = 0
+PROBLEM_STATUS = 1
+
+def send_email(subject, sender, recipients, text_body, html_body=None):
+    try:
+        msg = Message(subject, sender=sender, recipients = recipients)
+        msg.body = text_body
+        msg.html = html_body
+        assync_send = Thread(target = mail.send, args = [msg])
+        assync_send.setDaemon(True)
+        assync_send.start()
+    except Exception as ex:
+        print 'Unable to send mail, watch logs', ex
+        return PROBLEM_STATUS
+
 
 #DATABASE OPERATIONS
 #SAVE,INSERT,UPDATE OPERATIONS
