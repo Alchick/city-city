@@ -1,6 +1,6 @@
 #coding: utf-8
-from flask_wtf import Form, PasswordField, SubmitField
-from wtforms import TextField
+from flask_wtf import Form
+from wtforms import TextField, PasswordField, SubmitField
 from wtforms.validators import Length, Email, Regexp, DataRequired, Required, ValidationError
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
