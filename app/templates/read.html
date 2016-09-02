@@ -24,7 +24,7 @@
     <tr>
       <td>{{article[1]}}</td>
       <td>{{article[2]}}</td>
-      <td class="time-handle">{{article[3]}}</td>
+      <td><script>time_format('{{article[3]}}')</script></td>
       <td style="text-align:center;"><a name="bla" href="get_file.html?id={{article[0]}}">Читать статью</a></td>
       <td style="text-align:center; color:{{g.status[article[4]][1]}};">{{g.status[article[4]][0]}}</td>
     </tr>
