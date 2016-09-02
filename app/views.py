@@ -1,6 +1,6 @@
 #coding: utf-8
 import os
-from flask import render_template, request, flash, url_for, redirect, g
+from flask import render_template, request, flash, url_for, redirect, g, json
 from app import app, mail
 from flask.ext.mail import Message
 from forms import CreateForm, FindForm, CommentForm, LoginForm
@@ -9,7 +9,6 @@ from flask.ext.login import login_user, logout_user, current_user, login_require
 from models import culture_admins
 from flask import jsonify
 from datetime import datetime
-import json
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -25,12 +24,7 @@ def test():
     '''
     testform = CreateForm()
     data = datetime.utcnow()
-    comment = [(u'adfhdfhsfd', 2016, 8, 14, 22, 6, 38, 278148, u'sadgdfsdfsfdsf'), (u'asdgdfghfd', (2016, 8, 15, 21, 42, 27, 115821), u'fsgdgfdgdfg'), (u'asdgdfghfd', (2016, 8, 15, 21, 49, 39, 984069), u'fsgdgfdgdfg'), (u'dafgdf', (2016, 8, 15, 21, 49, 45, 983570), u'hfgghadfgsdgfdf'), (u'qqqqqqqqqqqqqqqq', (2016, 8, 15, 21, 49, 57, 487451), u'rrrrrrrrrrrrrrrrrrrrrrrrrr'), (u'ffffffffffffffffff', (2016, 8, 15, 21, 50, 7, 716448), u'uuuuuuuuuuuuuuuuuuuu'), (u'adsgdfg', (2016, 8, 15, 21, 55, 58, 623109), u'gdfgdfg')]
-
-
-    comment1 = [('first','pervyi', 'one'),('second','vtoroi','two'),('third','tretiy','three'), ('fourth','chetvertya','four'),('five','pyatiy','fifth')]
-    if request.method == 'POST' and testform.validate_on_submit():
-        return redirect(url_for('test'))
+    comment1 = [('bla','bla'),('bla','bla')]
     return render_template('test.html', form=testform, text=text, data = data, comment = json.dumps(comment1))
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -87,7 +81,6 @@ def main():
 
 @app.route('/index.html')
 def index():
-    print url_for('static', filename='css/stylemain.css')
     return render_template("index.html")
 
 @app.route('/about.html')
@@ -147,17 +140,11 @@ def get_file():
         if current_user.is_authenticated:
             admin_comments = get_admin_comments(id)
         rating_average = get_rating_average(id)
-        if request.args.get('get_comment') == 'get_comment':
-            print 'jopa-jopa'
-            a = [(11,'adin','uno'),(12,'dua','dwa'),(13,'tri','kira'),(14,'chetir','pipa')]
-            return jsonify(a = a)
-        return render_template("get_file.html",\
+	return render_template("get_file.html",\
                                article = article,
-                               user_comments = user_comments,\
                                form = form,\
                                rating_average = rating_average,\
-                               admin_comments = admin_comments,\
-                               len = len)
+                               admin_comments = admin_comments)
     else: return redirect('read.html')
 
 @app.route('/contacts.html')
@@ -202,7 +189,6 @@ def set_comment():
     name = request.form.get('name')
     email = request.form.get('email')
     comment = request.form.get('comment')
-    print comment
     if current_user.is_authenticated:
         rating = request.form.get('rating')
         message = set_rating(rating, art_id, current_user.id, comment)
@@ -212,6 +198,16 @@ def set_comment():
                    message_words = message[1])
 
 
+
+@app.route('/get_comment', methods = ['GET'])
+def get_comment():
+    id = request.args.get('id')
+    i = int(request.args.get('iter'))
+    user_comments = get_user_comments(id)[i:]
+    admin_comments = get_admin_comments(id)[i:]
+    return jsonify(user_comments = user_comments[0:3], user_length = len(user_comments),\
+                   admin_comments = admin_comments[0:], admin_length = len(admin_comments))
+    
 #ERRORS
 @app.errorhandler(413)
 def EntityTooLarge(error):

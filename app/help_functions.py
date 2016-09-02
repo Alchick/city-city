@@ -27,6 +27,8 @@ def send_email(subject, sender, recipients, text_body, html_body=None):
         return PROBLEM_STATUS
 
 
+
+    
 #DATABASE OPERATIONS
 #SAVE,INSERT,UPDATE OPERATIONS
 def save_data_to_db(data):
@@ -79,45 +81,71 @@ def set_rating(rating, article_id, admin_id, comment):
 #SELECT OPERATIONS
 #ARTICLES SELECT OPERATIONS
 def get_articles(): #something wrong with this select
-    return db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
-    filter(articles.article_file.like('%jp%g')).\
-    order_by('date desc').limit(10);
+    try:
+        result =  db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
+        filter(articles.article_file.like('%jp%g')).\
+        order_by('date desc').limit(10);
+    except Exception as ex:
+        result = ('red', 'Произошла ошибка при запросе статей. Попробуйте позднее')
+    return result
 
 def get_article(id):
-    return db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status,\
-           articles.article_file).\
-           filter(articles.id == id).first()
-
+    try:
+        result = db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status,\
+        articles.article_file).\
+        filter(articles.id == id).first()
+    except Exception as ex:
+        result = ('red', 'Произошла ошибка при запросе статьи. Попробуйте позднее')
+    return result
 def find_article_by_name(article_name):
-    return db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
+    try:
+        result = db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
     filter_by(article_name=article_name).all()
+    except Exception as ex:
+        result = ('red', 'Произошла ошибка при поиске. Попробуйте позднее')
+    return result
 
 def find_article_by_author(author_name):
-    return db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
-    filter_by(author_name=author_name).all()
+    try:
+        result = db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
+        filter_by(author_name=author_name).all()
+    except Exception as ex:
+        result = ('red', 'Произошла ошибка при поиске. Попробуйте позднее')
+    return result 
+
     
 #COMMENTS SELECT OPERATIONS
 def get_user_comments(id):
-    return db.session.query(users_comment.user_name, users_comment.date, users_comment.comment_body).\
-    filter_by(article_id = id).all()
+    try:
+        result = db.session.query(users_comment.user_name, users_comment.date, users_comment.comment_body).\
+        filter_by(article_id = id).all()
+    except Exception as ex:
+        result = ('red', 'Произошла ошибка при запрос комментариев. Попробуйте позднее')
+    return result
 
-def get_admin_comments(id): 
-    return db.session.query(article_rating.rating,article_rating.date, article_rating.comment, culture_admins.login).\
-    filter_by(article_id = id).join(culture_admins).all()
-
+def get_admin_comments(id):
+    try: 
+        result = db.session.query(article_rating.rating,article_rating.date, article_rating.comment).\
+        filter_by(article_id = id).join(culture_admins).add_columns(culture_admins.login).all()
+    except Exception as ex:
+        result = ('red', 'Произошла ошибка при запросе комментариев. Попробуйте позднее')
+    return result
 #OTHER OPERATIONS
 def registered_user(login):
     return db.session.query(culture_admins).filter(culture_admins.login == login).first()
 
 def get_rating_average(id):
-    summ = 0
-    ratings = db.session.query(article_rating.rating).filter(article_rating.article_id == id).all()
-    for i in ratings:
-        summ = summ + i.rating
     try:
-        return summ/len(ratings)
+        summ = 0
+        ratings = db.session.query(article_rating.rating).filter(article_rating.article_id == id).all()
+        for i in ratings:
+            summ = summ + i.rating
+        try:
+            return summ/len(ratings)
+        except Exception as ex:
+            return 0
     except Exception as ex:
-        return 0
+        return PROBLEM_STATUS
 
 #OTHER FUNCTIONS
 def check_file_extension(filename):
