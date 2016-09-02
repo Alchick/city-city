@@ -456,6 +456,8 @@ p {
     margin:auto;
     overflow:hidden;
     text-align:center;
+    border:2px solid;
+    border-color:#DCDCDC;
 }
 
 .service {
@@ -505,25 +507,40 @@ p {
     margin:0px;
 }
 
-.user_comments {
-    margin-left:50px;
+.user {
+    margin-left:45px;
     display:inline-block;
 }
 .user_comment {
     margin-bottom:20px;
-}
-.user_comment p {
-    width:150%;
 }
 .admin_comments {
     float:right;
     display:inline-block;
     margin-right:50px;
 }
-
-#admin_result {
-    
+.comment_field {
+    font-weight:bold;
+    font-size:15px;
 }
+.user [name=next_button]{
+/*.comment_navigation {*/
+    color:#1E90FF;
+    float:right;
+}
+
+.user [name=previous_button]{
+    color:#1E90FF;
+    float:left;
+}
+
+.user [name]:hover {
+    cursor:pointer;
+}
+.user [name] p {
+    text-size:16px;
+}
+
 
 
 /*==========footer==========*/
@@ -652,4 +669,5 @@ transform:rotate(360deg);}
   -webkit-filter: brightness(100%);
   filter: brightness(100%);
 }
+
 

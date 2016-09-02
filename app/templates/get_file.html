@@ -8,44 +8,34 @@ article.status - [4]
 
 {% extends "base.html" %}
 {% block content %}
+<script>
+    var i = 0;
+</script>
 <div class="block">  
   <div class="get-article">
     <p><span style="font-family:'Panton-Bold'; font-size:15px;">Автор</span> - {{article[1]}}</p>
     <p><span style="font-family:'Panton-Bold'; font-size:15px;">Статья</span> - {{article[2]}}</p>
-    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - {{article[3]}}</p>
+    <p><span style="font-family:'Panton-Bold'; font-size:15px;">Дата добавления</span> - <script>time_format('{{article[3]}}')</script></p>
     <p style="color:{{g.status[article[4]][1]}}"><span style="font-family:'Panton-Bold'; font-size:15px; color:#000000">Статус</span> - {{g.status[article[4]][0]}}</p>
   </div>
   <div class="article-range">
     <p>Рейтинг - <span style="font-size:30px; font-family:'Panton-Bold;'">{{rating_average}}<span></p>
   </div>
     <div class="article-read">
-      <p><img src="/static/filestorage/{{article[5]}}" alt="{{article[5]}}"></p> 
+      <p><img src="/static/filestorage/{{article[5]}}" alt="{{article[5]}}" width="99%"></p> 
     </div>
     <div class="comments">
-      <div class="user_comments">
-      
-      {% for comment in user_comments %}
-        <div class="user_comment">
-          <p><span class="comment_field">Имя пользователя</span> - {{comment[0]}}</p> 
-          <p><span class="comment_field">Комментарий</span> - {{comment[2]}}</p> 
-          <p><span class="comment_field">Добавлен </span> <span class="time-handle">{{comment[1]}}</span></p>
-        </div>
-      {% endfor %}
-       <div class="user_comment" id="new_comment">
-       </div>
+      <div class="user">
+        <div id="user_comments"></div>
+	      <div id="user_next_button" name="next_button"><p onclick="get_comment('{{article.id}}',3, 'user')">Далее>></p></div>
+	      <div id="user_previous_button" name="previous_button"><p onclick="get_comment('{{article.id}}',-3, 'user')"><<Назад</p></div>
       </div>
       {% if current_user.is_authenticated %}
-        {% for comment in admin_comments %}
-          <div class="admin_comments">
-            <h4>Комментарий Администратора</h4>
-            <p><span class="comment_field">Имя администратора</span> - {{comment[3]}}</p> 
-            <p><span class="comment_field">Выставленный рейтинг</span> - {{comment[0]}}</p> 
-            <p><span class="comment_field">Комментарий</span> - {{comment[2]}}</p> 
-            <p><span class="comment_field">Добавлен </span><span class="time-handle">{{comment[1]}}</span></p> 
-          </div>
-        {% endfor %}
-          <div class="admin_comments" id="new_comment">
-          </div>
+      <div class="admin">
+        <div id="admin_comments"></div>
+	        <div id="admin_next_button" name="next_button"><p onclick="get_comment('{{article.id}}',3, 'admin')">Далее>></p></div>
+	        <div id="admin_previous_button" name="previous_button"><p onclick="get_comment('{{article.id}}',-3, 'admin')"><<Назад</p></div>
+     </div> 
       {% endif %}
     </div>
     <div class="additional_img">
@@ -73,16 +63,6 @@ article.status - [4]
         <div id="result"></div>
     </div>
 </div>
-
-
-
-
-
-
-<script>
-    time_format_fromNow();
-</script>
-
-
-
+    <script>get_comment('{{article.id}}',0, 'user')</script>
+        <script>get_comment('{{article.id}}',0, 'admin')</script>
 {% endblock %}

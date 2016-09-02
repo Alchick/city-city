@@ -34,7 +34,6 @@ function sendPost(form) {
 
 setTimeout(function(){$('.flash-message').fadeOut('fast')}, 5000);
 
-
 function doClear(element) {
     if (element.value == element.defaultValue) { element.value = "" };
 }
@@ -42,7 +41,6 @@ function doClear(element) {
 function doDefault(element) { 
     if (element.value == "") { element.value = element.defaultValue } 
 }
-
 
 function counterr(id) {
     document.getElementById(id).value=parseInt(document.getElementById(id).value) + 1;
@@ -54,35 +52,54 @@ function counterr(id) {
 function submitForm(obj) {
     obj.form.submit()
     obj.form.reset();
-    
     return false;
 }
 
-function time_format(){
-    data = $('.time-handle').html();
-    $('.time-handle').html(moment(data).format('YYYY-MM-DD HH:MM:SS'));
+function time_format(data){
+    document.write(moment.utc(data).local().format('YYYY-MM-DD HH:mm:ss'));
 }
 
-function time_format_fromNow(){
-    data = $('.time-handle').html();
-    $('.time-handle').html(moment(data).fromNow());
+function time_fromNow(data){
+    document.write(moment.utc(data).local().fromNow());
 }
 
-function get_comment(){
+function add_comment(data, person){
+//     var comments = document.getElementById(object_id);
+     var comments = document.getElementById(person+'_comments');
+     comments.innerHTML = '';
+     for (var i = 0; i<data.length; i++){
+        var comment = document.createElement('div');
+        comment.className = 'comment';
+        console.log(data[i][0]);
+        comment.innerHTML = "<p><span class='comment_field'>Имя пользователя</span> - " + data[i][0] + "</p>" +
+        "<p><span class='comment_field'>Комментарий</span> - " + data[i][2] + "</p>"+
+        "<p><span class='comment_field'>Дата добавления</span> - " + moment(data[i][1]).fromNow() + "</p><br>";
+        comments.appendChild(comment);
+     }
+}
+
+
+function get_comment(article_id, j, person){
+    i = i + j;
+    var next_page = document.querySelector('#'+person+'_next_button');
+    var previous_page = document.querySelector('#'+person+'_previous_button');
+    console.log('this is '+ next_page);
     $.ajax({    
     type:'GET',
-    url:'get_file.html',
-    data:{get_comment:'get_comment'},
+    url:'get_comment',
+    data:{id:article_id,iter:i, person:person},
     success:function(data){
-        alert(typeof(data.a[0]));
-        var mydiv = document.getElementById('user_comment');
-        for (var i = 0; i <=3; i++){
-            var div = document.createElement('div');
-            div.innerHTML = "<p><span class='comment_fieldi'>Имя пользователя</span> - " + data.a[i][0] + "</p>" +
-            "<p><span class='comment_fieldi'>Комментарий</span> - " + data.a[i][1] + "</p>"+
-            "<p><span class='comment_fieldi'>Дата</span> - " + data.a[i][2] + "</p>" + "<br>";
-            mydiv.appendChild(div);
-        }
+        add_comment(data[person+'_comments'], person);
+        if (data[person+'_length'] <= 3){
+            next_page.style.display = "none"}
+
+        else{next_page.style.display = "inline"}
+
+        if (i < 2){
+            previous_page.style.display = 'none'}
+            //document.getElementById('previous_page').style.display = 'none'}
+            else{previous_page.style.display = 'inline'};
+        
     }
    });
 }
