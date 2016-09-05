@@ -118,10 +118,12 @@ p {
     text-decoration:none;
     color:black;
     margin-left:25px;
+    float:right;
 }
 
 .enter p {
     margin:0px !important;
+    float:right;
 }
 
 
@@ -268,11 +270,13 @@ p {
     background-position: left top;
     background: url('/static/images/left_arrow.png') no-repeat;
     left:0;
+    margin-left:5px;
 }
 #slideshow .next{
     background-position: right top;
     background: url('/static/images/right_arrow.png') no-repeat;
     right:0;
+    margin-right:5px;
 }
 /*--------end-slideshow----------*/
 
@@ -482,6 +486,13 @@ p {
     opacity: 0.5;
 }
 
+
+.comments {
+    clear:both;
+    float:left;
+    width:100%;
+    margin-top:10px;
+}
 .create-block {
     margin-top:20px;
     clear:both;
@@ -510,14 +521,10 @@ p {
 .user {
     margin-left:45px;
     display:inline-block;
+    width:400px;
 }
 .user_comment {
     margin-bottom:20px;
-}
-.admin_comments {
-    float:right;
-    display:inline-block;
-    margin-right:50px;
 }
 .comment_field {
     font-weight:bold;
@@ -541,7 +548,30 @@ p {
     text-size:16px;
 }
 
-
+.admin {
+    float:right;
+    display:inline-block;
+    margin-right:50px;
+    width:400px;
+}
+.admin h4 {
+    margin-bottom:20px;
+}
+.admin [name=next_button]{
+/*.comment_navigation {*/
+    color:#1E90FF;
+    float:right;
+}
+.admin [name=previous_button]{
+    color:#1E90FF;
+    float:left;
+}
+.admin [name]:hover {
+    cursor:pointer;
+}
+.admin [name] p {
+    text-size:16px;
+}
 
 /*==========footer==========*/
 .footer {
