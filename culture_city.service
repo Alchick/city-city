@@ -1,0 +1,18 @@
+[Unit]
+Description=culture_city_web_project
+After=network.target
+After=nginx.service
+After=postgresql.service
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/home/evgen/git_repo/city-city/
+Environment="PATH=/home/evgen/git_repo/city-city"
+ExecStart=/usr/local/bin/uwsgi --emperor --ini /home/evgen/git_repo/city-city/culture_city.ini
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
