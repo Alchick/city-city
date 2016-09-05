@@ -40,7 +40,6 @@ def login():
         remember_me = True
     if not(registered_user(login)):
         flash(('red','Неверный пользователь')) #ne korrektnoe otobrajenie
-        print 'regist user'
         return render_template('login.html',\
                                 form=form)
     if not registered_user(login).check_password(password):
@@ -156,7 +155,6 @@ def create():
     form = CreateForm()
     if request.method == 'POST': #and form.validate_on_submit():
         file = request.files['userfile']
-        print file
         if file:
             filename = secure_filename(file.filename)
             if not(check_file_extension(file.filename)):
@@ -206,7 +204,7 @@ def get_comment():
     user_comments = get_user_comments(id)[i:]
     admin_comments = get_admin_comments(id)[i:]
     return jsonify(user_comments = user_comments[0:3], user_length = len(user_comments),\
-                   admin_comments = admin_comments[0:], admin_length = len(admin_comments))
+                   admin_comments = admin_comments[0:3], admin_length = len(admin_comments))
     
 #ERRORS
 @app.errorhandler(413)
