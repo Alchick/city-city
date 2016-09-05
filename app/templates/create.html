@@ -24,17 +24,17 @@
         {{form.hidden_tag()}}
        <p>Введите ваше Имя:</p>
        <!--no need class "send form here" -->
-       {{form.author_name(class="send-form")}}
+       {{form.author_name(class="send-form", placeholder="Иванов Иван Иванович")}}
         {% for error in form.errors.author_name %}
         <span style="color:red"; class="flash-message">{{error}}</span>
         {% endfor %}
        <p>Введите название статьи:</p>
-       {{ form.article_name(class="send-form")}}
+       {{ form.article_name(class="send-form", placeholder="Название Вашей статьи")}}
         {% for error in form.errors.article_name %}
         <span style="color:red" class="flash-message">{{error}}</span>
         {% endfor %}
        <p>Введите ваш электронный адрес:</p>
-       {{ form.email(class="send-form") }}
+       {{ form.email(class="send-form", placeholder="culture-city@gmail.com") }}
         {% for error in form.errors.email %}
         <span style="color:red" class="flash-message">{{error}}</span>
         {% endfor %}
