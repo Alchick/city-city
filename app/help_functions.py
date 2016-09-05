@@ -1,6 +1,6 @@
 #coding: utf-8
 import re
-from sqlalchemy import exc
+from sqlalchemy import exc, desc
 import os
 from flask import request
 from models import *
@@ -25,9 +25,6 @@ def send_email(subject, sender, recipients, text_body, html_body=None):
     except Exception as ex:
         print 'Unable to send mail, watch logs', ex
         return PROBLEM_STATUS
-
-
-
     
 #DATABASE OPERATIONS
 #SAVE,INSERT,UPDATE OPERATIONS
@@ -47,7 +44,7 @@ def save_data_to_db(data):
             if 'article_name' in ex.message:
                 return ('red','Статья с таким называние уже есть в базе данных')
             if 'unique_rating' in ex.message:
-                return ('yellow','Ваша оценка данной статьи учтена')
+                return ('GoldenRod','Ваша оценка данной статьи уже учтена')
             print ex
             return ('red','Ошибка обработки, повторите познее или напишите нам')
         print ex
@@ -71,12 +68,20 @@ def insert_comment(article_id, user_name, email, comment_body):
     return save_data_to_db(comment)
 
 def add_admin(name, login, email, phone, password):
-    admin = culture_admins(name, login, email, phone, password)
+    admin = culture_admins(name, login, password, email, phone)
     return save_data_to_db(admin)
 
 def set_rating(rating, article_id, admin_id, comment):
     rating = article_rating(article_id, admin_id, comment, rating)
     return save_data_to_db(rating)
+
+def update_article_status(article_id, new_status):
+    try:
+        update = db.session.query(articles).filter(articles.id == article_id).update({'status':int(new_status)})
+        db.session.commit()
+    except Exception as ex:
+        print ex
+        db.session.rollback()
 
 #SELECT OPERATIONS
 #ARTICLES SELECT OPERATIONS
@@ -118,7 +123,7 @@ def find_article_by_author(author_name):
 def get_user_comments(id):
     try:
         result = db.session.query(users_comment.user_name, users_comment.date, users_comment.comment_body).\
-        filter_by(article_id = id).all()
+        filter_by(article_id = id).order_by(users_comment.date.desc()).all()
     except Exception as ex:
         result = ('red', 'Произошла ошибка при запрос комментариев. Попробуйте позднее')
     return result
@@ -126,7 +131,7 @@ def get_user_comments(id):
 def get_admin_comments(id):
     try: 
         result = db.session.query(article_rating.rating,article_rating.date, article_rating.comment).\
-        filter_by(article_id = id).join(culture_admins).add_columns(culture_admins.login).all()
+        filter_by(article_id = id).join(culture_admins).add_columns(culture_admins.login).order_by(article_rating.date.desc()).all()
     except Exception as ex:
         result = ('red', 'Произошла ошибка при запросе комментариев. Попробуйте позднее')
     return result
