@@ -10,11 +10,13 @@ from models import culture_admins
 from flask import jsonify
 from datetime import datetime
 import sys
+import logging, logging.config
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+view_log = logging.getLogger('view_func')
 
-STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении', ' #FF8C00'], 3:[u'В архив', '#FF0000']}
+STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении', ' #FF8C00'], 3:[u'В архиве', '#FF0000']}
 
 @app.route('/test.html', methods = ['GET', 'POST'])
 def test():
@@ -24,34 +26,38 @@ def test():
     '''
     testform = CreateForm()
     data = datetime.utcnow()
-    comment1 = [('bla','bla'),('bla','bla')]
-    return render_template('test.html', form=testform, text=text, data = data, comment = json.dumps(comment1))
+    return render_template('test.html', form=testform, text=text, data = data)
+
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == 'GET':
         return render_template('login.html',\
-                               form = form)
+                               form = form) #return static page login
     login = request.form.get('login')
     password = request.form.get('password')
     remember_me = False
     if request.form.get('remember_me'):
         remember_me = True
     if not(registered_user(login)):
-        flash(('red','Неверный пользователь')) #ne korrektnoe otobrajenie
+        flash(('red','Неверное имя пользователя'))
+        view_log.info('unknown login - ' + login)
         return render_template('login.html',\
                                 form=form)
     if not registered_user(login).check_password(password):
         flash(('red', 'Неверный пароль'))
+        view_log.info('unknown password  for login - ' + login)
         return render_template('login.html',\
                                 form=form)
     login_user(registered_user(login), remember = remember_me)
+    view_log.info(login + ' authorized success')
     #flash('Logged is successfully')
     return redirect(request.args.get('next') or url_for('index'))
 
 @app.route('/logout')
 def logout():
+    view_log.info(current_user.login + ' logout')
     logout_user()
     return redirect(url_for('index'))
 
@@ -64,6 +70,7 @@ def register():
             return render_template('register.html', form=form)
         else:
             flash(('red','Доступ закрыт'))
+            view_log.warning('attempt to get access for register user')
             return redirect(url_for('login'))
     if request.method == 'POST' and form.validate_on_submit:
         name = request.form.get('name')
@@ -72,6 +79,7 @@ def register():
         phone = request.form.get('phone')
         password = request.form.get('password')
         flash(add_admin(name, login, email, phone, password))
+        view_log.info('check registration for user ' + login)
         return render_template(url_for('index'))
 #PAGES VIEWS
 @app.route('/')
@@ -110,6 +118,7 @@ def read():
             articles = find_article_by_author(request.form.get('author_name'))
         if not(request.form.get('article_name')) and not(request.form.get('author_name')):
             articles = get_articles()
+            view_log.info('get articles in post request')
         return render_template('read.html',\
                                  articles = articles,\
                                  form=form) 
@@ -127,8 +136,8 @@ article.date - [3]
 article.status - [4]
 article.article_filename - [5]
 '''
-@app.route('/get_file.html', methods = ['GET', 'POST'])
-def get_file():
+@app.route('/get_article.html', methods = ['GET', 'POST'])
+def get():
     form = CommentForm()
     admin_comments = None
     if request.args:
@@ -139,7 +148,7 @@ def get_file():
         if current_user.is_authenticated:
             admin_comments = get_admin_comments(id)
         rating_average = get_rating_average(id)
-	return render_template("get_file.html",\
+	return render_template("get_article.html",\
                                article = article,
                                form = form,\
                                rating_average = rating_average,\
@@ -148,7 +157,7 @@ def get_file():
 
 @app.route('/contacts.html')
 def contact():
-    return render_template("contacts.html")
+    return render_template("contacts.html") #static page
 
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
@@ -160,11 +169,13 @@ def create():
             if not(check_file_extension(file.filename)):
                 flash(('red','Неподдерживаемый формат файла'))
                 return redirect(url_for('create'))
+            view_log.info('check new article ' + request.form['article_name'] + 'by '+ request.form['author_name'])
             article = articles(article_name = request.form['article_name'],\
                                author_name = request.form['author_name'],\
                                article_file = filename,\
                                email = request.form['email'])
             flash(save_article(article, file, filename))
+            #add email notification about add new article
             return render_template('create.html',\
                                     form=form)
         else: 
@@ -173,13 +184,6 @@ def create():
 
     return render_template("create.html",\
                            form=form)
-
-@app.route('/admin.html', methods = ['GET', 'POST'])
-@login_required
-def admin():
-    records = get_article_from_db()
-    return render_template('admin.html',\
-                            records = records)
 
 @app.route('/set_comment.html', methods = ['POST'])
 def set_comment():
@@ -190,8 +194,10 @@ def set_comment():
     if current_user.is_authenticated:
         rating = request.form.get('rating')
         message = set_rating(rating, art_id, current_user.id, comment)
+        view_log.info(current_user.login + ' set rating for article '+ art_id)
     else:
         message = insert_comment(art_id,name,email,comment)
+        view_log.info('add new comment for article '+ art_id)
     return jsonify(color = message[0],\
                    message_words = message[1])
 
@@ -207,19 +213,69 @@ def get_comment():
                    admin_comments = admin_comments[0:3], admin_length = len(admin_comments))
     
 #ERRORS
+#40x errors
 @app.errorhandler(413)
 def EntityTooLarge(error):
-    return render_template("error.html", error = 413), 413
+    view_log.warning('too big file size')
+    view_log.warning(error)
+    return render_template("error.html", error = error) #entetity too large
+
+@app.errorhandler(400)
+def page_not_found(error):
+    return render_template("error.html", error = error) #wrong request(syntax)
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("error.html", error = 404), 404
+    return render_template("error.html", error = error) #not found
 
+
+@app.errorhandler(408)
+def page_not_found(error):
+    return render_template("error.html", error = error) #request timeout
+
+@app.errorhandler(410)
+def page_not_found(error):
+    return render_template("error.html", error = error) #resource was deleted
+
+
+#50x errors
 @app.errorhandler(500)
 def page_not_found(error):
+    view_log.error('500_error')
+    view_log.error(error)
     db.session.rollback()
-    return render_template("error.html", error = 500), 500
+    return render_template("error.html", error = error) #internal server error
 
+@app.errorhandler(501)
+def page_not_found(error):
+    view_log.error('501_error')
+    view_log.error(error)
+    db.session.rollback()
+    return render_template("error.html", error = error) #not realized
+
+@app.errorhandler(502)
+def page_not_found(error):
+    view_log.error('502_error')
+    view_log.error(error)
+    db.session.rollback()
+    return render_template("error.html", error = error) #bad gateway
+
+@app.errorhandler(503)
+def page_not_found(error):
+    view_log.error('503_error')
+    view_log.error(error)
+    db.session.rollback()
+    return render_template("error.html", error = error) #service unavailable
+
+@app.errorhandler(504)
+def page_not_found(error):
+    view_log.error('504_error')
+    view_log.error(error)
+    db.session.rollback()
+    return render_template("error.html", error = error) #gateway timeout
+
+
+####
 @app.before_request
 def before_request():
     g.status = STATUS

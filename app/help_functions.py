@@ -10,6 +10,9 @@ from config import UPLOAD_FOLDER, ALLOWED_EXTENSIONS
 from app import mail
 from flask.ext.mail import Message
 from threading import Thread
+import logging, logging.config
+view_log = logging.getLogger('view_func')
+db_log = logging.getLogger('database_operation')
 
 OK_STATUS = 0
 PROBLEM_STATUS = 1
@@ -22,8 +25,10 @@ def send_email(subject, sender, recipients, text_body, html_body=None):
         assync_send = Thread(target = mail.send, args = [msg])
         assync_send.setDaemon(True)
         assync_send.start()
+        view_log.info('send email - ' + text_body) #for who?
     except Exception as ex:
-        print 'Unable to send mail, watch logs', ex
+        view_log.error('error happend while send email')
+        view_log.error(ex)
         return PROBLEM_STATUS
     
 #DATABASE OPERATIONS
@@ -32,9 +37,12 @@ def save_data_to_db(data):
     try:
         db.session.add(data)
         db.session.commit()
+        db_log.info('add to db')
         return ('green','Данные успешно добавлены')
     except exc.SQLAlchemyError as ex:
         db.session.rollback()
+        db_log.error('proble with saving data to db')
+        db_log.error(ex)
         #check duplicate value error for postgres(pgcode) or for mysql (ex.orig)
         if ex.orig.pgcode == '23505' or ex.orig[0] == 1062:
             if 'article_file' in ex.message:
@@ -45,9 +53,7 @@ def save_data_to_db(data):
                 return ('red','Статья с таким называние уже есть в базе данных')
             if 'unique_rating' in ex.message:
                 return ('GoldenRod','Ваша оценка данной статьи уже учтена')
-            print ex
             return ('red','Ошибка обработки, повторите познее или напишите нам')
-        print ex
         return ('red','Ошибка обработки, повторите познее или напишите нам')
 
 def save_article(article, file, filename):
@@ -57,9 +63,9 @@ def save_article(article, file, filename):
             file.save(os.path.join(UPLOAD_FOLDER, filename))
             return ('green','Ваша статья успешно добавлена')
         except Exception as ex:
+            db_log.error('error happened while save article')
             db.session.delete(article)
             db.session.commit()
-            print 'File-save exception', ex
             return ('red','Ошибка обработки, повторите познее или напишите нам')
     else: return message
 
@@ -79,8 +85,9 @@ def update_article_status(article_id, new_status):
     try:
         update = db.session.query(articles).filter(articles.id == article_id).update({'status':int(new_status)})
         db.session.commit()
+        db_log.info('success update article status' + article_id)
     except Exception as ex:
-        print ex
+        db_log.error('erro happend while update article status')
         db.session.rollback()
 
 #SELECT OPERATIONS
@@ -91,6 +98,9 @@ def get_articles(): #something wrong with this select
         filter(articles.article_file.like('%jp%g')).\
         order_by('date desc').limit(10);
     except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happend while get articles')
+        db_log.error(ex)
         result = ('red', 'Произошла ошибка при запросе статей. Попробуйте позднее')
     return result
 
@@ -100,13 +110,20 @@ def get_article(id):
         articles.article_file).\
         filter(articles.id == id).first()
     except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happend while get ONE articles')
+        db_log.error(ex)
         result = ('red', 'Произошла ошибка при запросе статьи. Попробуйте позднее')
     return result
+
 def find_article_by_name(article_name):
     try:
         result = db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
     filter_by(article_name=article_name).all()
     except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happen while find article by name')
+        db_log.error(ex)
         result = ('red', 'Произошла ошибка при поиске. Попробуйте позднее')
     return result
 
@@ -115,16 +132,21 @@ def find_article_by_author(author_name):
         result = db.session.query(articles.id, articles.author_name, articles.article_name,articles.date,articles.status).\
         filter_by(author_name=author_name).all()
     except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happen while find article by author')
+        db_log.error(ex)
         result = ('red', 'Произошла ошибка при поиске. Попробуйте позднее')
     return result 
 
-    
 #COMMENTS SELECT OPERATIONS
 def get_user_comments(id):
     try:
         result = db.session.query(users_comment.user_name, users_comment.date, users_comment.comment_body).\
         filter_by(article_id = id).order_by(users_comment.date.desc()).all()
     except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happen while get user comments')
+        db_log.error(ex)
         result = ('red', 'Произошла ошибка при запрос комментариев. Попробуйте позднее')
     return result
 
@@ -133,11 +155,20 @@ def get_admin_comments(id):
         result = db.session.query(article_rating.rating,article_rating.date, article_rating.comment).\
         filter_by(article_id = id).join(culture_admins).add_columns(culture_admins.login).order_by(article_rating.date.desc()).all()
     except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happen while get admin comments')
+        db_log.error(ex)
         result = ('red', 'Произошла ошибка при запросе комментариев. Попробуйте позднее')
     return result
 #OTHER OPERATIONS
 def registered_user(login):
-    return db.session.query(culture_admins).filter(culture_admins.login == login).first()
+    try:
+        return db.session.query(culture_admins).filter(culture_admins.login == login).first()
+    except Exception as ex:
+        db.session.rollback()
+        db_log.error('error happen while check registration user')
+        db_log.error(ex)
+    return False
 
 def get_rating_average(id):
     try:
@@ -150,7 +181,10 @@ def get_rating_average(id):
         except Exception as ex:
             return 0
     except Exception as ex:
-        return PROBLEM_STATUS
+        db.session.rollback()
+        db_log.error('error happend while get rating_average')
+        db_log.error(ex)
+    return PROBLEM_STATUS
 
 #OTHER FUNCTIONS
 def check_file_extension(filename):
