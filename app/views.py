@@ -18,15 +18,15 @@ view_log = logging.getLogger('view_func')
 
 STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении', ' #FF8C00'], 3:[u'В архиве', '#FF0000']}
 
-@app.route('/test.html', methods = ['GET', 'POST'])
-def test():
-    text = '''
-        This is wartime, this is our time
-        We won't be denied
-    '''
-    testform = CreateForm()
-    data = datetime.utcnow()
-    return render_template('test.html', form=testform, text=text, data = data)
+#@app.route('/test.html', methods = ['GET', 'POST'])
+#def test():
+#    text = '''
+#        This is wartime, this is our time
+#        We won't be denied
+#    '''
+#    testform = CreateForm()
+#    data = datetime.utcnow()
+#    return render_template('test.html', form=testform, text=text, data = data)
 
 
 @app.route('/login', methods = ['GET', 'POST'])
