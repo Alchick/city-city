@@ -1,87 +1,30 @@
-while change field name in models.py (database field-name), all data is dissimissed
-be careful Luke when you change some fields, you should have reserv databse, reserve valid data
-downgrade database version doesnt save you from this misunderstanding
+####Culture-City-web_project_documentation######
 
+Web-site for project Culture-City
 
-how display articles?
+To start working with project, at first should be installed requirments.
+In debian-systems its:
+    psycopg2 - for python-postgres working - setup with "apt-get install python-psycopg2"
+    python-mysqldb - for python-mysql workign - setup with "apt-get install python-mysqldb"
 
-Link for flask URI routing
-http://flask.pocoo.org/docs/0.11/api/#flask.send_from_directory
+Another requirmnets set in file "python-requirments.txt"
+install them with command "pip install python-requirments.txt"
 
-modules:
-install sqlallchemy, sqlallchemy-migrate, psycopg2
+After create database, set name in config - "DATABASE_NAME" -  and start script db_create.py to create tables and requirments
 
-use correct sqlalchemy syntax
-/usr/local/lib/python2.7/dist-packages/flask/exthook.py:71: ExtDeprecationWarning: Importing flask.ext.sqlalchemy._compat is deprecated, use flask_sqlalchemy._compat instead.
-this error spring as because somethimes uses different packet versions and names
+Start work project with "python culture-city.py &>/dev/null&"
 
-
-watched whats in uniq = True in db.model (same data in column)
-
-
-<Request 'http://localhost:5000/create.html' [POST]>
-Exception while save data to ex (psycopg2.ProgrammingError) column "date" is of type timestamp without time zone but expression is of type integer
-LINE 1: ...mail) VALUES ('article5', 'tiger5', 'tiger2.jpg', 0, 'email5...
-
-dont add files, why?
+culture_city.ini - configuration file for uwsgi server
+culture_city.service - systemd config file, for autostart culture_city_web_project (uwsgi server general)
+for correct working create nginx config with uwsgi socket configuration
 
 
 
+#####NOT USED
 need Wand python packet to convert pdf in image
 interestiong lib, but too many packages
-try to find
 
 
 
-sqlalchemy.exc.ProgrammingError: (psycopg2.ProgrammingError) syntax error at or near "desc"
-LINE 2: FROM articles ORDER BY articles.date, desc 
-'
-
-sqlalchemy.exc.InternalError: (psycopg2.InternalError) current transaction is aborted, commands ignored until end of transaction block
-
-installed latest version flask_sql_acllchemy
-
-
-
-db_create script working uncorrect - not apply tables metadata
-if import from config befor db.create_all() function
-db_migrate script - shit
-
-Think about server exception
-Exception 400: Bad Request <class 'werkzeug.exceptions.BadRequestKeyError'>
-
-
-codecs problem:
-Exception 'ascii' codec can't encode characters in position 0-3: ordinal not in range(128) <type 'exceptions.UnicodeEncodeError'>
-
-show this message at web:
-terminating connection due to administrator command SSL connection has been closed unexpectedly
-exception: database exception (psycopg2.OperationalError) 
-
-doesnt set default value, what da fuck?
-
-
-
-database error, wathc and learn:
-sqlalchemy.exc.OperationalError
-OperationalError: (psycopg2.OperationalError) terminating connection due to administrator command
-SSL connection has been closed unexpectedly
- [SQL: 'SELECT culture_admins.id AS culture_admins_id, culture_admins.name AS culture_admins_name, culture_admins.login AS culture_admins_login, culture_admins.password AS culture_admins_password, culture_admins.email AS culture_admins_email, culture_admins.phone AS culture_admins_phone, culture_admins.admin_status AS culture_admins_admin_status, culture_admins.registered_on AS culture_admins_registered_on \nFROM culture_admins \nWHERE culture_admins.id = %(id_1)s \n LIMIT %(param_1)s'] [parameters: {'id_1': u'1', 'param_1': 1}]
-
-how to work on post 400 error?
-
-
-/usr/local/lib/python2.7/dist-packages/sqlalchemy/sql/compiler.py:575: SAWarning: Can't resolve label reference 'date desc'; converting to text() (this warning may be suppressed after 10 occurrences)
-  util.ellipses_string(element.element))
-127.0.0.1 - - [30/Jul/2016 05:52:36] "GET /read.html HTTP/1.1" 500 -
-Exception in thread Thread-1:
-
-
-for work with mysql need python module named 'MySQLdb' - installing with 'apt-get install python-mysqldb'
-for work with postgres need python module named 'psycopg2'
-
-whileexporting models to python with mysql driver, get this message:
-/usr/local/lib/python2.7/dist-packages/flask_sqlalchemy/__init__.py:800: UserWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.
-warnings.warn('SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True to suppress this warning.')
 
 
