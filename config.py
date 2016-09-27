@@ -1,13 +1,13 @@
 #coding=utf-8
 import os
-MAX_CONTENT_LENGTH = 100 * 1024 * 1024
+MAX_CONTENT_LENGTH = 100 * 1024 * 1024 * 1024
 #USE_X_SENDFILE = True #test how to send cache files to browser
 #SERVER_NAME = 'culture-city.rf'
 #SEND_FILE_MAX_AGE_DEFAULT = '43200'
 BASEDIR = os.path.abspath(os.path.dirname(__file__))
 #check upload folder before start
 UPLOAD_FOLDER = BASEDIR + '/app/static/filestorage/'
-ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'jpg','doc', 'docx', 'txt'])
+ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'jpg','doc', 'docx', 'txt', 'pptx'])
 CSRF_ENABLED = True
 SECRET_KEY = 'Ooshaev6ie8eeRok'
 #database configuration

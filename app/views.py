@@ -18,15 +18,17 @@ view_log = logging.getLogger('view_func')
 
 STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении', ' #FF8C00'], 3:[u'В архиве', '#FF0000']}
 
-#@app.route('/test.html', methods = ['GET', 'POST'])
-#def test():
-#    text = '''
-#        This is wartime, this is our time
-#        We won't be denied
-#    '''
-#    testform = CreateForm()
-#    data = datetime.utcnow()
-#    return render_template('test.html', form=testform, text=text, data = data)
+@app.route('/test.html', methods = ['GET', 'POST'])
+def test():
+    text = '''
+        This is wartime, this is our time
+        We won't be denied
+    '''
+    testform = CreateForm()
+    data = datetime.utcnow()
+    if request.method == 'POST':
+        print request.form
+    return render_template('test.html', form=testform, text=text, data = data)
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -72,7 +74,7 @@ def register():
             flash(('red','Доступ закрыт'))
             view_log.warning('attempt to get access for register user')
             return redirect(url_for('login'))
-    if request.method == 'POST' and form.validate_on_submit:
+    if request.method == 'POST' and form.validate_on_submit():
         name = request.form.get('name')
         login = request.form.get('login')
         email = request.form.get('email')
@@ -81,6 +83,7 @@ def register():
         flash(add_admin(name, login, email, phone, password))
         view_log.info('check registration for user ' + login)
         return render_template(url_for('index'))
+
 #PAGES VIEWS
 @app.route('/')
 def main():
@@ -128,7 +131,7 @@ def read():
                            form = form)
 
 '''
-get_article() function return article in format:
+    get_article() function return article in format:
 article.id - [0]
 article.author_name - [1]
 article.article_name - [2]
@@ -157,17 +160,21 @@ def get():
 
 @app.route('/contacts.html')
 def contact():
+    if request.method == 'POST':
+        print request.form
     return render_template("contacts.html") #static page
 
 @app.route('/create.html', methods = ['GET', 'POST'])
 def create():
     form = CreateForm()
-    if request.method == 'POST': #and form.validate_on_submit():
+    if request.method == 'POST' and form.validate_on_submit():
         file = request.files['userfile']
         if file:
             filename = secure_filename(file.filename)
             if not(check_file_extension(file.filename)):
                 flash(('red','Неподдерживаемый формат файла'))
+                view_log.error('Неподдерживаемый формат файла')
+                view_log.error(filename)
                 return redirect(url_for('create'))
             view_log.info('check new article ' + request.form['article_name'] + 'by '+ request.form['author_name'])
             article = articles(article_name = request.form['article_name'],\
