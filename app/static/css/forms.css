@@ -40,7 +40,7 @@ textarea {
     float:right;
 }
 
-.form input[type=text]{
+.form input[type=text], input[type=password]{
     width:330px;
     float:left;
     margin-bottom:10px;
