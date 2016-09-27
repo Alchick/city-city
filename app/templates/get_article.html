@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+    var i = 0;
+</script>
+<div class="block">  
+  <div class="get-article">
+    <p><span>Автор</span> - {{article[1]}}</p>
+    <p><span>Статья</span> - {{article[2]}}</p>
+    <p><span>Дата создания</span> - <script>time_format('{{article[3]}}')</script></p>
+    <p style="color:{{g.status[article[4]][1]}}"><span style="color:#000000">Статус</span> - {{g.status[article[4]][0]}}</p>
+  </div>
+  <div class="article-range">
+    <p>Рейтинг - <span>{{rating_average}}<span></p>
+  </div>
+    <div class="article-read">
+      <p><img src="/static/filestorage/{{article[5]}}" alt="{{article[5]}}" width="99%"></p> 
+    </div>
+    {% if article[4] == 2%} <!--article_status-->
+    <div class="comments">
+      <div class="user">
+      <br>
+        <div id="user_comments"></div>
+	      <div id="user_next_button" name="next_button"><p onclick="get_comment('{{article.id}}',3, 'user')">Далее>></p></div>
+	      <div id="user_previous_button" name="previous_button"><p onclick="get_comment('{{article.id}}',-3, 'user')"><<Назад</p></div>
+      </div>
+      {% if current_user.is_authenticated %}
+      <div class="admin">
+      <h4>Комментарий Администратора</h4>
+        <div id="admin_comments"></div>
+	        <div id="admin_next_button" name="next_button"><p onclick="get_comment('{{article.id}}',3, 'admin')">Далее>></p></div>
+	        <div id="admin_previous_button" name="previous_button"><p onclick="get_comment('{{article.id}}',-3, 'admin')"><<Назад</p></div>
+        </div> 
+      {% endif %}
+      </div>
+    <div>
+    <div class="additional_img">
+      <img src="/static/images/pen_and_ink.jpg" width="400px" height="300px" alt="pen_and_ink">
+    </div>
+    <div class="form">
+      <form action="set_comment.html" method="POST" id="formx">
+      {% if current_user.is_authenticated %}
+        <p>Комментарий:</p>
+          <textarea cols="10" rows="10" name="comment"></textarea>
+          <input type="hidden" name="art_id" value="{{article[0]}}">
+        <p>Оцените статью по 10-бальной шкале:</p>
+          <div class="radioButtons">
+		    <div class="radioButton"><label for="0">0</label><input type="radio" name="articleRating" value="0" checked/></div>         
+		    <div class="radioButton"><label for="1">1</label><input type="radio" name="articleRating" value="1"/></div>         
+		    <div class="radioButton"><label for="2">2</label><input type="radio" name="articleRating" value="2"/></div>         
+		    <div class="radioButton"><label for="3">3</label><input type="radio" name="articleRating" value="3"/></div>         
+		    <div class="radioButton"><label for="4">4</label><input type="radio" name="articleRating" value="4"/></div>         
+		    <div class="radioButton"><label for="5">5</label><input type="radio" name="articleRating" value="5"/></div>         
+		    <div class="radioButton"><label for="6">6</label><input type="radio" name="articleRating" value="6"/></div>         
+		    <div class="radioButton"><label for="7">7</label><input type="radio" name="articleRating" value="7"/></div>         
+		    <div class="radioButton"><label for="8">8</label><input type="radio" name="articleRating" value="8"/></div>         
+		    <div class="radioButton"><label for="9">9</label><input type="radio" name="articleRating" value="9"/></div>         
+		    <div class="radioButton"><label for="10">10</label><input type="radio" name="articleRating" value="10"/></div>         
+          </div>
+          <input type="button" class="btn red" onclick="send_comment(this.form, 'admin')" value="Отправить"/>
+        {% else %}
+        <p>Ваше Имя</p>
+          <input name="name" type="text">
+        <p>Электронная почта:</p>
+          <input name="email" type="text">
+        <p>Комментарий:</p>
+          <textarea cols="10" rows="10" name="comment"></textarea>
+          <input type="hidden" name="art_id" value="{{article.id}}">
+          <input type="button" class="btn red" onclick="send_comment(this.form,'user')" value="Отправить"/>
+      {% endif %}
+      </form>
+        <div id="result" class="flash-messages" style="display:none;"></div>
+    </div>
+    </div>
+    {% else %}
+    <div class="decision">
+      <h4>Статус статьи уже определен</h4>
+    </div>
+    {% endif %}
+</div>
+    <script>get_comment('{{article.id}}',0, 'user')</script>
+      {% if current_user.is_authenticated %}
+          <script>get_comment('{{article.id}}',0, 'admin')</script>
+      {% endif %}
+{% endblock %}
