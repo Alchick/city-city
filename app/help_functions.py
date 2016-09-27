@@ -64,6 +64,7 @@ def save_article(article, file, filename):
             return ('green','Ваша статья успешно добавлена')
         except Exception as ex:
             db_log.error('error happened while save article')
+            db_log.error(ex)
             db.session.delete(article)
             db.session.commit()
             return ('red','Ошибка обработки, повторите познее или напишите нам')
@@ -88,6 +89,7 @@ def update_article_status(article_id, new_status):
         db_log.info('success update article status' + article_id)
     except Exception as ex:
         db_log.error('erro happend while update article status')
+        db_log.error(ex)
         db.session.rollback()
 
 #SELECT OPERATIONS

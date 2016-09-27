@@ -88,7 +88,7 @@ class article_rating(db.Model):
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id')) #foreign key
     admin_id = db.Column(db.Integer, db.ForeignKey('culture_admins.id')) #foreign key
     rating = db.Column('rating', db.Integer)
-    comment = db.Column('comment', db.VARCHAR(500))
+    comment = db.Column('comment', db.VARCHAR(1000))
     date = db.Column(db.DateTime)
     __table_args__ = (db.UniqueConstraint('article_id', 'admin_id', name='unique_rating'),)
     def __init__(self, article_id, admin_id, comment, rating):
@@ -108,7 +108,7 @@ class users_comment(db.Model):
     article_id = db.Column(db.Integer, db.ForeignKey('articles.id'))
     user_name = db.Column(db.VARCHAR(70))
     email = db.Column(db.VARCHAR(30))
-    comment_body = db.Column(db.VARCHAR(500))
+    comment_body = db.Column(db.VARCHAR(1000))
     date = db.Column(db.DateTime)
     def __init__(self, article_id, user_name, email, comment_body):
         self.article_id = article_id
