@@ -4,7 +4,7 @@
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 <head>
-  <title>City</title>
+  <title>Культурный город</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/fonts.css') }}">
@@ -14,17 +14,16 @@
   <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/tablestyle.css') }}">
   <link rel="stylesheet" type='text/css' href="{{ url_for('static', filename='css/add_file_button.css') }}">
 
-<!-- what da fuck is that??? -->
-  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-  <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
-  <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='images/apple-touch-icon-72x72.png') }}">
-  <link rel="apple-touch-icon" sizes="114x114" href="{{ url_for('static', filename='images/apple-touch-icon-114x114.png') }}">
-<!-- ?????????????????????? -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image\x-icon">
+  <link rel="culture-city-icon" href="{{ url_for('static', filename='images/culture-city-icon.png') }}">
+  <link rel="culture-city-icon" sizes="72x72" href="{{ url_for('static', filename='images/culture-city-icon-72x72.png') }}">
+  <link rel="culture-city-icon" sizes="114x114" href="{{ url_for('static', filename='images/culture-city-icon-114x114.png') }}">
+
+<!-- ------------ -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
   <script src="{{ url_for('static', filename='javascript/moment.min.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/moment/locale/ru.js') }}"></script>
-  <script src="{{ url_for('static', filename='javascript/backlightLink.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/tiny_scripts.js') }}"></script>
   <script>
     moment.locale('ru');
@@ -34,7 +33,7 @@
    
   
   <div class="top">
-    <h4>Культура объединяет все стороны человеческой личности</h4>
+    <h4>"Культура объединяет все стороны человеческой личности"</h4>
     <p>Дмитрий Cергеевич Лихачев</p>
      {% if current_user.is_authenticated %}
      <div class="enter"> 
@@ -66,7 +65,7 @@
 
 {% endblock %}
     <div class="footer">
-      <p class="footer-text">Copyright &copy; 2016 </p>
+      <p class="footer-text">Copyright &copy; 2016. Проект "Культурный город"</p>
       <div class="menu">
         <ul>
           <li><a href="#">Главная</a></li>
@@ -78,10 +77,9 @@
       </div>
     </div>
 <script type="text/javascript">shineLinks('navigation');</script>
-<!--SLIDER scripts--!>
 <script src="{{ url_for('static', filename='javascript/jquery-1.7.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/autoadvance.js') }}"></script>
-<script src="{{ url_for('static', filename='javascript/changescript.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/slider_changescript.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/custom-file-input.js') }}"></script>
 <script src="{{ url_for('static', filename='javascript/jquery.custom-file-input.js') }}"></script>
 </body

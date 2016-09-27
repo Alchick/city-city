@@ -3,14 +3,15 @@
   <div class="articles">
     <div id="find" class="form"> <!-- why id=find here? -->
         <h3>Форма поиска</h3>
-        <form action="read.html" method="POST" enctype="multipart\form-data">
+        <form action="{{url_for('read')}}" method="POST" enctype="multipart\form-data">
             {{form.hidden_tag()}}
             {{form.author_name(placeholder="Поиск по имени автора")}}
             {{form.article_name(placeholder="Поиск по названию статьи")}}
             <input type="submit" value="Найти" class="btn red">
+        </form>
     </div>
     <h1>Статьи пользователей</h1>
-      <img src="/static/images/fenka.jpg" alt="fenka" width="450" height="80" style="margin-left:50px;"></img>
+      <img src="/static/images/fenka.jpg" alt="fenka"></img>
     <div class="table" cellspacing='0'>
   <table>
     <tr>
@@ -25,7 +26,7 @@
       <td>{{article[1]}}</td>
       <td>{{article[2]}}</td>
       <td><script>time_format('{{article[3]}}')</script></td>
-      <td style="text-align:center;"><a name="bla" href="get_file.html?id={{article[0]}}">Читать статью</a></td>
+      <td style="text-align:center;"><a name="bla" href="get_article.html?id={{article[0]}}">Читать статью</a></td>
       <td style="text-align:center; color:{{g.status[article[4]][1]}};">{{g.status[article[4]][0]}}</td>
     </tr>
     {% endfor %}
@@ -35,11 +36,6 @@
     <br>
   </div>
 
-  <script>
-    time_format();
-    //  data = $('.time-handle').html();
-    //  $('.time-handle').html(moment(data).format('YYYY-MM-DD HH:MM:SS'));
-  </script>
 
 {% endblock %}
 

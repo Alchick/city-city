@@ -1,16 +1,50 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>jopa-popa</h1>
-<br>
-<div class="make">
-<img src="/static/images/playboy-symbol.jpg" width="50px" height="50px" alt=""></img></div>
+<div class="contact_page">
+<div class="contact-form">
+  <h3>Напишите нам</h3>
+  <p>Мы стараемся улучшать наш сервис, простоту и доступность его использования. Напишите нам, о том, что бы вы хотели поменять или улучшить.<br>Эти предложения внимательно рассматриваются и обдумаваются. <br>Спасибо</p>
+  <form action="{{ url_for('contact') }}" method="POST" name="multipart/form-data">
+    <div class="form-field">
+      <p>Имя:</p>
+      <input type="text" name="name">
+    </div>
+    
+    <div class="form-field">
+      <p>Электронный адрес:</p>
+      <input type="text" name="email">
+    </div>
+    <div class="comment">
+        <p>Комментарий:</p>
+        <textarea rows="10"></textarea>
+    </div>
+    <input type="submit" class="btn red" value="Отправить"/>
+    </form>
+</div>
 
-<br>
-<br>
-<br>
-
-<div class="bw pic">
-<img src="/static/images/south_park.png" width="50px" height="50px" alt=""></img></div>
-
+<div class="contacts">
+    <dl>
+        <dt>Электронная почта</dt>
+          <dd>culture_city@gmail.com</dd>
+        <dt>Телефон</dt>
+          <dd>888888888
+          </dd>
+        <dt>Адрес</dt>
+          <dd>linena stree 9</dd>
+        <dt>Skype</dt>
+          <dd>culture-city</dd>
+    </dl>
+    <p>Также вы можете помочью проекту, отправив средства на любой из счетов, указанных ниже</p>
+    
+    <dl>
+        <dt>Банк</dt>
+        <dd>346456578678759879789789</dd>
+        <dt>Яндекс-Кошелек</dt>
+        <dd>645654765765</dd>
+        <dt>Qiwi</dt>
+        <dd>89091007836</dt>
+    </dl>
+</div>
+</div>
 {% endblock %}
 

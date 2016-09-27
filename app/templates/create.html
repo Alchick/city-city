@@ -7,20 +7,22 @@
     <ul>
         <li>Содержание стать не должно оскорблять чувства и достоинство другого человека</li>
         <li>Содержание статьи должно представлять интелектуальную ценность</li>
-        <li>Решаемая проблема с авторским правом</li>
-        <li>В статье не должно быть орфографических ошибок</li>
-        <li>Графически оформленная статья является более приоритетной к размещению нежелии сстатья в текстовом формате</li>
-        <li>Форматы принимаемых файлов - psd, txt, doc, docs, jpeg, jpg</li>
-        <li>Решение об отправлении статьи в печать выносится Комиссией на основании оценки пользователей и собственного анализа</li>
-        <li>Здесь будет еще одно правило. Дополнительное</li>
-        <li>Здесь будет правило номер три. Каким оно будет - пока непонятно</li>
-        <li>Запорченный файлы статей будут удаляться</li>
+        <li>После отправки статьи автор предоставляет право на размещение материалов по усмотрению сотрудников проекта</li>
+        <li>Графически оформленная статья является более приоритетной к размещению нежелии статья в текстовом формате</li>
+        <li>Форматы принимаемых файлов - <span class="file-formats">indp, psd, txt, doc, docs, jpeg, jpg, pptx</span></li>
+        <li>Размер отправляемых файлов должен быть не более 15 мб</li>
+    </ul>
+    <h1>Как статья попадает в печать</h1> 
+    <ul>
+        <li>После достижения статьей Рейтинга в 10 баллов, она встает в очередь на отправку в печать</li>
+        <li>Выставлять рейтинг могут "Культурные администраторы" - пользователи, у которых есть 2 и более одобренных на печать статьи</li>
+        <li>На отправку также влияют положительные комментарии пользователей</li>
     </ul>
   </div>
 
   <div class="form">
     <h2>Вы можете отправить нам уже готовую статью</h2>
-     <form action="{{ url_for('create') }}" method="POST" enctype="multipart/form-data" name="contact">
+     <form action="{{ url_for('create') }}" method="POST" enctype="multipart/form-data">
         {{form.hidden_tag()}}
        <p>Введите ваше Имя:</p>
        <!--no need class "send form here" -->
@@ -38,15 +40,10 @@
         {% for error in form.errors.email %}
         <span style="color:red" class="flash-message">{{error}}</span>
         {% endfor %}
-       <!--Add cleaning form after send article to database -->
-      <!--<p>Set you name:<br><input type="text" name="author_name"></p>
-       <p>Set article_name:<br><input type="text" name="article_name"></p>
-       <p>Set email:<br><input type="text" name="email"></p> -->
-      <!--<div class="file_upload"><p>Выбрать файл<input type="file" name="userfile"></p> </div>
-       <p><input type="submit" value="Add file" class="btn red"></p> -->
        <input type="file" id="upload" name="userfile" class="upload"/>
-       <label for='upload' class="btn yellow"><span>Открыть статью</span></label>
-      <input type="button" value="Отправить статью" class="btn red" onclick="submitForm(this);">
+       <label for="upload" class="btn yellow"><span>Открыть статью</span></label>
+       <input type="button" class="btn red" onclick="submitForm(this);" value="Отправить статью"/>
+      <!-- <button class="btn red" onclick="submitForm(this);">Отправить статью</button> -->
        </form>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -57,11 +54,20 @@
             </ul>
              {% endif %}
              {% endwith %}
+   <h3>Или создать свою, воспользовавшись руководством ниже</h3>
+   <h3>КАПЧА</h3>
+    </div>
   </div>
+  
+    <hr>
+<div class="block">
+  <div class="create-block">
+    <h1>Руководство по созданию статьи</h1>
+    <h5>Видеоинструкция по созданию статьи в бесплатном <a href="http://gimp.ru/download/gimp/">графическом редакторе GIMP</a></h5>
+    <p><img src="/static/images/videocam.jpg" width="90%"></p>
+    <h5>Видеоинструкция по созданию статьи в <a href="http://www.adobe.com/ru/products/photoshop.html">графическом редакторе Adobe Photoshop</a></h5>
+    <p><img src="/static/images/videocam.jpg" width="90%"></p>
   </div>
-   <h3 style="text-align:center">Или вы можете воспользоваться формой ниже, чтобы создать свою статью</h3>
-<div class="create-block">
-<!--  <iframe frameborder="0" src="http://mega-photoshop.ru/fotoshop_onlajn.html" height="950px" width="100%" ></iframe><br/> -->
-</div>
 
+</div>
 {% endblock %}
