@@ -18,17 +18,17 @@ view_log = logging.getLogger('view_func')
 
 STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении', ' #FF8C00'], 3:[u'В архиве', '#FF0000']}
 
-@app.route('/test.html', methods = ['GET', 'POST'])
-def test():
-    text = '''
-        This is wartime, this is our time
-        We won't be denied
-    '''
-    testform = CreateForm()
-    data = datetime.utcnow()
-    if request.method == 'POST':
-        print request.form
-    return render_template('test.html', form=testform, text=text, data = data)
+#@app.route('/test.html', methods = ['GET', 'POST'])
+#def test():
+#    text = '''
+#        This is wartime, this is our time
+#        We won't be denied
+#    '''
+#    testform = CreateForm()
+#    data = datetime.utcnow()
+#    if request.method == 'POST':
+#        print request.form
+#    return render_template('test.html', form=testform, text=text, data = data)
 
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -87,7 +87,7 @@ def register():
 #PAGES VIEWS
 @app.route('/')
 def main():
-    return redirect(url_for('test'))
+    return redirect(url_for('index'))
 
 @app.route('/index.html')
 def index():
@@ -161,7 +161,20 @@ def get():
 @app.route('/contacts.html')
 def contact():
     if request.method == 'POST':
-        print request.form
+        name = request.form.get('name').upper() + '\n'
+        mail = request.form.get('email').upper() + '\n'
+        opinion = request.form.get('opinion') + '\n'
+        try:
+            with open('user_opinion.txt', 'a') as f:
+                f.write(name+mail+opinion)
+            f.close()
+            view_log.info('add new opinion')
+        except Exception as ex:
+            view_log.error('error occured while add new opinion')
+            view_log.error(ex)
+            view_log.error(name)
+            view_log.error(mail)
+            view_log.error(opinion)
     return render_template("contacts.html") #static page
 
 @app.route('/create.html', methods = ['GET', 'POST'])
