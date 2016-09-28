@@ -18,7 +18,9 @@ culture_city.ini - configuration file for uwsgi server
 culture_city.service - systemd config file, for autostart culture_city_web_project (uwsgi server general)
 for correct working create nginx config with uwsgi socket configuration
 
-
+for add articles you need to create filestorage directory:
+mkdir /app/static/filestorage/
+as a file user_opinion in directoyr, where start application
 
 #####NOT USED
 need Wand python packet to convert pdf in image
