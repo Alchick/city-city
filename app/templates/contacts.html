@@ -20,6 +20,16 @@
     </div>
     <input type="submit" class="btn red" value="Отправить"/>
     </form>
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flash-message">
+                {% for message in messages %}
+                <li><span style="color:{{message[0]}}">{{ message[1] }}</span></li>
+                {% endfor %}
+            </ul>
+             {% endif %}
+             {% endwith %}
+
 </div>
 
 <div class="contacts">

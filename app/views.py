@@ -158,23 +158,22 @@ def get():
                                admin_comments = admin_comments)
     else: return redirect('read.html')
 
-@app.route('/contacts.html')
+@app.route('/contacts.html', methods = ['GET', 'POST'])
 def contact():
     if request.method == 'POST':
-        name = request.form.get('name').upper() + '\n'
-        mail = request.form.get('email').upper() + '\n'
-        opinion = request.form.get('opinion') + '\n'
+        name = 'name: '+request.form.get('name').upper() + '\n'
+        mail = 'email: '+request.form.get('email').upper() + '\n'
+        opinion = 'opinion: '+request.form.get('opinion') + '\n'
         try:
             with open('user_opinion.txt', 'a') as f:
-                f.write(name+mail+opinion)
+                f.write(name + mail + opinion)
             f.close()
             view_log.info('add new opinion')
+            flash(('green', 'Комментарий успешно добавлен. Мы ответим вам в течении 24 часов'))
         except Exception as ex:
             view_log.error('error occured while add new opinion')
-            view_log.error(ex)
-            view_log.error(name)
-            view_log.error(mail)
-            view_log.error(opinion)
+            view_log.error(str(ex) + '\n' +name + mail + opinion)
+            flash(('red', 'Произошла ошибка при отправке комменатрия. Вы можете продублировать свою точку зрения на наш электронный адрес'))
     return render_template("contacts.html") #static page
 
 @app.route('/create.html', methods = ['GET', 'POST'])
