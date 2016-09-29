@@ -1,0 +1,34 @@
+#NOTIFY TEXT BODY
+ERROR_TEXT_BODY = '''
+Error except occuradly in culture-city domain works.
+Check immediatly
+'''
+ERROR_SUBJECT = '''
+Culture-city domain error! Check immediatly
+'''
+
+ADD_ARTICLE_TEXT_BODY = '''
+Здравствуйте {username}. В проекте "Культутрный город" была добавлена новая статья {article_name}. Просмотрите содержание статьи, подходит ли она для печати в городе?
+
+С Уважением, "Культурный город"
+Контакты
+'''
+ADD_ARTICLE_SUBJECT = '''
+В проекте "Культурный город" была добавлена новая статья
+'''
+
+NEW_OPINION_TEXT_BODY = '''
+Здравствуйте {admin_name}
+Пользотваель {username} оптравил необходимую критику. Просмотрите ее, это важно
+С Уважением, "Культурный город"
+контакты
+'''
+
+NEW_OPINION_SUBJECT = '''
+Добавлено новое мнение
+'''
+
+
+
+
+
