@@ -112,15 +112,14 @@ textarea {
     color: #204a65;
     font-family:"Panton-Italic";
 }
-.form-field:first-child {
+.contact-form-field:first-child {
     margin-right:50px;
 }
-.form-field {
+.contact-form-field {
     display:inline-block;
     width:46.2%;
 }
-.form-field input {
+.contact-form-field input {
     width:100%;
-    background-color:#e1e1db;
 }
 

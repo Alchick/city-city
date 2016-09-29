@@ -5,12 +5,12 @@
   <h3>Напишите нам</h3>
   <p>Мы стараемся улучшать наш сервис, простоту и доступность его использования. Напишите нам, о том, что бы вы хотели поменять или улучшить.<br>Эти предложения внимательно рассматриваются и обдумаваются. <br>Спасибо</p>
   <form action="{{ url_for('contact') }}" method="POST" name="multipart/form-data">
-    <div class="form-field">
+    <div class="contact-form-field">
       <p>Имя:</p>
       <input type="text" name="name">
     </div>
     
-    <div class="form-field">
+    <div class="contact-form-field">
       <p>Электронный адрес:</p>
       <input type="text" name="email">
     </div>
