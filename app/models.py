@@ -12,7 +12,7 @@ class articles(db.Model):
     author_name = db.Column('author_name', db.VARCHAR(70), nullable=False)
     article_file = db.Column('article_file', db.VARCHAR(50), unique = True, nullable=False)
     date = db.Column('date', db.DateTime) #is it trur type?
-    author_email = db.Column('email', db.VARCHAR(30), unique = True, nullable=False)
+    author_email = db.Column('email', db.VARCHAR(30), nullable=False)
     status = db.Column('status', db.SmallInteger)
     article_rating = db.relationship('article_rating', backref='articles', lazy='dynamic')
     users_comment = db.relationship('users_comment', backref='articles', lazy='dynamic')    #how does fucking lazy works?

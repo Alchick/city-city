@@ -11,10 +11,10 @@ ALLOWED_EXTENSIONS = set(['pdf', 'jpeg', 'jpg','doc', 'docx', 'txt', 'pptx'])
 CSRF_ENABLED = True
 SECRET_KEY = 'Ooshaev6ie8eeRok'
 #database configuration
-DATABASE_USER = 'postgres'
-DATABASE_NAME = 'culture_city_1_0'
+DATABASE_USER = 'culture_admin'
+DATABASE_NAME = 'culture_city'
 DATABASE_HOST = 'localhost'
-DATABASE_PASSWORD = 'postgres'
+DATABASE_PASSWORD = 'culture'
 SQLALCHEMY_DATABASE_URI = 'postgresql://{0}:{1}@{2}:5432/{3}'.format(\
                                                               DATABASE_USER,\
                                                               DATABASE_PASSWORD,\

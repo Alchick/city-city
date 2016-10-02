@@ -8,7 +8,7 @@ In debian-systems its:
     python-mysqldb - for python-mysql workign - setup with "apt-get install python-mysqldb"
 
 Another requirmnets set in file "python-requirments.txt"
-install them with command "pip install python-requirments.txt"
+install them with command "pip install -r python-requirments.txt"
 
 After create database, set name in config - "DATABASE_NAME" -  and start script db_create.py to create tables and requirments
 
