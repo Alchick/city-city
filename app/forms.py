@@ -9,9 +9,9 @@ class CreateForm(Form):
     reg = re.compile(u'^[а-яА-Я ]+$')
     #reg = re.compile(u'^[a-zA-Z]+$')
     author_name = TextField('author_name', validators=[Required(message = u'Введите Имя'),\
-                                                                             Length(max=30)])
+                                                                             Length(max=50)])
     article_name = TextField('article_name', validators=[Required(message = u'Введите название статьи'),\
-                                                                             Length(max=30)])
+                                                                             Length(max=50)])
     email = TextField('email', validators = [Required(message = u'Введит электронный адрес'),\
                                             Email(message = u'Неверный формат электронной почты')])
     submit = SubmitField('submit')
