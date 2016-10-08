@@ -116,7 +116,7 @@ p {
 }
 .enter a {
     text-decoration:none;
-    color:black;
+    color:white;
     margin-left:25px;
     float:right;
     padding-top:8px;
@@ -135,7 +135,7 @@ p {
     padding:8px;
 }
 
-.top h4 {
+.top .citation {
     color: white;
     float: left;
     padding: 10px;
@@ -436,7 +436,7 @@ p {
     line-height:20px;
 }
 
-.file-formats {
+.incut {
     font-size:18px;
 	font-family:"Panton-Bold";
 }
@@ -609,7 +609,7 @@ p {
 .contact_page {
     position:relative;
     background:white;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5); /* Параметры тени */
+   /* box-shadow: 0 0 5px rgba(0,0,0,0.5); */
 }
 .contacts {
     background: url('/static/images/bg4.png') repeat;
