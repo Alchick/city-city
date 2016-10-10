@@ -268,6 +268,7 @@ p {
 
 .main-description .btn {
     margin-left: 110px;
+    margin-top:15px;
 }
 
 
@@ -372,16 +373,39 @@ p {
 }
 
 /*====== blocks =======*/
+.about-description {
+    width:98%;
+    margin-left:10px;
+}
+.about-description p {
+	font-family:"Panton-Bold";
+    font-size:17px;
+    line-height:25px;
+}
+.about-description p span {
+    text-decoration:underline;
+}
+
+.about-description p q {
+    font-style: italic; /* Курсивное начертание текста */
+    quotes: "\00ab" "\00bb"; /* Кавычки в виде двойных угловых скобок */
+}
+
+.about-header {
+    text-align:center;
+    line-height:30px;
+}
+
 .general-graphic-block {
-    background:#FFFFFF;
-    float:left;
-    text-align:left;
+    background: #FFFFFF;
+    float: left;
+    text-align: left;
     width: 100%;
 }
 
 .general-graphic-block h1 {
-    text-align:center;
-    line-height:30px;
+    text-align: center;
+    line-height: 30px;
 }
 
 .graphic-block {
@@ -395,6 +419,7 @@ p {
 .graphic-block h3 {
     margin: 20px;
 }
+
 
 .additional-block {
     width: 60.6%;
@@ -477,34 +502,6 @@ p {
     text-align:center;
     border:2px solid;
     border-color:#DCDCDC;
-}
-
-.service {
-    margin-top: 50px;
-    margin-right: 1px;
-    clear:both;
-    background:#ffffff;
-}
-.service h2 {
-    text-align:center;
-}
-
-.service ul li {
-    padding-left: 20px;
-    display:block;
-    font-family:'Panton-Regular';
-    background: url('../images/disc.png') no-repeat;
-}
-
-.service ul li span {
-    display:inline;
-    font-weight:bold;
-}
-
-.service img {
-    padding-right: 10px;
-    width: 12px;
-    opacity: 0.5;
 }
 
 .comments {
@@ -777,6 +774,14 @@ p {
 .bilbord:hover {
     background:url("/static/images/bilbord.gif") no-repeat;
     background-size: 150px 150px;
+}
+
+.smile {
+    background:url("/static/images/smile.jpg") no-repeat;
+    width:100px;
+    height:100px;
+    background-size: 100px 100px;
+    margin:auto; 
 }
 
 .cogweel img:hover {
