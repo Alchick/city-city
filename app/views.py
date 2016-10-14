@@ -26,6 +26,8 @@ STATUS = {1:[u'На печать', '#008000'], 2:[u'В рассмотрении'
 #    '''
 #    testform = CreateForm()
 #    data = datetime.utcnow()
+#    add_admin('root','root','nano.e.t.4@gmail.com','89213148974','M4ka48Guns4747')
+#    add_admin('admin','admin','admin_culture-city@gmail.com','8888888','Eey1LeeJ')
 #    if request.method == 'POST':
 #        print request.form
 #    return render_template('test.html', form=testform, text=text, data = data)
@@ -68,7 +70,7 @@ def logout():
 def register():
     form = RegistrationForm()
     if request.method == 'GET':
-        if current_user.login == 'root':
+        if current_user.login == 'root' or current_user.login == 'admin':
             return render_template('register.html', form=form)
         else:
             flash(('red','Доступ закрыт'))

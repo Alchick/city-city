@@ -66,3 +66,4 @@ SQLALCHEMY_DATABASE_URI = 'mysql://username:password@host/database.name')
 #when set to true, flask automatic restart template if it was change. Alrith work when debug mod is disable (in debug mod this option in True by default)
 #EXPLAIN_TEMPLATE_LOADING = True
 #SQLALCHEMY_TRACK_MODIFICATIONS = True,  sqlalchemy track modifications and send signal if its so
+#adm pass Eey1LeeJ
