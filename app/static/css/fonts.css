@@ -47,11 +47,3 @@
     url('../fonts/Panton-Italic.woff?v=3.0.1') format('woff'),
     url('../fonts/Panton-Italic.ttf?v=3.0.1') format('truetype'); */
 }
-@font-face {
-    font-family: 'five-italic';
-    src: url('../fonts/five-italic.otf');
-  src: url('../fonts/five-italic.eot?v=3.0.1');
-  src: url('../fonts/five-italic.eot?#iefix&v=3.0.1') format('embedded-opentype'),
-    url('../fonts/five-italic.woff?v=3.0.1') format('woff'),
-    url('../fonts/five-italic.ttf?v=3.0.1') format('truetype'); */
-}
